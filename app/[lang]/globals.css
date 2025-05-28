@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 93%; /* #ECECEC - Cinza claro suave */
+    --foreground: 0 0% 27%; /* #444444 - Cinza escuro neutro */
+    --card: 0 0% 100%; /* #FFFFFF - Branco */
+    --card-foreground: 0 0% 27%; /* #444444 - Cinza escuro neutro */
+    --popover: 0 0% 100%; /* #FFFFFF - Branco */
+    --popover-foreground: 0 0% 27%; /* #444444 - Cinza escuro neutro */
+    --primary: 220 70% 20%; /* #0F2756 - Azul escuro do logo */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF - Branco */
+    --secondary: 0 0% 93%; /* #ECECEC - Cinza claro suave */
+    --secondary-foreground: 0 0% 27%; /* #444444 - Cinza escuro neutro */
+    --muted: 0 0% 96%; /* Versão mais clara do cinza claro */
+    --muted-foreground: 0 0% 45%; /* Versão mais clara do cinza escuro */
+    --accent: 58 36% 66%; /* #CFCC84 - Dourado */
+    --accent-foreground: 0 0% 27%; /* #444444 - Cinza escuro neutro */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF - Branco */
+    --border: 220 70% 86%; /* Versão mais clara do Azul escuro */
+    --input: 220 70% 86%; /* Versão mais clara do Azul escuro */
+    --ring: 220 70% 20%; /* #0F2756 - Azul escuro do logo */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 27%; /* #444444 - Cinza escuro neutro */
+    --foreground: 0 0% 93%; /* #ECECEC - Cinza claro suave */
+    --card: 0 0% 20%; /* Versão mais escura do cinza escuro */
+    --card-foreground: 0 0% 93%; /* #ECECEC - Cinza claro suave */
+    --popover: 0 0% 20%; /* Versão mais escura do cinza escuro */
+    --popover-foreground: 0 0% 93%; /* #ECECEC - Cinza claro suave */
+    --primary: 220 70% 20%; /* #0F2756 - Azul escuro do logo */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF - Branco */
+    --secondary: 0 0% 17%; /* Versão mais escura do cinza escuro */
+    --secondary-foreground: 0 0% 93%; /* #ECECEC - Cinza claro suave */
+    --muted: 0 0% 17%; /* Versão mais escura do cinza escuro */
+    --muted-foreground: 0 0% 70%; /* Versão mais clara do cinza claro */
+    --accent: 58 36% 66%; /* #CFCC84 - Dourado */
+    --accent-foreground: 0 0% 27%; /* #444444 - Cinza escuro neutro */
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 93%; /* #ECECEC - Cinza claro suave */
+    --border: 0 0% 30%; /* Versão mais escura do cinza escuro */
+    --input: 0 0% 30%; /* Versão mais escura do cinza escuro */
+    --ring: 220 70% 20%; /* #0F2756 - Azul escuro do logo */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-raleway), sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-playfair), serif;
+    font-weight: 600;
+  }
+  h1 {
+    @apply tracking-tight;
+  }
+  h2 {
+    @apply tracking-normal;
+  }
+}
+
+.container {
+  @apply px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
+}
+
+.section {
+  @apply py-12 md:py-24;
+}
+
+/* Texturas sutis */
+.texture-dots {
+  background-image: radial-gradient(#0f2756 0.5px, transparent 0.5px);
+  background-size: 15px 15px;
+  background-position: 0 0;
+  opacity: 0.05;
+}
+
+.texture-grid {
+  background-image: linear-gradient(rgba(207, 204, 132, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(207, 204, 132, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.texture-waves {
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-1.767.662c-2.475.923-4.66 1.674-6.724 2.275h6.335zm0-20C13.258 2.892 8.077 4 0 4V2c5.744 0 9.951-.574 14.85-2h6.334zM77.38 0C85.239 2.966 90.502 4 100 4V2c-6.842 0-11.386-.542-16.396-2h-6.225zM0 14c8.44 0 13.718-1.21 22.272-4.402l1.768-.661C33.64 5.347 39.647 4 50 4c10.271 0 15.362 1.222 24.629 4.928C84.112 12.722 89.438 14 100 14v-2c-10.271 0-15.362-1.222-24.629-4.928C65.888 3.278 60.562 2 50 2 39.374 2 33.145 3.397 23.34 7.063l-1.767.662C13.223 10.84 8.163 12 0 12v2z' fill='%230F2756' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.texture-diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(15, 39, 86, 0.03),
+    rgba(15, 39, 86, 0.03) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+}
+
+/* Elementos gráficos */
+.geometric-shape {
+  position: relative;
+}
+
+.geometric-shape::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(207, 204, 132, 0.3);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.geometric-shape::after {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: rgba(15, 39, 86, 0.05);
+  border-radius: 4px;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+/* Efeitos de transição */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(15, 39, 86, 0.1);
+}
+
+/* Botões estilizados */
+.btn-accent {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-accent::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(207, 204, 132, 0.8), rgba(207, 204, 132, 1));
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.btn-accent:hover::before {
+  opacity: 0.9;
+}
+
+/* Decorações de seção */
+.section-decorator {
+  position: relative;
+}
+
+.section-decorator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.decorator-dots::before {
+  background-image: radial-gradient(#0f2756 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.decorator-lines::before {
+  background-image: linear-gradient(90deg, rgba(15, 39, 86, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.section-divider {
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #cfcc84, transparent);
+  margin: 0 auto;
+  width: 80%;
+  opacity: 0.7;
+}
