@@ -34,7 +34,7 @@ export default function HeroSection({ dict }: { dict: any }) {
           <span className="text-accent text-xs sm:text-sm uppercase tracking-wide font-medium mb-2 sm:mb-3 block leading-tight">
             {lang === "en" || dict.lang === "en"
               ? "Simplified Systems Implementation and AI for New Entrepreneurs and Online Stores"
-              : "Implementação de Sistemas Descomplicados e IA para Novos Empreendedores e Lojas Online"}
+              : "Simplified Systems Implementation and AI for New Entrepreneurs and Online Stores"}
           </span>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4 sm:mb-6 leading-tight">
             <ContentDisplay storageKey={`home_${lang}`} field="headline" fallback={dict.headline} />
