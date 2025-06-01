@@ -32,6 +32,18 @@ export default function Footer({ dict }: { dict: any }) {
     pt: "De Leiria, Portugal... para o mundo!",
   }
 
+  // Add translation for description text
+  const descriptionText = {
+    en: "Digital Consultant and Technical Virtual Assistant for new entrepreneurs, freelancers and online stores in Portugal.",
+    pt: "Consultora Digital e Assistente Virtual Técnica para novos empreendedores, freelancers e lojas online em Portugal.",
+  }
+
+  // Add translation for availability text
+  const availabilityText = {
+    en: "Available Monday to Friday, from 9am to 6pm (GMT+1)",
+    pt: "Disponível de segunda a sexta-feira, das 9h às 18h (GMT+1)",
+  }
+
   return (
     <footer className="bg-primary text-white pt-20 pb-8 relative overflow-hidden">
       {/* Background texture */}
@@ -47,8 +59,7 @@ export default function Footer({ dict }: { dict: any }) {
           <div>
             <h3 className="text-white font-semibold text-xl mb-6 border-b border-white/10 pb-2">Alexandra Ribeiro</h3>
             <p className="text-primary-foreground/80 mb-6 leading-relaxed">
-              Consultora Digital e Assistente Virtual Técnica para novos empreendedores, freelancers e lojas online em
-              Portugal.
+              {descriptionText[language as keyof typeof descriptionText]}
             </p>
             <div className="flex gap-4">
               <a
@@ -121,7 +132,7 @@ export default function Footer({ dict }: { dict: any }) {
               <span className="text-primary-foreground/90">{locationText[language as keyof typeof locationText]}</span>
             </div>
             <p className="text-primary-foreground/70 text-sm mt-6">
-              Disponível de segunda a sexta-feira, das 9h às 18h (GMT+1)
+              {availabilityText[language as keyof typeof availabilityText]}
             </p>
           </div>
         </div>
