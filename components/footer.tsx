@@ -44,6 +44,12 @@ export default function Footer({ dict }: { dict: any }) {
     pt: "Disponível de segunda a sexta-feira, das 9h às 18h (GMT+1)",
   }
 
+  // Add translation for rights reserved text
+  const rightsReservedText = {
+    en: "All rights reserved.",
+    pt: "Todos os direitos reservados.",
+  }
+
   return (
     <footer className="bg-primary text-white pt-20 pb-8 relative overflow-hidden">
       {/* Background texture */}
@@ -139,7 +145,7 @@ export default function Footer({ dict }: { dict: any }) {
 
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm">
           <p className="text-primary-foreground/70">
-            &copy; {new Date().getFullYear()} Alexandra Ribeiro. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} Alexandra Ribeiro. {rightsReservedText[language as keyof typeof rightsReservedText]}
           </p>
           <div className="mt-2 flex justify-center space-x-4 flex-wrap">
             <button
