@@ -1,71 +1,5 @@
 export interface Dictionary {
-  metadata: {
-    title: string
-    description: string
-  }
-  hero: {
-    title: string
-    subtitle: string
-    cta: string
-    headline?: string
-    subheadline?: string
-  }
-  aboutMe: {
-    title: string
-    description: string
-    experience: string
-    skills: string[]
-  }
-  whatIsVA: {
-    title: string
-    description: string
-    benefits: string[]
-  }
-  whyChooseVA: {
-    title: string
-    reasons: Array<{
-      title: string
-      description: string
-    }>
-  }
-  certifications: {
-    title: string
-    description: string
-    items: any[]
-  }
-  blogPreview: {
-    title: string
-    description: string
-    readMore: string
-  }
-  finalCTA: {
-    title: string
-    description: string
-    cta: string
-  }
-  footer: {
-    contact: {
-      title: string
-      email: string
-      phone: string
-    }
-    social: {
-      title: string
-    }
-    legal: {
-      privacy: string
-      terms: string
-    }
-    copyright: string
-  }
-  newsletterPopup: {
-    title: string
-    description: string
-    placeholder: string
-    subscribe: string
-    close: string
-  }
-  navigation: {
+  nav: {
     home: string
     about: string
     services: string
@@ -74,16 +8,62 @@ export interface Dictionary {
     contact: string
     store: string
   }
-  store: {
+  hero: {
     title: string
-    seoHeading: string
-    noProductsFound: string
-    buyButton: string
+    subtitle: string
+    description: string
+    cta: string
+    secondaryCta: string
   }
-  product: {
-    noImage: string
-    buyNow: string
+  about: {
+    title: string
+    description: string
+    experience: string
+    clients: string
+    projects: string
+    satisfaction: string
   }
+  services: {
+    title: string
+    description: string
+  }
+  footer: {
+    description: string
+    quickLinks: string
+    services: string
+    contact: string
+    copyright: string
+    newsletter: {
+      title: string
+      description: string
+      placeholder: string
+      subscribe: string
+      success: string
+      error: string
+    }
+  }
+  common: {
+    loading: string
+    error: string
+    retry: string
+  }
+}
+
+export interface LanguageContextType {
+  language: "pt" | "en"
+  dictionary: Dictionary
+  setLanguage: (lang: "pt" | "en") => void
+}
+
+export interface Product {
+  id: string
+  title: string
+  description: string
+  price: number | null
+  imageUrl: string | null
+  slug: string
+  stripePaymentLink: string | null
+  features: string | null
 }
 
 export interface BlogPost {
@@ -96,14 +76,4 @@ export interface BlogPost {
   author: string
   tags: string[]
   featuredImage?: string
-}
-
-export interface Product {
-  id: string
-  title: string
-  description: string
-  price: number
-  image?: string
-  slug: string
-  category?: string
 }

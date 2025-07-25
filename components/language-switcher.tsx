@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { useRouter, usePathname } from "next/navigation"
-import { Globe } from "lucide-react"
+import { Globe, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
-export default function LanguageSwitcher() {
+export function LanguageSwitcher() {
   const router = useRouter()
   const pathname = usePathname()
   const [currentLang, setCurrentLang] = useState("pt")
@@ -34,6 +34,7 @@ export default function LanguageSwitcher() {
         <Button variant="ghost" size="sm" className="flex items-center space-x-2">
           <Globe size={16} />
           <span className="text-sm font-medium">{currentLang.toUpperCase()}</span>
+          <ChevronDown size={14} />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -47,3 +48,5 @@ export default function LanguageSwitcher() {
     </DropdownMenu>
   )
 }
+
+export { LanguageSwitcher as default }

@@ -1,22 +1,22 @@
 import { Client } from "@notionhq/client"
-import { slugify, unescapeHtml } from "./utils"
+import { slugifyServer, unescapeHtml } from "./server-utils"
 
 const notion = new Client({
   auth: process.env.NOTION_API_TOKEN,
 })
 
-const DATABASE_ID = process.env.NOTION_DATABASE_ID || "239b92058e15801c87ffe2bb99df4ce6" // Fallback for local testing
+const DATABASE_ID = process.env.NOTION_DATABASE_ID || "239b92058e15801c87ffe2bb99df4ce6"
 
 export interface Product {
   id: string
   title: string
   description: string
   price: number | null
-  linkHtml: string | null // Keeping this for potential other uses if needed
+  linkHtml: string | null
   imageUrl: string | null
   slug: string
-  stripePaymentLink: string | null // Changed from stripeButtonHtml to reflect it's a URL
-  features: string | null // Added features property
+  stripePaymentLink: string | null
+  features: string | null
 }
 
 export async function getProductsFromNotion(lang: "pt" | "en"): Promise<Product[]> {
@@ -46,9 +46,9 @@ export async function getProductsFromNotion(lang: "pt" | "en"): Promise<Product[
       const linkRaw = page.properties.Link?.rich_text?.[0]?.plain_text || null
       const linkHtml = linkRaw ? unescapeHtml(linkRaw) : null
       const imageUrl = page.properties.Image?.files?.[0]?.file?.url || page.properties.Image?.external?.url || null
-      const stripePaymentLink = page.properties["Stripe Button"]?.rich_text?.[0]?.plain_text || null // Extracting the URL
-      const features = page.properties.Features?.rich_text?.map((item: any) => item.plain_text).join("") || null // Extracting features
-      const slug = slugify(title)
+      const stripePaymentLink = page.properties["Stripe Button"]?.rich_text?.[0]?.plain_text || null
+      const features = page.properties.Features?.rich_text?.map((item: any) => item.plain_text).join("") || null
+      const slug = slugifyServer(title)
 
       return {
         id: page.id,
@@ -59,7 +59,7 @@ export async function getProductsFromNotion(lang: "pt" | "en"): Promise<Product[
         imageUrl,
         slug,
         stripePaymentLink,
-        features, // Include the features
+        features,
       }
     })
 
@@ -101,9 +101,9 @@ export async function getProductBySlugFromNotion(slug: string, lang: "pt" | "en"
       const linkRaw = page.properties.Link?.rich_text?.[0]?.plain_text || null
       const linkHtml = linkRaw ? unescapeHtml(linkRaw) : null
       const imageUrl = page.properties.Image?.files?.[0]?.file?.url || page.properties.Image?.external?.url || null
-      const stripePaymentLink = page.properties["Stripe Button"]?.rich_text?.[0]?.plain_text || null // Extracting the URL
-      const features = page.properties.Features?.rich_text?.map((item: any) => item.plain_text).join("") || null // Extracting features
-      const productSlug = slugify(title)
+      const stripePaymentLink = page.properties["Stripe Button"]?.rich_text?.[0]?.plain_text || null
+      const features = page.properties.Features?.rich_text?.map((item: any) => item.plain_text).join("") || null
+      const productSlug = slugifyServer(title)
 
       return {
         id: page.id,
@@ -114,7 +114,7 @@ export async function getProductBySlugFromNotion(slug: string, lang: "pt" | "en"
         imageUrl,
         slug: productSlug,
         stripePaymentLink,
-        features, // Include the features
+        features,
       }
     })
 
