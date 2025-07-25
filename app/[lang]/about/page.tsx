@@ -2,9 +2,9 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import { getDictionary } from "@/lib/dictionaries"
 import SiteHeader from "@/components/site-header"
-import Footer from "@/components/footer"
+//import Footer from "@/components/footer"
 import { CheckCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
+//import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
