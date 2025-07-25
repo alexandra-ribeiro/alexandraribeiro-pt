@@ -1,7 +1,3 @@
 {
-  "build": {
-    "env": {
-      "NPM_FLAGS": "--legacy-peer-deps"
-    }
-  }
+  "buildCommand": "pnpm install --no-frozen-lockfile && pnpm build"
 }
