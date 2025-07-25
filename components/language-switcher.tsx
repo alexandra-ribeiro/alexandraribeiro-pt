@@ -1,39 +1,44 @@
 "use client"
-import { Globe } from "lucide-react"
+
+import { useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
+import { ChevronDown, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { useLanguage } from "./language-provider"
 
 export default function LanguageSwitcher() {
-  const { lang, switchLanguage } = useLanguage()
+  const pathname = usePathname()
+  const router = useRouter()
+  const [isOpen, setIsOpen] = useState(false)
 
-  const languages = [
-    { code: "pt", name: "Português", flag: "🇵🇹" },
-    { code: "en", name: "English", flag: "🇬🇧" },
-  ]
+  const currentLang = pathname.startsWith("/en") ? "en" : "pt"
 
-  const currentLanguage = languages.find((l) => l.code === lang) || languages[0]
+  const switchLanguage = (lang: "pt" | "en") => {
+    const segments = pathname.split("/")
+    segments[1] = lang
+    const newPath = segments.join("/")
+    router.push(newPath)
+    setIsOpen(false)
+  }
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="flex items-center space-x-2">
-          <Globe size={16} />
-          <span className="hidden sm:inline">{currentLanguage.flag}</span>
-          <span className="text-sm font-medium">{currentLanguage.code.toUpperCase()}</span>
+        <Button variant="ghost" size="sm" className="gap-2">
+          <Globe className="h-4 w-4" />
+          <span className="uppercase">{currentLang}</span>
+          <ChevronDown className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {languages.map((language) => (
-          <DropdownMenuItem
-            key={language.code}
-            onClick={() => switchLanguage(language.code as "pt" | "en")}
-            className={`flex items-center space-x-2 ${lang === language.code ? "bg-blue-50 text-blue-600" : ""}`}
-          >
-            <span>{language.flag}</span>
-            <span>{language.name}</span>
-          </DropdownMenuItem>
-        ))}
+        <DropdownMenuItem onClick={() => switchLanguage("pt")}>
+          <span className="mr-2">🇵🇹</span>
+          Português
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => switchLanguage("en")}>
+          <span className="mr-2">🇬🇧</span>
+          English
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

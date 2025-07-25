@@ -14,7 +14,7 @@ import EnhancedDivider from "@/components/enhanced-divider"
 
 export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
   try {
-    const dict = await getDictionary(params.lang)
+    const dict = await getDictionary(params.lang as "pt" | "en")
     return {
       title: dict.metadata?.title || "Alexandra Ribeiro | Consultora Digital",
       description: dict.metadata?.description || "Digital consulting services",
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: { lang: string } })
 
 export default async function Home({ params }: { params: { lang: string } }) {
   try {
-    const dict = await getDictionary(params.lang)
+    const dict = await getDictionary(params.lang as "pt" | "en")
 
     return (
       <main className="min-h-screen">

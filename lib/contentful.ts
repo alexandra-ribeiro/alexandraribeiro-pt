@@ -1,9 +1,9 @@
 import { createClient } from "contentful"
 
 const getClient = () => {
-  // Use environment variables for Contentful Space ID and Access Token
-  const space = process.env.CONTENTFUL_SPACE_ID || process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID
-  const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN || process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
+  // Only use server-side environment variables for Contentful
+  const space = process.env.CONTENTFUL_SPACE_ID
+  const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
 
   if (!space || !accessToken) {
     console.warn(
