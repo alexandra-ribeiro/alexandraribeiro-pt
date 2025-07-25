@@ -1,58 +1,68 @@
 "use client"
 
-import React from "react"
-import { Button } from "@/components/ui/button"
+import type React from "react"
 
-interface ErrorBoundaryState {
-  hasError: boolean
-  error?: Error
-}
+import { useEffect, useState } from "react"
+import { Button } from "@/components/ui/button"
 
 interface ErrorBoundaryProps {
   children: React.ReactNode
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
-    super(props)
-    this.state = { hasError: false }
-  }
+export default function ErrorBoundary({ children }: ErrorBoundaryProps) {
+  const [hasError, setHasError] = useState(false)
+  const [error, setError] = useState<Error | null>(null)
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { hasError: true, error }
-  }
+  useEffect(() => {
+    const errorHandler = (event: ErrorEvent) => {
+      console.error("Error caught by boundary:", event.error)
+      setError(event.error)
+      setHasError(true)
+      event.preventDefault()
+    }
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error("Error caught by boundary:", error, errorInfo)
-  }
+    const unhandledRejectionHandler = (event: PromiseRejectionEvent) => {
+      console.error("Unhandled promise rejection:", event.reason)
+      setError(new Error(event.reason))
+      setHasError(true)
+      event.preventDefault()
+    }
 
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">
-            <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
-              <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
-                />
-              </svg>
+    window.addEventListener("error", errorHandler)
+    window.addEventListener("unhandledrejection", unhandledRejectionHandler)
+
+    return () => {
+      window.removeEventListener("error", errorHandler)
+      window.removeEventListener("unhandledrejection", unhandledRejectionHandler)
+    }
+  }, [])
+
+  if (hasError) {
+    return (
+      <div className="flex min-h-screen items-center justify-center p-4">
+        <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
+          <h2 className="mb-4 text-2xl font-bold text-red-600">Something went wrong</h2>
+          <p className="mb-6 text-gray-700">
+            We encountered an error while loading the page. This might be due to a temporary issue.
+          </p>
+          {error && (
+            <div className="mb-6 rounded-md bg-gray-100 p-4">
+              <p className="text-sm font-medium text-gray-800">Error details:</p>
+              <p className="mt-1 text-sm text-gray-600">{error.message || "Unknown error"}</p>
             </div>
-            <h1 className="text-xl font-semibold text-gray-900 mb-2">Algo correu mal</h1>
-            <p className="text-gray-600 mb-6">Ocorreu um erro inesperado. Por favor, tente novamente.</p>
-            <Button onClick={() => window.location.reload()} className="bg-blue-600 hover:bg-blue-700 text-white">
-              Tentar novamente
+          )}
+          <div className="flex flex-col space-y-2 sm:flex-row sm:space-x-2 sm:space-y-0">
+            <Button onClick={() => window.location.reload()} className="w-full">
+              Refresh Page
+            </Button>
+            <Button onClick={() => (window.location.href = "/")} variant="outline" className="w-full">
+              Go to Homepage
             </Button>
           </div>
         </div>
-      )
-    }
-
-    return this.props.children
+      </div>
+    )
   }
-}
 
-export default ErrorBoundary
+  return <>{children}</>
+}

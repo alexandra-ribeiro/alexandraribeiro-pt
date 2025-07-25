@@ -32,8 +32,8 @@
   ],
   "hero": {
     "tagline": "Implementação de Sistemas Descomplicados e IA para Novos Empreendedores e Lojas Online",
-    "headline": "A tua parceira virtual",
-    "subheadline": "Toda a estrutura técnica do teu negócio numa só pessoa",
+    "headline": "A sua parceira virtual",
+    "subheadline": "Toda a estrutura técnica do seu negócio numa só pessoa",
     "cta": "Ver serviços",
     "ctaLink": "pt/services"
   },
@@ -41,27 +41,27 @@
     "title": "Mas afinal, o que faz uma Consultora Digital?",
     "points": [
       "Trato de toda aquela parte técnica que ninguém quer saber... mas que é essencial para começar: domínio, email, hosting, CRM (gestão de clientes) básico, configuração de software de faturação online e português para começar a faturar no dia 1",
-      "Configuro e optimizo a tua loja online sem que precises de conhecer código ou perder noites no YouTube a aprender Shopify, WordPress ou Etsy",
-      "Crio automações que fazem o trabalho por ti enquanto dorme (newsletters, respostas automáticas nas redes sociais, automatismo de pré-agendamento online, etc.)",
-      "Implemento IA no teu negócio de forma prática e sem complicações - chatbots, assistentes virtuais, respostas automáticas nas redes sociais",
-      "Desenvolvo templates personalizados para propostas, orçamentos e onboarding, prontos a editar em Canva ou PDF, que deixam os teus clientes impressionados e que podes começar a usar de imediato"
+      "Configuro e optimizo a sua loja online sem que precise de conhecer código ou perder noites no YouTube a aprender Shopify, WordPress ou Etsy",
+      "Crio automações que fazem o trabalho por si enquanto dorme (newsletters, respostas automáticas nas redes sociais, automatismo de pré-agendamento online, etc.)",
+      "Implemento IA no seu negócio de forma prática e sem complicações - chatbots, assistentes virtuais, respostas automáticas nas redes sociais",
+      "Desenvolvo templates personalizados para propostas, orçamentos e onboarding, prontos a editar em Canva ou PDF, que deixam os seus clientes impressionados e que pode começar a usar de imediato"
     ],
-    "highlight": "Sem encargos com segurança social, sem espaço de escritório adicional, sem preocupações de recrutamento. Apenas resultados práticos, quando precisas.",
+    "highlight": "Sem encargos com segurança social, sem espaço de escritório adicional, sem preocupações de recrutamento. Apenas resultados práticos, quando precisa.",
     "cta": "Vamos falar!"
   },
   "services": {
-    "title": "Como posso ajudar a tua empresa?",
-    "description": "Ofereço uma variedade de serviços personalizados para atender às necessidades específicas do teu negócio.",
+    "title": "Como posso ajudar a sua empresa?",
+    "description": "Ofereço uma variedade de serviços personalizados para atender às necessidades específicas do seu negócio.",
     "cta": "Ver todos os serviços"
   },
   "whyChooseVA": {
     "sectionLabel": "Vantagens",
     "title": "Porquê escolher uma Consultora Digital como parceira técnica?",
-    "description": "Contar com uma Consultora Digital especializada traz inúmeras vantagens para o teu negócio: é como ter uma assistente virtual técnica, que o liberta para as tarefas que importam. Conhece aqui os principais benefícios desta parceria estratégica para a tua infraestrutura técnica (sem que necessites de contratar colaboradores!)",
+    "description": "Contar com uma Consultora Digital especializada traz inúmeras vantagens para o seu negócio: é como ter uma assistente virtual técnica, que o liberta para as tarefas que importam. Conheça os principais benefícios desta parceria estratégica para a sua infraestrutura técnica (sem que necessite de contratar colaboradores!)",
     "benefits": [
       {
         "title": "Flexibilidade total",
-        "description": "Apoio quando precisas, sem necessidade de contratos longos ou custos fixos mensais"
+        "description": "Apoio quando precisa, sem necessidade de contratos longos ou custos fixos mensais"
       },
       {
         "title": "Experiência comprovada",
@@ -73,13 +73,13 @@
       },
       {
         "title": "Sem preocupações técnicas",
-        "description": "Foca-te no crescimento do teu negócio enquanto deixo pronta toda a infraestrutura digital"
+        "description": "Foque-se no crescimento do seu negócio enquanto deixo pronta toda a infraestrutura digital"
       }
     ]
   },
   "aboutMe": {
     "title": "Porque sei o que é começar do zero (e sem rede)",
-    "bio": "Sou Alexandra Ribeiro, engenheira informática que trocou 20 anos de vida corporativa pelo empreendedorismo — e acredita, sei exatamente como é essa montanha-russa!\n\nHoje, sou aquela parceira técnica que gostava de ter tido quando comecei, a pessoa que configura todos aqueles sistemas chatos (vá, têm dias...!) que ninguém quer aprender, mas que são essenciais para começar com o pé direito: domínios, emails, lojas online, automações e até inteligência artificial.\n\nAdoro transformar \"coisas técnicas complicadas\" em soluções práticas e funcionais — algo que percebi enquanto fazia a mesma jornada, no meu próprio negócio.\n\nPensa em mim como a tua parceira técnica para o arranque: eu cuido dos bastidores, para que possas focar-te no que realmente importa — fazer o teu negócio crescer.",
+    "bio": "Sou Alexandra Ribeiro, engenheira informática que trocou 20 anos de vida corporativa pelo empreendedorismo — e acredite, sei exatamente como é essa montanha-russa!\n\nHoje, sou aquela parceira técnica que gostava de ter tido quando comecei, a pessoa que configura todos aqueles sistemas chatos (vá, têm dias...!) que ninguém quer aprender, mas que são essenciais para começar com o pé direito: domínios, emails, lojas online, automações e até inteligência artificial.\n\nAdoro transformar \"coisas técnicas complicadas\" em soluções práticas e funcionais — algo que percebi enquanto fazia a mesma jornada, no meu próprio negócio.\n\nPense em mim como a sua parceira técnica para o arranque: eu cuido dos bastidores, para que possa focar-se no que realmente importa — fazer o seu negócio crescer.",
     "cta": "Saiba mais",
     "badges": [
       "Shopify Partner",
@@ -108,21 +108,21 @@
     "articles": [
       {
         "title": "Guia Gratuito: 10 Tarefas",
-        "description": "Faz download do meu guia com as tarefas mais solicitadas em marketing digital para saber quais serviços oferecer. Verás que não precisas ser especialista ou programador para começar.",
+        "description": "Faça download do meu guia com as tarefas mais solicitadas em marketing digital para saber quais serviços oferecer. Você verá que não precisa ser especialista ou programador para começar.",
         "date": "18 de abril, 2025",
         "slug": "guia-10-tarefas",
         "image": "/placeholder.svg?height=200&width=400&text=Guia"
       },
       {
         "title": "Teste de Pontos Fortes",
-        "description": "Os teus talentos e habilidades naturais são valiosos para empregadores. Faz o teste para descobrir qual o tipo de trabalho virtual é ideal para ti e o que os clientes pagarão por isso.",
+        "description": "Seus talentos e habilidades naturais são valiosos para empregadores. Faça o teste para descobrir qual tipo de posição virtual é ideal para você e o que os clientes pagarão por isso.",
         "date": "10 de abril, 2025",
         "slug": "teste-pontos-fortes",
         "image": "/placeholder.svg?height=200&width=400&text=Teste"
       },
       {
         "title": "Série de Formação",
-        "description": "Entra no papel de freelancer bem pago e valorizado, oferecendo serviços e preparando o teu negócio para clientes (e liberdade total).",
+        "description": "Entre no papel de freelancer bem pago e valorizado dominando o marketing digital sob demanda, oferecendo serviços e preparando seu negócio para clientes pagantes (e liberdade total).",
         "date": "2 de abril, 2025",
         "slug": "serie-formacao",
         "image": "/placeholder.svg?height=200&width=400&text=Formação"
@@ -130,14 +130,14 @@
     ]
   },
   "newsletterPopup": {
-    "title": "Recebe dicas exclusivas!",
-    "description": "Inscreve-te na minha newsletter para receber dicas, recursos e ofertas especiais na área dos sistemas, Inteligência Artificial e novos empreendedores.",
-    "emailPlaceholder": "O teu melhor email",
+    "title": "Receba dicas exclusivas!",
+    "description": "Inscreva-se na minha newsletter para receber dicas, recursos e ofertas especiais na área dos sistemas, Inteligência Artificial e novos empreendedores.",
+    "emailPlaceholder": "O seu melhor email",
     "buttonText": "Quero inscrever-me!",
-    "privacyText": "Respeito a tua privacidade (e também detesto spam!). Poderás cancelar a inscrição a qualquer momento.",
+    "privacyText": "Respeito a sua privacidade. Poderá cancelar a inscrição a qualquer momento.",
     "thankYou": {
-      "title": "Obrigada pela tua inscrição!",
-      "message": "Estás inscrito com sucesso! Obrigada,"
+      "title": "Obrigada pela sua inscrição!",
+      "message": "Está inscrito com sucesso! Obrigada,"
     }
   },
   "testimonials": {
@@ -150,13 +150,13 @@
     ]
   },
   "finalCTA": {
-    "title": "Estás pronto(a) para simplificar o teu dia a dia?",
-    "description": "Vamos conversar durante 15 minutos, sem compromisso, para descobrir como posso ajudar o teu negócio.",
+    "title": "Está pronto para simplificar o seu dia a dia?",
+    "description": "Vamos conversar durante 15 minutos, sem compromisso, para descobrir como posso ajudar o seu negócio.",
     "button": "Agendar conversa"
   },
   "about": {
     "title": "Sobre Mim",
-    "description": "Conhece Alexandra Ribeiro, assistente virtual especializada em apoio administrativo e tecnológico para empresas em Portugal",
+    "description": "Conheça Alexandra Ribeiro, assistente virtual especializada em apoio administrativo e tecnológico para empresas em Portugal",
     "hero": {
       "titleStart": "Dizem que ser",
       "titleHighlight": "generalista",
@@ -172,10 +172,10 @@
     "story": {
       "title": "A minha história",
       "paragraphs": [
-        "Sou a Alexandra, engenheira informática de formação e apaixonada por ajudar negócios a crescer de forma organizada e eficiente. Trago mais de 20 anos de experiência em consultoria tecnológica, apoio a projetos editoriais e gestão de e-commerce.",
+        "Sou Alexandra Ribeiro, engenheira informática de formação e apaixonada por ajudar negócios a crescer de forma organizada e eficiente. Trago mais de 20 anos de experiência em consultoria tecnológica, apoio a projetos editoriais e gestão de e-commerce.",
         "Ao longo da minha carreira, trabalhei com dezenas de empresas em Portugal e internacionalmente, ajudando-as a otimizar processos, implementar sistemas e melhorar a comunicação com clientes.",
         "A minha abordagem combina conhecimento técnico com estratégias de marketing e comunicação, permitindo oferecer um serviço verdadeiramente completo aos meus clientes.",
-        "Se chegaste até aqui, provavelmente alguém te falou sobre mim, e isso é excelente! Nos últimos 10 anos tenho trabalhado nos bastidores, ajudando os meus clientes a brilharem, enquanto eu cuido de tudo o resto."
+        "Se chegou até aqui, provavelmente alguém lhe falou sobre mim, e isso é excelente! Nos últimos 10 anos tenho trabalhado nos bastidores, ajudando os meus clientes a brilharem, enquanto eu cuido de tudo o resto."
       ]
     },
     "values": {
@@ -187,11 +187,11 @@
         },
         {
           "title": "Autonomia",
-          "description": "Implemento sistemas que crescem com o teu negócio e que podes gerir sem depender constantemente de especialistas técnicos."
+          "description": "Implemento sistemas que crescem com o seu negócio e que pode gerir sem depender constantemente de especialistas técnicos."
         },
         {
           "title": "Empatia",
-          "description": "Já estive do outro lado. Compreendo as tuas dúvidas, medos e frustrações com a tecnologia. Não há pergunta \"disparatada\" quando se trata de sistemas!"
+          "description": "Já estive do outro lado. Compreendo as suas dúvidas, medos e frustrações com a tecnologia. Não há pergunta \"disparatada\" quando se trata de sistemas!"
         },
         {
           "title": "Praticidade",
@@ -200,7 +200,7 @@
       ]
     },
     "experience": {
-      "title": "A minha experiência",
+      "title": "Minha experiência",
       "items": [
         {
           "role": "Consultora de Tecnologia",
@@ -220,8 +220,8 @@
       ]
     },
     "cta": {
-      "title": "Pronto(a) para trabalhar comigo?",
-      "description": "Vamos conversar sobre como posso ajudar o teu negócio a crescer e a tornar-se mais eficiente.",
+      "title": "Pronto para trabalhar comigo?",
+      "description": "Vamos conversar sobre como posso ajudar o seu negócio a crescer e se tornar mais eficiente.",
       "button": "Agendar uma chamada"
     },
     "tools": {
@@ -230,15 +230,15 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "description": "Conhece alguns dos meus projetos e implementações. Cada um destes exemplos demonstra diferentes competências e ferramentas que utilizo no meu trabalho como Consultora Digital.",
+    "description": "Conheça alguns dos meus projetos e implementações. Cada um destes exemplos demonstra diferentes competências e ferramentas que utilizo no meu trabalho como Consultora Digital.",
     "instagram": {
       "title": "Automação no Instagram",
-      "description": "Perfil de Instagram integrado com Manychat para respostas automáticas. Interaje com uma das minhas publicações para experimentar o sistema de automação que implementei.",
+      "description": "Perfil de Instagram integrado com Manychat para respostas automáticas. Interaja com uma das minhas publicações para experimentar o sistema de automação que implementei.",
       "cta": "Visitar Instagram"
     },
     "etsy": {
       "title": "Loja Etsy - Healthy Gut Essentials",
-      "description": "Loja de produtos digitais na plataforma Etsy, onde sou Star Seller desde fevereiro de 2025. Vê como organizo e apresento produtos digitais para venda online.",
+      "description": "Loja de produtos digitais na plataforma Etsy, onde sou Star Seller desde fevereiro de 2025. Veja como organizo e apresento produtos digitais para venda online.",
       "cta": "Visitar Loja Etsy"
     },
     "wordpress": {
@@ -248,28 +248,28 @@
     },
     "shopify": {
       "title": "Loja Shopify - Oh So Portugal",
-      "description": "Loja de presentes portugueses desenvolvida com Shopify como projeto final do curso de especialização em E-commerce. Esta é uma loja de teste onde podes navegar livremente.",
+      "description": "Loja de presentes portugueses desenvolvida com Shopify como projeto final do curso de especialização em E-commerce. Esta é uma loja de teste onde pode navegar livremente.",
       "password": "Password",
       "cta": "Ver Loja Shopify"
     },
     "newsletter": {
       "title": "Automação de Email Marketing",
-      "description": "Subscreve a minha newsletter para experimentar a sequência de boas-vindas automatizada que criei com Mailerlite. Vê como implemento automações de email marketing eficazes.",
-      "placeholder": "O teu email para receber a newsletter",
+      "description": "Subscreva a minha newsletter para experimentar a sequência de boas-vindas automatizada que criei com Mailerlite. Veja como implemento automações de email marketing eficazes.",
+      "placeholder": "Seu email para receber a newsletter",
       "button": "Subscrever"
     }
   },
   "servicesPage": {
     "title": "Serviços",
-    "description": "Conhece os serviços de assistência virtual oferecidos para empresas e empreendedores em Portugal",
+    "description": "Conheça os serviços de assistência virtual oferecidos para empresas e empreendedores em Portugal",
     "hero": {
-      "title": "Soluções técnicas para lançar e fazer crescer o teu negócio digital",
-      "subtitle": "Escolhe o pacote que melhor se adapta à fase atual do teu negócio ou agenda uma chamada para uma solução personalizada.",
-      "cta": "Agendar uma sessão"
+      "title": "Soluções técnicas para lançar e fazer crescer o seu negócio digital",
+      "subtitle": "Escolha o pacote que melhor se adapta à fase atual do seu negócio ou agende uma chamada para uma solução personalizada.",
+      "cta": "Agendar uma consulta"
     },
     "differentiators": {
       "title": "O que me diferencia",
-      "description": "Com 20+ anos de experiência em tecnologia e gestão e a minha própria jornada entre o corporativo e o empreendedorismo, ofereço um serviço que vai além das tarefas básicas de uma assistente virtual técnica. A minha abordagem combina conhecimento técnico, visão estratégica e execução prática para entregar resultados reais para o teu negócio, sem complicações.",
+      "description": "Com 20+ anos de experiência em tecnologia e gestão e a minha própria jornada entre o corporativo e o empreendedorismo, ofereço um serviço que vai além das tarefas básicas de uma assistente virtual técnica. A minha abordagem combina conhecimento técnico, visão estratégica e execução prática para entregar resultados reais para o seu negócio, sem complicações.",
       "items": [
         {
           "title": "Experiência técnica",
@@ -277,11 +277,11 @@
         },
         {
           "title": "Abordagem estratégica",
-          "description": "Não só executo tarefas, mas também sugiro melhorias e otimizações para os teus processos."
+          "description": "Não só executo tarefas, mas também sugiro melhorias e otimizações para os seus processos."
         },
         {
           "title": "Flexibilidade total",
-          "description": "Adapto-me às tuas necessidades, seja para projetos pontuais ou suporte contínuo."
+          "description": "Adapto-me às suas necessidades, seja para projetos pontuais ou suporte contínuo."
         }
       ]
     },
@@ -289,7 +289,7 @@
       "title": "Áreas de atuação",
       "administrative": {
         "title": "Gestão Administrativa",
-        "description": "Liberta-te das tarefas administrativas que consomem o teu tempo e foca-te no crescimento do negócio.",
+        "description": "Liberte-se das tarefas administrativas que consomem o seu tempo e foque-se no crescimento do seu negócio.",
         "tasks": [
           "Gestão de emails e correspondência",
           "Agendamento de compromissos",
@@ -322,7 +322,7 @@
           "Gestão de projetos tecnológicos",
           "Documentação técnica básica",
           "Suporte a equipes remotas",
-          "SaaS tool configuração e gestão",
+          "Configuração e gestão de ferramentas SaaS",
           "Pesquisa de mercado e concorrência",
           "Preparação de apresentações",
           "Gestão de comunidades online",
@@ -332,7 +332,7 @@
     },
     "cta": {
       "title": "Vamos trabalhar juntos?",
-      "description": "Agenda uma chamada gratuita de 15 minutos para discutirmos como posso ajudar o teu negócio.",
+      "description": "Agende uma chamada gratuita de 15 minutos para discutirmos como posso ajudar o seu negócio.",
       "button": "Agendar agora"
     },
     "faq": {
@@ -340,15 +340,15 @@
       "items": [
         {
           "question": "Quais são as opções de preço disponíveis?",
-          "answer": "Consoante o teu caso e os serviços que necessites, avaliamos o que faça mais sentido para ti. Tenho disponíveis as opções de pacotes de horas (10, 20, 40), por projecto (para casos em que existe uma entrega final) ou avença mensal sobre um conjunto de tarefas fixas a executar."
+          "answer": "Consoante o seu caso e os serviços que necessite, avaliamos o que faça mais sentido para si. Temos disponíveis as opções de pacotes de horas (5, 10, 20), por projecto (para casos em que existe uma entrega final) ou avença mensal sobre um conjunto de tarefas fixas a executar."
         },
         {
           "question": "Como posso obter orçamento?",
-          "answer": "Poderás agendar uma chamada de 15min em que nos conhecemos e falamos um pouco sobre o que precisas e percebemos, juntos, o que pode fazer mais sentido para ti.\n\nPara tal, basta clicar no botão \"Agendar uma chamada\" no topo da página e seleccionar a melhor data/horário disponível no calendário.\n\nCaso prefiras, podes também enviar a tua mensagem através do formulário rápido da página \"Contacto\" ou enviar-me um email para geral@alexandraribeiro.pt."
+          "answer": "Poderá agendar uma chamada de 15min em que nos conhecemos e falamos um pouco sobre o que precisa e percebemos, juntos, o que pode fazer mais sentido para si.\n\nPara tal basta clicar no botão \"Agendar uma chamada\" no topo da página e seleccionar a melhor data/horário disponível no calendário.\n\nCaso prefira, pode também enviar a sua mensagem através do formulário rápido da página \"Contacto\" ou enviar-me um email para geral@alexandraribeiro.pt."
         },
         {
           "question": "Como é feita a medição de horas consumidas mensalmente?",
-          "answer": "Utilizo ferramentas de medição de tempo (Toggl) para que este seja correctamente registado e afecto a cada tarefa que realizo.\n\nNo final de cada semana/mês, envio listagem com o detalhe dos consumos realizados."
+          "answer": "Utilizo ferramentas de medição de tempo (Toggl) para que este seja correctamente registado e afecto a cada tarefa que realizo para si.\n\nNo final de cada semana/mês, envio listagem com o detalhe dos consumos realizados."
         },
         {
           "question": "Como é feita a facturação dos serviços?",
@@ -356,17 +356,17 @@
         },
         {
           "question": "É possível assinar acordo de confidencialidade (NDA)?",
-          "answer": "Sim, assino acordos de confidencialidade para todos os clientes, quando solicitado, sendo algo que está também abrangido no contrato que assinamos com o início dos trabalhos. A privacidade e segurança das tuas informações são prioridades absolutas no meu trabalho!"
+          "answer": "Sim, assino acordos de confidencialidade para todos os clientes, quando solicitado, sendo algo que está também abrangido no contrato que assinamos com o início dos trabalhos. A privacidade e segurança das suas informações são prioridades absolutas no meu trabalho!"
         }
       ]
     }
   },
   "contact": {
     "title": "Contacto",
-    "description": "Entra em contacto para agendar uma conversa ou saber mais sobre os serviços de assistência virtual e consultoria.",
-    "subtitle": "Tens questões ou estás pronto para começar? Preenche o formulário abaixo (garantia de resposta dentro das próximas 24h) ou agenda diretamente uma chamada de 15 minutos.",
-    "formTitle": "Envia uma mensagem",
-    "calendarTitle": "Agenda uma chamada de 15 minutos",
+    "description": "Entre em contacto para agendar uma conversa ou saber mais sobre os serviços de assistência virtual",
+    "subtitle": "Tem questões ou está pronto para começar? Preencha o formulário abaixo (garantia de resposta dentro das próximas 24h) ou agende diretamente uma chamada de 15 minutos.",
+    "formTitle": "Envie uma mensagem",
+    "calendarTitle": "Agende uma chamada de 15 minutos",
     "infoTitle": "Informações de contacto",
     "email": "Email",
     "location": "Localização",
@@ -374,15 +374,15 @@
     "response": "Resposta garantida dentro de 24 horas em dias úteis",
     "form": {
       "name": "Nome",
-      "namePlaceholder": "Insere o teu nome",
+      "namePlaceholder": "Insira o seu nome",
       "email": "Endereço de email",
-      "emailPlaceholder": "teu.email@exemplo.com",
+      "emailPlaceholder": "seu.email@exemplo.com",
       "phone": "Número de telefone",
       "phonePlaceholder": "Opcional",
-      "services": "Quais os serviços em que tens mais interesse?",
-      "servicesDescription": "Seleciona uma ou mais opções",
+      "services": "Quais os serviços que lhe interessam?",
+      "servicesDescription": "Selecione uma ou mais opções",
       "message": "Mensagem",
-      "messagePlaceholder": "Descreve brevemente como posso ajudar...",
+      "messagePlaceholder": "Descreva brevemente como posso ajudar...",
       "submit": "Enviar mensagem",
       "submitting": "A enviar..."
     },
@@ -392,17 +392,17 @@
       "other": "Outro"
     },
     "validation": {
-      "nameRequired": "Por favor insere o teu nome",
-      "emailInvalid": "Por favor insere um email válido",
-      "serviceRequired": "Seleciona pelo menos um serviço"
+      "nameRequired": "Por favor insira o seu nome",
+      "emailInvalid": "Por favor insira um email válido",
+      "serviceRequired": "Selecione pelo menos um serviço"
     },
     "formSuccess": {
       "title": "Mensagem enviada!",
-      "message": "Obrigada pela tua mensagem. Responderei o mais brevemente possível."
+      "message": "Obrigada pela sua mensagem. Responderei o mais brevemente possível."
     },
     "calendar": {
       "title": "Calendário de Agendamento",
-      "subtitle": "Reserva um horário que te seja conveniente",
+      "subtitle": "Reserve um horário que lhe seja conveniente",
       "placeholder": "Calendário de Agendamento",
       "instructions": "Aqui será integrado um calendário para agendamento de chamadas (Calendly ou similar)",
       "duration": "Duração",
@@ -414,7 +414,7 @@
   "footer": {
     "links": [
       {
-        "text": "Início",
+        "text": "Home",
         "url": "/"
       },
       {
@@ -444,12 +444,5 @@
       "accept": "Aceitar",
       "decline": "Recusar"
     }
-  },
-  "store": {
-    "title": "Loja Digital",
-    "subtitle": "Descobre os meus produtos e serviços digitais",
-    "seoHeading": "Desbloqueia o potencial do teu negócio com consultoria digital especializada, assistência virtual técnica, e-books para empreendedores iniciantes e serviços de configuração descomplicados para domínio, alojamento, WordPress, CRM e software de faturação.",
-    "noProductsFound": "Nenhum produto está atualmente disponível. Por favor, certifique-se de que o seu banco de dados Notion tem entradas publicadas para o tipo de conteúdo 'products' com a caixa de seleção de idioma correta marcada.",
-    "buyButton": "Quero!"
   }
 }

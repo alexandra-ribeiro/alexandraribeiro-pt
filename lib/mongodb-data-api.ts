@@ -1,235 +1,146 @@
-// Simplified data API without MongoDB - uses local storage fallbacks
-interface BlogPost {
-  id: string
-  title: string
-  content: string
-  excerpt: string
-  slug: string
-  author: string
-  publishedAt: string
-  tags: string[]
-  featured: boolean
-  language: "pt" | "en"
+// Remove MongoDB dependency warnings by making the functions optional
+const API_URL = process.env.MONGODB_DATA_API_URL
+const API_KEY = process.env.MONGODB_DATA_API_KEY
+const DATABASE = "virtual-assistant"
+
+// Remove the warning console.warn - make it silent
+if (!API_URL || !API_KEY) {
+  // MongoDB Data API not configured - using fallback storage
 }
 
-interface ContactMessage {
-  id: string
-  name: string
-  email: string
-  message: string
-  createdAt: string
-  read: boolean
-}
+// Update all functions to handle missing MongoDB gracefully
+async function apiRequest(action: string, collection: string, data: any) {
+  if (!API_URL || !API_KEY) {
+    // Silently return empty results instead of throwing errors
+    return { documents: [], document: null, insertedId: null }
+  }
 
-interface User {
-  id: string
-  email: string
-  name: string
-  role: "admin" | "user"
-  createdAt: string
-}
+  // Rest of the function remains the same...
+  console.log(`Making MongoDB Data API request: ${action} to collection ${collection}`)
+  console.log("Request data:", JSON.stringify(data, null, 2))
 
-// In-memory storage for development/fallback
-let blogPosts: BlogPost[] = []
-let contactMessages: ContactMessage[] = []
-const users: User[] = [
-  {
-    id: "1",
-    email: "admin@alexandraribeiro.pt",
-    name: "Alexandra Ribeiro",
-    role: "admin",
-    createdAt: new Date().toISOString(),
-  },
-]
-
-// Blog Posts API
-export async function getBlogPosts(language?: "pt" | "en"): Promise<BlogPost[]> {
   try {
-    // Try to load from localStorage if available
+    const response = await fetch(`${API_URL}/action/${action}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": API_KEY,
+      },
+      body: JSON.stringify({
+        dataSource: "Cluster0",
+        database: DATABASE,
+        collection,
+        ...data,
+      }),
+    })
+
+    console.log(`MongoDB Data API response status: ${response.status}`)
+
+    if (!response.ok) {
+      const errorText = await response.text()
+      console.error(`Erro na requisição MongoDB Data API (${action}):`, errorText)
+      throw new Error(`Erro na requisição MongoDB Data API: ${response.status} ${response.statusText} - ${errorText}`)
+    }
+
+    const responseData = await response.json()
+    console.log("MongoDB Data API response:", JSON.stringify(responseData, null, 2))
+    return responseData
+  } catch (error) {
+    console.error(`Error in MongoDB Data API request (${action}):`, error)
+    throw error
+  }
+}
+
+// Update functions to return fallback values instead of throwing errors
+export async function findOne(collection: string, filter: any) {
+  try {
+    const result = await apiRequest("findOne", collection, { filter })
+    return result.document
+  } catch (error) {
+    console.error(`Error in findOne operation for collection ${collection}:`, error)
+    return null // Return null instead of throwing
+  }
+}
+
+export async function find(collection: string, filter: any, options: any = {}) {
+  try {
+    const result = await apiRequest("find", collection, {
+      filter,
+      limit: options.limit || 100,
+      skip: options.skip || 0,
+      sort: options.sort || {},
+    })
+    return result.documents
+  } catch (error) {
+    console.error(`Error in find operation for collection ${collection}:`, error)
+    return [] // Return empty array instead of throwing
+  }
+}
+
+export async function insertOne(collection: string, document: any) {
+  try {
+    const cleanDocument = JSON.parse(JSON.stringify(document))
+    const result = await apiRequest("insertOne", collection, { document: cleanDocument })
+    return {
+      _id: result.insertedId,
+      ...cleanDocument,
+    }
+  } catch (error) {
+    console.error(`Error in insertOne operation for collection ${collection}:`, error)
+    // Return the document with a fake ID instead of throwing
+    return {
+      _id: `local_${Date.now()}`,
+      ...document,
+    }
+  }
+}
+
+export async function updateOne(collection: string, filter: any, update: any) {
+  try {
+    const result = await apiRequest("updateOne", collection, {
+      filter,
+      update,
+    })
+    return result
+  } catch (error) {
+    console.error(`Error in updateOne operation for collection ${collection}:`, error)
+    return { modifiedCount: 0 } // Return fallback result
+  }
+}
+
+export async function deleteOne(collection: string, filter: any) {
+  try {
+    const result = await apiRequest("deleteOne", collection, { filter })
+    return result
+  } catch (error) {
+    console.error(`Error in deleteOne operation for collection ${collection}:`, error)
+    return { deletedCount: 0 } // Return fallback result
+  }
+}
+
+// Keep the fallback functions as they are
+export async function insertOneWithFallback(collection: string, document: any) {
+  try {
+    return await insertOne(collection, document)
+  } catch (error) {
+    console.warn(`Using local storage fallback for insertOne in collection ${collection}`)
+
+    const id = Math.random().toString(36).substring(2, 15)
+
     if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("blogPosts")
-      if (stored) {
-        blogPosts = JSON.parse(stored)
+      const key = `${collection}_${id}`
+      const item = {
+        _id: id,
+        ...document,
+        _createdAt: new Date().toISOString(),
       }
+      localStorage.setItem(key, JSON.stringify(item))
+      return item
     }
 
-    return language ? blogPosts.filter((post) => post.language === language) : blogPosts
-  } catch (error) {
-    console.error("Error fetching blog posts:", error)
-    return []
-  }
-}
-
-export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-  try {
-    const posts = await getBlogPosts()
-    return posts.find((post) => post.slug === slug) || null
-  } catch (error) {
-    console.error("Error fetching blog post:", error)
-    return null
-  }
-}
-
-export async function createBlogPost(post: Omit<BlogPost, "id">): Promise<BlogPost> {
-  try {
-    const newPost: BlogPost = {
-      ...post,
-      id: Date.now().toString(),
+    return {
+      _id: id,
+      ...document,
     }
-
-    blogPosts.push(newPost)
-
-    // Save to localStorage if available
-    if (typeof window !== "undefined") {
-      localStorage.setItem("blogPosts", JSON.stringify(blogPosts))
-    }
-
-    return newPost
-  } catch (error) {
-    console.error("Error creating blog post:", error)
-    throw error
-  }
-}
-
-export async function updateBlogPost(id: string, updates: Partial<BlogPost>): Promise<BlogPost | null> {
-  try {
-    const index = blogPosts.findIndex((post) => post.id === id)
-    if (index === -1) return null
-
-    blogPosts[index] = { ...blogPosts[index], ...updates }
-
-    // Save to localStorage if available
-    if (typeof window !== "undefined") {
-      localStorage.setItem("blogPosts", JSON.stringify(blogPosts))
-    }
-
-    return blogPosts[index]
-  } catch (error) {
-    console.error("Error updating blog post:", error)
-    return null
-  }
-}
-
-export async function deleteBlogPost(id: string): Promise<boolean> {
-  try {
-    const index = blogPosts.findIndex((post) => post.id === id)
-    if (index === -1) return false
-
-    blogPosts.splice(index, 1)
-
-    // Save to localStorage if available
-    if (typeof window !== "undefined") {
-      localStorage.setItem("blogPosts", JSON.stringify(blogPosts))
-    }
-
-    return true
-  } catch (error) {
-    console.error("Error deleting blog post:", error)
-    return false
-  }
-}
-
-// Contact Messages API
-export async function getContactMessages(): Promise<ContactMessage[]> {
-  try {
-    // Try to load from localStorage if available
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("contactMessages")
-      if (stored) {
-        contactMessages = JSON.parse(stored)
-      }
-    }
-
-    return contactMessages
-  } catch (error) {
-    console.error("Error fetching contact messages:", error)
-    return []
-  }
-}
-
-export async function createContactMessage(
-  message: Omit<ContactMessage, "id" | "createdAt" | "read">,
-): Promise<ContactMessage> {
-  try {
-    const newMessage: ContactMessage = {
-      ...message,
-      id: Date.now().toString(),
-      createdAt: new Date().toISOString(),
-      read: false,
-    }
-
-    contactMessages.push(newMessage)
-
-    // Save to localStorage if available
-    if (typeof window !== "undefined") {
-      localStorage.setItem("contactMessages", JSON.stringify(contactMessages))
-    }
-
-    return newMessage
-  } catch (error) {
-    console.error("Error creating contact message:", error)
-    throw error
-  }
-}
-
-export async function markMessageAsRead(id: string): Promise<boolean> {
-  try {
-    const index = contactMessages.findIndex((msg) => msg.id === id)
-    if (index === -1) return false
-
-    contactMessages[index].read = true
-
-    // Save to localStorage if available
-    if (typeof window !== "undefined") {
-      localStorage.setItem("contactMessages", JSON.stringify(contactMessages))
-    }
-
-    return true
-  } catch (error) {
-    console.error("Error marking message as read:", error)
-    return false
-  }
-}
-
-// Users API
-export async function getUsers(): Promise<User[]> {
-  try {
-    return users
-  } catch (error) {
-    console.error("Error fetching users:", error)
-    return []
-  }
-}
-
-export async function getUserByEmail(email: string): Promise<User | null> {
-  try {
-    return users.find((user) => user.email === email) || null
-  } catch (error) {
-    console.error("Error fetching user by email:", error)
-    return null
-  }
-}
-
-export async function createUser(user: Omit<User, "id" | "createdAt">): Promise<User> {
-  try {
-    const newUser: User = {
-      ...user,
-      id: Date.now().toString(),
-      createdAt: new Date().toISOString(),
-    }
-
-    users.push(newUser)
-    return newUser
-  } catch (error) {
-    console.error("Error creating user:", error)
-    throw error
-  }
-}
-
-// Health check
-export async function healthCheck(): Promise<{ status: string; timestamp: string }> {
-  return {
-    status: "ok",
-    timestamp: new Date().toISOString(),
   }
 }

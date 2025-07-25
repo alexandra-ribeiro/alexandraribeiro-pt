@@ -1,217 +1,171 @@
 "use client"
 
-import type React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
-import { Mail, Phone, MapPin, Clock, Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
+import { Linkedin, Instagram, Mail, ChevronRight, ExternalLink, MapPin } from "lucide-react"
+import CookieConsent from "./cookie-consent"
+import PrivacyPolicyPopup from "./privacy-policy-popup"
+import TermsConditionsPopup from "./terms-conditions-popup"
 import { useLanguage } from "./language-provider"
 
-export default function Footer() {
-  const [email, setEmail] = useState("")
-  const [isSubscribing, setIsSubscribing] = useState(false)
-  const [subscriptionStatus, setSubscriptionStatus] = useState<"idle" | "success" | "error">("idle")
-  const { language, dictionary } = useLanguage()
+export default function Footer({ dict }: { dict: any }) {
+  const email = "geral@alexandraribeiro.pt"
+  const linkedinUrl = "https://www.linkedin.com/in/alexandraribeiro-pt"
+  const instagramUrl = "https://www.instagram.com/alexandraribeiro.pt"
+  const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false)
+  const [isTermsConditionsOpen, setIsTermsConditionsOpen] = useState(false)
 
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!email) return
+  const { lang } = useLanguage()
 
-    setIsSubscribing(true)
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      })
-
-      if (response.ok) {
-        setSubscriptionStatus("success")
-        setEmail("")
-      } else {
-        setSubscriptionStatus("error")
-      }
-    } catch (error) {
-      setSubscriptionStatus("error")
-    } finally {
-      setIsSubscribing(false)
-      setTimeout(() => setSubscriptionStatus("idle"), 3000)
-    }
+  // Add translations for Terms and Conditions
+  const termsConditionsText = {
+    en: "Terms and Conditions",
+    pt: "Termos e Condições",
   }
 
-  const quickLinks = [
-    { href: `/${language}`, label: dictionary.nav.home },
-    { href: `/${language}/about`, label: dictionary.nav.about },
-    { href: `/${language}/services`, label: dictionary.nav.services },
-    { href: `/${language}/portfolio`, label: dictionary.nav.portfolio },
-  ]
+  // Determine language from dict
+  const language = dict.privacy === "Privacy Policy" ? "en" : "pt"
 
-  const serviceLinks = [
-    { href: `/${language}/services`, label: "Virtual Assistant" },
-    { href: `/${language}/services`, label: "Content Creation" },
-    { href: `/${language}/services`, label: "Social Media" },
-    { href: `/${language}/services`, label: "E-commerce" },
-  ]
-
-  const socialLinks = [
-    { href: "https://facebook.com", icon: Facebook, label: "Facebook" },
-    { href: "https://instagram.com", icon: Instagram, label: "Instagram" },
-    { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
-    { href: "https://youtube.com", icon: Youtube, label: "YouTube" },
-  ]
+  // Add translation for location text
+  const locationText = {
+    en: "From Leiria, Portugal... to the world!",
+    pt: "De Leiria, Portugal... para o mundo!",
+  }
 
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {/* Company Info */}
-          <div className="lg:col-span-1">
-            <Link href={`/${language}`} className="inline-block mb-6">
-              <Image
-                src={language === "pt" ? "/images/logo-pt.png" : "/images/logo-en.png"}
-                alt="Alexandra Ribeiro - Virtual Assistant"
-                width={180}
-                height={60}
-                className="h-10 w-auto"
-              />
-            </Link>
-            <p className="text-gray-300 mb-6 leading-relaxed">{dictionary.footer.description}</p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors duration-300"
-                  aria-label={social.label}
-                >
-                  <social.icon size={18} />
-                </a>
-              ))}
+    <footer className="bg-primary text-white pt-20 pb-8 relative overflow-hidden">
+      {/* Background texture */}
+      <div className="absolute inset-0 texture-dots opacity-10"></div>
+
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-accent"></div>
+      <div className="absolute top-10 right-10 w-32 h-32 border border-white/10 rounded-full"></div>
+      <div className="absolute bottom-10 left-10 w-24 h-24 bg-accent/10 rounded-lg transform rotate-12"></div>
+
+      <div className="container relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div>
+            <h3 className="text-white font-semibold text-xl mb-6 border-b border-white/10 pb-2">Alexandra Ribeiro</h3>
+            <p className="text-primary-foreground/80 mb-6 leading-relaxed">
+              Consultora Digital e Assistente Virtual Técnica para novos empreendedores, freelancers e lojas online em
+              Portugal.
+            </p>
+            <div className="flex gap-4">
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-accent transition-colors duration-300 bg-white/5 p-2 rounded-full hover:bg-white/10"
+              >
+                <Linkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+              <a
+                href={instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-accent transition-colors duration-300 bg-white/5 p-2 rounded-full hover:bg-white/10"
+              >
+                <Instagram className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
+              </a>
+              <a
+                href={`mailto:${email}`}
+                className="text-white/70 hover:text-accent transition-colors duration-300 bg-white/5 p-2 rounded-full hover:bg-white/10"
+              >
+                <Mail className="h-5 w-5" />
+                <span className="sr-only">Email</span>
+              </a>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">{dictionary.footer.quickLinks}</h3>
+            <h3 className="text-white font-semibold text-xl mb-6 border-b border-white/10 pb-2">Links</h3>
             <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-gray-300 hover:text-white transition-colors duration-300">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href={`/${language}/blog`}
-                  className="text-gray-300 hover:text-white transition-colors duration-300"
-                >
-                  {dictionary.nav.blog}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${language}/store`}
-                  className="text-gray-300 hover:text-white transition-colors duration-300"
-                >
-                  {dictionary.nav.store}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">{dictionary.footer.services}</h3>
-            <ul className="space-y-3">
-              {serviceLinks.map((link, index) => (
+              {dict.links.map((link: any, index: number) => (
                 <li key={index}>
-                  <Link href={link.href} className="text-gray-300 hover:text-white transition-colors duration-300">
-                    {link.label}
+                  <Link
+                    href={`/${lang}${link.url}`}
+                    className="text-primary-foreground/80 hover:text-accent transition-colors duration-300 flex items-center group"
+                  >
+                    <ChevronRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {link.text}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href={`/${lang}/portfolio`}
+                  className="text-primary-foreground/80 hover:text-accent transition-colors duration-300 flex items-center group"
+                >
+                  <ChevronRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  Portfolio
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Contact & Newsletter */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">{dictionary.footer.contact}</h3>
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center space-x-3">
-                <Mail size={18} className="text-purple-400 flex-shrink-0" />
-                <a
-                  href="mailto:info@alexandraribeiro.pt"
-                  className="text-gray-300 hover:text-white transition-colors duration-300"
-                >
-                  info@alexandraribeiro.pt
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone size={18} className="text-purple-400 flex-shrink-0" />
-                <a href="tel:+351123456789" className="text-gray-300 hover:text-white transition-colors duration-300">
-                  +351 123 456 789
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin size={18} className="text-purple-400 flex-shrink-0" />
-                <span className="text-gray-300">Lisboa, Portugal</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Clock size={18} className="text-purple-400 flex-shrink-0" />
-                <span className="text-gray-300">09:00 - 18:00</span>
-              </div>
+            <h3 className="text-white font-semibold text-xl mb-6 border-b border-white/10 pb-2">Contacto</h3>
+            <div className="flex items-center gap-3 mb-4 bg-white/5 p-3 rounded-lg hover:bg-white/10 transition-colors duration-300">
+              <Mail className="h-5 w-5 text-accent" />
+              <a
+                href={`mailto:${email}`}
+                className="text-primary-foreground/90 hover:text-white transition-colors duration-300"
+              >
+                {email}
+              </a>
             </div>
-
-            {/* Newsletter */}
-            <div>
-              <h4 className="font-semibold mb-3">{dictionary.footer.newsletter.title}</h4>
-              <p className="text-gray-300 text-sm mb-4">{dictionary.footer.newsletter.description}</p>
-              <form onSubmit={handleNewsletterSubmit} className="space-y-3">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={dictionary.footer.newsletter.placeholder}
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-purple-500 transition-colors duration-300"
-                  required
-                />
-                <button
-                  type="submit"
-                  disabled={isSubscribing}
-                  className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-600 rounded-lg font-medium transition-colors duration-300"
-                >
-                  {isSubscribing ? dictionary.common.loading : dictionary.footer.newsletter.subscribe}
-                </button>
-              </form>
-              {subscriptionStatus === "success" && (
-                <p className="text-green-400 text-sm mt-2">{dictionary.footer.newsletter.success}</p>
-              )}
-              {subscriptionStatus === "error" && (
-                <p className="text-red-400 text-sm mt-2">{dictionary.footer.newsletter.error}</p>
-              )}
+            <div className="flex items-center gap-3 mb-4 bg-white/5 p-3 rounded-lg hover:bg-white/10 transition-colors duration-300">
+              <MapPin className="h-5 w-5 text-accent" />
+              <span className="text-primary-foreground/90">{locationText[language as keyof typeof locationText]}</span>
             </div>
+            <p className="text-primary-foreground/70 text-sm mt-6">
+              Disponível de segunda a sexta-feira, das 9h às 18h (GMT+1)
+            </p>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">© 2024 Alexandra Ribeiro. {dictionary.footer.copyright}</p>
-            <div className="flex space-x-6 text-sm">
-              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors duration-300">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors duration-300">
-                Terms of Service
-              </Link>
-            </div>
+        <div className="border-t border-white/10 mt-12 pt-8 text-center text-sm">
+          <p className="text-primary-foreground/70">
+            &copy; {new Date().getFullYear()} Alexandra Ribeiro. Todos os direitos reservados.
+          </p>
+          <div className="mt-2 flex justify-center space-x-4 flex-wrap">
+            <button
+              onClick={() => setIsPrivacyPolicyOpen(true)}
+              className="text-primary-foreground/70 hover:text-accent transition-colors duration-300"
+            >
+              {dict.privacy}
+            </button>
+            <button
+              onClick={() => setIsTermsConditionsOpen(true)}
+              className="text-primary-foreground/70 hover:text-accent transition-colors duration-300"
+            >
+              {termsConditionsText[language as keyof typeof termsConditionsText]}
+            </button>
+            <a
+              href="https://www.livroreclamacoes.pt/Inicio/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary-foreground/70 hover:text-accent transition-colors duration-300 flex items-center"
+            >
+              {dict.complaintsBook} <ExternalLink className="h-3 w-3 ml-1" />
+            </a>
           </div>
         </div>
       </div>
+
+      <CookieConsent dict={dict.cookieConsent} />
+      <PrivacyPolicyPopup
+        isOpen={isPrivacyPolicyOpen}
+        onClose={() => setIsPrivacyPolicyOpen(false)}
+        title={dict.privacy}
+      />
+      <TermsConditionsPopup
+        isOpen={isTermsConditionsOpen}
+        onClose={() => setIsTermsConditionsOpen(false)}
+        title={termsConditionsText[language as keyof typeof termsConditionsText]}
+      />
     </footer>
   )
 }
