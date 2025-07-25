@@ -1,34 +1,35 @@
 export type Locale = "pt" | "en"
 
-export interface BlogPost {
-  id: string
-  title: string
-  slug: string
-  excerpt: string
-  content: string
-  publishedAt: string
-  author: string
-  tags: string[]
-  language: Locale
-  featured: boolean
-  featuredImage?: string
-}
-
-export interface ContactMessage {
-  id: string
-  name: string
-  email: string
-  phone?: string
-  message: string
-  services: string[]
-  createdAt: string
-  read: boolean
-}
-
-export interface User {
-  id: string
-  email: string
-  name: string
-  role: "admin" | "user"
-  createdAt: string
+export interface Dictionary {
+  metadata: {
+    title: string
+    description: string
+  }
+  hero: {
+    headline: string
+    subheadline: string
+    cta: string
+  }
+  navigation: Array<{
+    label: string
+    path: string
+  }>
+  headerCTA: string
+  footer: {
+    links: Array<{
+      text: string
+      url: string
+    }>
+    contact: string
+    privacy: string
+    terms: string
+    complaintsBook: string
+  }
+  aboutMe: any
+  whatIsVA: any
+  whyChooseVA: any
+  certifications: any
+  blogPreview: any
+  finalCTA: any
+  newsletterPopup: any
 }

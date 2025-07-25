@@ -13,6 +13,10 @@ export default function SiteHeader({ dict }: { dict: any }) {
   const [isOpen, setIsOpen] = useState(false)
   const { lang } = useLanguage()
 
+  // Provide fallback values to prevent errors
+  const navigation = dict?.navigation || []
+  const headerCTA = dict?.headerCTA || (lang === "pt" ? "Contactar" : "Contact")
+
   const logoSrc = lang === "pt" ? "/images/logo-pt.png" : "/images/logo-en.png"
 
   return (
@@ -22,7 +26,7 @@ export default function SiteHeader({ dict }: { dict: any }) {
           <Image src={logoSrc || "/placeholder.svg"} alt="Logo" width={120} height={40} priority />
         </Link>
         <nav className="hidden md:flex items-center gap-6">
-          {dict.navigation.map((item: any) => (
+          {navigation.map((item: any) => (
             <Link
               key={item.path}
               href={`/${lang}${item.path}`}
@@ -35,7 +39,7 @@ export default function SiteHeader({ dict }: { dict: any }) {
             {lang === "pt" ? "Loja" : "Store"}
           </Link>
           <Button asChild className="bg-[#CC9E00] hover:bg-primary hover:text-white text-primary">
-            <Link href={`/${lang}/contact`}>{dict.headerCTA}</Link>
+            <Link href={`/${lang}/contact`}>{headerCTA}</Link>
           </Button>
           <LanguageSwitcher />
         </nav>
@@ -50,7 +54,7 @@ export default function SiteHeader({ dict }: { dict: any }) {
             </SheetTrigger>
             <SheetContent side="right" className="w-[250px] sm:w-[300px]">
               <nav className="flex flex-col gap-4 p-4">
-                {dict.navigation.map((item: any) => (
+                {navigation.map((item: any) => (
                   <Link
                     key={item.path}
                     href={`/${lang}${item.path}`}
@@ -69,7 +73,7 @@ export default function SiteHeader({ dict }: { dict: any }) {
                 </Link>
                 <Button asChild className="bg-[#CC9E00] hover:bg-primary hover:text-white text-primary mt-4">
                   <Link href={`/${lang}/contact`} onClick={() => setIsOpen(false)}>
-                    {dict.headerCTA}
+                    {headerCTA}
                   </Link>
                 </Button>
               </nav>

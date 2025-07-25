@@ -10,6 +10,13 @@ export default function Footer({ dict }: { dict: any }) {
 
   const logoSrc = lang === "pt" ? "/images/logo-pt.png" : "/images/logo-en.png"
 
+  // Provide fallback values to prevent errors
+  const links = dict?.links || []
+  const contact = dict?.contact || "info@alexandraribeiro.pt"
+  const privacy = dict?.privacy || (lang === "pt" ? "Política de Privacidade" : "Privacy Policy")
+  const terms = dict?.terms || (lang === "pt" ? "Termos e Condições" : "Terms & Conditions")
+  const complaintsBook = dict?.complaintsBook || (lang === "pt" ? "Livro de Reclamações" : "Complaints Book")
+
   return (
     <footer className="bg-gray-100 py-8 md:py-12">
       <div className="container mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -27,7 +34,7 @@ export default function Footer({ dict }: { dict: any }) {
             {lang === "pt" ? "Links Rápidos" : "Quick Links"}
           </h3>
           <nav className="flex flex-col gap-2 text-center md:text-left">
-            {dict.links.map((item: any) => (
+            {links.map((item: any) => (
               <Link key={item.url} href={`/${lang}${item.url}`} className="text-gray-600 hover:text-gray-900">
                 {item.text}
               </Link>
@@ -39,7 +46,7 @@ export default function Footer({ dict }: { dict: any }) {
         </div>
         <div className="flex flex-col items-center md:items-start">
           <h3 className="text-lg font-semibold text-gray-800 mb-4">{lang === "pt" ? "Contacto" : "Contact"}</h3>
-          <p className="text-gray-600 text-center md:text-left">{dict.contact}</p>
+          <p className="text-gray-600 text-center md:text-left">{contact}</p>
           <div className="flex gap-4 mt-4">
             {/* Social media icons - placeholder */}
             <Link href="#" className="text-gray-600 hover:text-gray-900">
@@ -54,10 +61,10 @@ export default function Footer({ dict }: { dict: any }) {
           </div>
           <div className="mt-4 text-sm text-center md:text-left">
             <Link href={`/${lang}/privacy-policy`} className="text-gray-600 hover:text-gray-900 block">
-              {dict.privacy}
+              {privacy}
             </Link>
             <Link href={`/${lang}/terms-conditions`} className="text-gray-600 hover:text-gray-900 block">
-              {dict.terms}
+              {terms}
             </Link>
             <Link
               href="https://www.livroreclamacoes.pt/inicio"
@@ -65,7 +72,7 @@ export default function Footer({ dict }: { dict: any }) {
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-gray-900 block"
             >
-              {dict.complaintsBook}
+              {complaintsBook}
             </Link>
           </div>
         </div>
