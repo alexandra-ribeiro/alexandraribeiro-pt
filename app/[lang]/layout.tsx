@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode
   params: { lang: string }
 }) {
-  // Ensure lang parameter is valid
+  // Ensure lang parameter is valid and provide fallback
   const validLang = params?.lang || "pt"
 
   return (

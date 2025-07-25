@@ -1,58 +1,42 @@
 "use client"
 
-import type React from "react"
-import { createContext, useContext, useState, useEffect } from "react"
-import { useRouter, usePathname } from "next/navigation"
+import { createContext, useContext, type ReactNode } from "react"
 
-type LanguageContextType = {
+interface LanguageContextType {
   lang: string
-  setLanguage: (lang: string) => void
+  isPortuguese: boolean
+  isEnglish: boolean
 }
 
-const LanguageContext = createContext<LanguageContextType>({
-  lang: "pt",
-  setLanguage: () => {},
-})
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({
-  children,
-  lang,
-}: {
-  children: React.ReactNode
+interface LanguageProviderProps {
+  children: ReactNode
   lang: string
-}) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const [currentLang, setCurrentLang] = useState(lang)
+}
 
-  // Add error handling for language switching
-  const setLanguage = (newLang: string) => {
-    try {
-      setCurrentLang(newLang)
-      if (pathname && router) {
-        const newPath = pathname.replace(`/${lang}`, `/${newLang}`)
-        router.push(newPath)
-      }
-    } catch (error) {
-      console.error("Error switching language:", error)
-    }
+export function LanguageProvider({ children, lang }: LanguageProviderProps) {
+  // Ensure lang is valid
+  const validLang = lang === "en" ? "en" : "pt"
+
+  const value: LanguageContextType = {
+    lang: validLang,
+    isPortuguese: validLang === "pt",
+    isEnglish: validLang === "en",
   }
 
-  // Sync with prop changes
-  useEffect(() => {
-    if (lang !== currentLang) {
-      setCurrentLang(lang)
-    }
-  }, [lang])
-
-  return <LanguageContext.Provider value={{ lang: currentLang, setLanguage }}>{children}</LanguageContext.Provider>
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
 }
 
-export const useLanguage = () => {
+export function useLanguage(): LanguageContextType {
   const context = useContext(LanguageContext)
-  if (!context) {
-    console.error("Error using language context: Context is undefined")
-    return { lang: "pt", setLanguage: () => {} }
+  if (context === undefined) {
+    // Provide fallback values instead of throwing
+    return {
+      lang: "pt",
+      isPortuguese: true,
+      isEnglish: false,
+    }
   }
   return context
 }
