@@ -5,17 +5,18 @@ export function middleware(request: NextRequest) {
   try {
     const pathname = request.nextUrl.pathname
 
-    // Skip middleware for static files and API routes
+    // Skip middleware for static files, API routes, and special paths
     if (
       pathname.startsWith("/_next") ||
       pathname.startsWith("/api") ||
       pathname.startsWith("/favicon") ||
-      pathname.includes(".")
+      pathname.includes(".") ||
+      pathname.startsWith("/admin")
     ) {
       return NextResponse.next()
     }
 
-    // Handle root path redirect
+    // Handle root path
     if (pathname === "/") {
       return NextResponse.redirect(new URL("/pt", request.url))
     }
@@ -34,7 +35,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   } catch (error) {
     console.error("Middleware error:", error)
-    // Return a safe fallback response
+    // Safe fallback
     return NextResponse.redirect(new URL("/pt", request.url))
   }
 }
@@ -47,7 +48,7 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - public files (images, etc.)
+     * - public files with extensions
      */
     "/((?!api|_next/static|_next/image|favicon.ico|.*\\.).*)",
   ],

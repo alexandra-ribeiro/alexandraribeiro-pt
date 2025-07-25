@@ -1,29 +1,21 @@
 export type Locale = "pt" | "en"
 
+export interface NavigationItem {
+  label: string
+  path: string
+}
+
 export interface Dictionary {
   metadata: {
     title: string
     description: string
   }
+  navigation: NavigationItem[]
   hero: {
     headline: string
     subheadline: string
     cta: string
-  }
-  navigation: Array<{
-    label: string
-    path: string
-  }>
-  headerCTA: string
-  footer: {
-    links: Array<{
-      text: string
-      url: string
-    }>
-    contact: string
-    privacy: string
-    terms: string
-    complaintsBook: string
+    lang?: string
   }
   aboutMe: any
   whatIsVA: any
@@ -31,5 +23,7 @@ export interface Dictionary {
   certifications: any
   blogPreview: any
   finalCTA: any
+  footer: any
   newsletterPopup: any
+  headerCTA: string
 }

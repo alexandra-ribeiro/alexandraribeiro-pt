@@ -2,11 +2,16 @@
 
 import { createContext, useContext, type ReactNode } from "react"
 
+type Language = "pt" | "en"
+
 interface LanguageContextType {
-  lang: string
+  lang: Language
+  setLang?: (lang: Language) => void
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+const LanguageContext = createContext<LanguageContextType>({
+  lang: "pt",
+})
 
 interface LanguageProviderProps {
   children: ReactNode
@@ -14,17 +19,15 @@ interface LanguageProviderProps {
 }
 
 export function LanguageProvider({ children, lang }: LanguageProviderProps) {
-  // Ensure lang is valid with fallback
-  const validLang = lang === "en" ? "en" : "pt"
+  const validLang: Language = lang === "en" ? "en" : "pt"
 
   return <LanguageContext.Provider value={{ lang: validLang }}>{children}</LanguageContext.Provider>
 }
 
 export function useLanguage() {
   const context = useContext(LanguageContext)
-  if (context === undefined) {
-    // Provide fallback instead of throwing error
-    return { lang: "pt" }
+  if (!context) {
+    return { lang: "pt" as Language }
   }
   return context
 }

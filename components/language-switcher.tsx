@@ -1,29 +1,28 @@
 "use client"
 
-import { useLanguage } from "./language-provider"
+import { useRouter, usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Globe } from "lucide-react"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { useLanguage } from "./language-provider"
 
 export default function LanguageSwitcher() {
-  const { lang, setLanguage } = useLanguage()
+  const router = useRouter()
+  const pathname = usePathname()
+  const { lang } = useLanguage()
+
+  const switchLanguage = () => {
+    try {
+      const newLang = lang === "pt" ? "en" : "pt"
+      const currentPath = pathname.replace(/^\/(pt|en)/, "")
+      const newPath = `/${newLang}${currentPath}`
+      router.push(newPath)
+    } catch (error) {
+      console.error("Error switching language:", error)
+    }
+  }
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-gray-600 hover:text-primary hover:bg-transparent">
-          <Globe className="h-5 w-5" />
-          <span className="sr-only">Switch language</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setLanguage("pt")} className={lang === "pt" ? "font-bold" : ""}>
-          Português
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage("en")} className={lang === "en" ? "font-bold" : ""}>
-          English
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button variant="outline" size="sm" onClick={switchLanguage} className="text-xs font-medium bg-transparent">
+      {lang === "pt" ? "EN" : "PT"}
+    </Button>
   )
 }
