@@ -2,8 +2,8 @@
 import { useSession, signOut } from "next-auth/react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+//import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+//import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Home, FileText, User, Mail, Settings, LogOut } from "lucide-react"
 import RouteGuard from "@/components/auth/route-guard"
 
