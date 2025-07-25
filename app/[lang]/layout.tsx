@@ -6,22 +6,34 @@ import { LanguageProvider } from "@/components/language-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import ErrorBoundary from "@/components/error-boundary"
+import { getDictionary } from "@/lib/dictionaries"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "Alexandra Ribeiro | Consultora Digital e Assistente Virtual Técnica em Portugal",
-  description: "Digital consulting and simplified systems implementation for entrepreneurs and online stores",
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AV%20favicon-FWdgglhaNmL080fqQbkTJ1M0HTfOqx.png",
-        type: "image/png",
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  try {
+    const dict = await getDictionary(params.lang as "pt" | "en")
+    return {
+      title: dict.metadata?.title || "Alexandra Ribeiro | Consultora Digital",
+      description: dict.metadata?.description || "Digital consulting services",
+      icons: {
+        icon: [
+          { url: "/favicon.ico" },
+          {
+            url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AV%20favicon-FWdgglhaNmL080fqQbkTJ1M0HTfOqx.png",
+            type: "image/png",
+          },
+        ],
+        apple: [{ url: "/apple-touch-icon.png" }],
       },
-    ],
-    apple: [{ url: "/apple-touch-icon.png" }],
-  },
+    }
+  } catch (error) {
+    console.error("Error generating metadata:", error)
+    return {
+      title: "Alexandra Ribeiro | Consultora Digital",
+      description: "Digital consulting services",
+    }
+  }
 }
 
 export default function RootLayout({
@@ -46,7 +58,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <ErrorBoundary>
           <ThemeProvider attribute="class" defaultTheme="light" suppressColorSchemeWarning>
-            <LanguageProvider lang={validLang}>
+            <LanguageProvider>
               {children}
               <Toaster />
             </LanguageProvider>

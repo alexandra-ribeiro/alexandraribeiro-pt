@@ -104,32 +104,13 @@ export default async function Home({ params }: { params: { lang: string } }) {
         subscribe: "Subscrever",
         close: "Fechar",
       },
-      navigation: {
-        home: "Início",
-        about: "Sobre",
-        services: "Serviços",
-        portfolio: "Portfolio",
-        blog: "Blog",
-        contact: "Contacto",
-        store: "Loja",
-      },
-      store: {
-        title: "Loja Digital",
-        seoHeading: "Produtos e serviços digitais",
-        noProductsFound: "Nenhum produto encontrado",
-        buyButton: "Comprar",
-      },
-      product: {
-        noImage: "Sem imagem disponível",
-        buyNow: "Comprar agora",
-      },
     }
   }
 
   return (
     <main className="min-h-screen">
-      <SiteHeader dict={dict} />
-      <HeroSection dict={dict.hero} />
+      <SiteHeader />
+      <HeroSection />
       <AboutMe dict={dict.aboutMe} lang={params.lang} />
 
       <EnhancedDivider />
@@ -141,11 +122,9 @@ export default async function Home({ params }: { params: { lang: string } }) {
 
       <WhyChooseVA dict={dict.whyChooseVA} />
       <CertificationsSection dict={dict.certifications} />
-      {/* Testimonials section temporarily hidden */}
-      {/* <Testimonials dict={dict.testimonials} /> */}
       <ContentfulBlogPreview dict={dict.blogPreview} lang={params.lang} />
       <FinalCTA dict={dict.finalCTA} />
-      <Footer dict={dict.footer} />
+      <Footer />
       <NewsletterPopup dict={dict.newsletterPopup} />
     </main>
   )

@@ -1,12 +1,15 @@
 import { Suspense } from "react"
 import { getProductsFromNotion } from "@/lib/notion"
-import { formatCurrency } from "@/lib/utils"
+import { formatCurrencyServer } from "@/lib/server-utils"
+import { getDictionary } from "@/lib/dictionaries"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ShoppingCart, Star, ExternalLink } from "lucide-react"
+import SiteHeader from "@/components/site-header"
+import Footer from "@/components/footer"
 
 interface StorePageProps {
   params: {
@@ -78,7 +81,7 @@ async function ProductGrid({ lang }: { lang: "pt" | "en" }) {
                   <span className="text-sm text-gray-500 ml-2">(4.9)</span>
                 </div>
                 {product.price && (
-                  <span className="text-2xl font-bold text-purple-600">{formatCurrency(product.price)}</span>
+                  <span className="text-2xl font-bold text-purple-600">{formatCurrencyServer(product.price)}</span>
                 )}
               </div>
             </CardContent>
@@ -155,20 +158,39 @@ function LoadingSkeleton() {
 
 export default async function StorePage({ params }: StorePageProps) {
   const { lang } = params
+  let dict
+
+  try {
+    dict = await getDictionary(lang)
+  } catch (error) {
+    console.error("Error loading dictionary:", error)
+    dict = {
+      store: {
+        title: lang === "en" ? "Digital Store" : "Loja Digital",
+        seoHeading: lang === "en" ? "Digital products and services" : "Produtos e serviços digitais",
+        noProductsFound: lang === "en" ? "No products found" : "Nenhum produto encontrado",
+        buyButton: lang === "en" ? "Buy" : "Comprar",
+      },
+      footer: {},
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SiteHeader />
+
       {/* Header */}
-      <div className="bg-white shadow-sm">
+      <div className="bg-white shadow-sm pt-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              {lang === "en" ? "Digital Store" : "Loja Digital"}
+              {dict?.store?.title || (lang === "en" ? "Digital Store" : "Loja Digital")}
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {lang === "en"
-                ? "Discover our collection of digital products, templates, and resources designed to help your business grow."
-                : "Descubra a nossa coleção de produtos digitais, templates e recursos criados para ajudar o seu negócio a crescer."}
+              {dict?.store?.seoHeading ||
+                (lang === "en"
+                  ? "Discover our collection of digital products, templates, and resources designed to help your business grow."
+                  : "Descubra a nossa coleção de produtos digitais, templates e recursos criados para ajudar o seu negócio a crescer.")}
             </p>
           </div>
         </div>
@@ -197,6 +219,8 @@ export default async function StorePage({ params }: StorePageProps) {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   )
 }
