@@ -31,7 +31,6 @@ export default function RootLayout({
   children: React.ReactNode
   params: { lang: string }
 }) {
-  // Ensure lang parameter is valid and provide fallback
   const validLang = params?.lang || "pt"
 
   return (
@@ -47,7 +46,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <ErrorBoundary>
           <ThemeProvider attribute="class" defaultTheme="light" suppressColorSchemeWarning>
-            <LanguageProvider lang={validLang}>
+            <LanguageProvider>
               {children}
               <Toaster />
             </LanguageProvider>

@@ -3,30 +3,23 @@
 import { useState, useEffect } from "react"
 
 interface ContentDisplayProps {
-  storageKey: string
-  field: string
-  fallback: string
+  content: string
+  className?: string
 }
 
-export default function ContentDisplay({ storageKey, field, fallback }: ContentDisplayProps) {
-  const [content, setContent] = useState(fallback)
+export default function ContentDisplay({ content, className = "" }: ContentDisplayProps) {
+  const [displayContent, setDisplayContent] = useState("")
 
   useEffect(() => {
-    // Only run on client side
+    // Safely handle content on client side
     if (typeof window !== "undefined") {
-      try {
-        const stored = localStorage.getItem(storageKey)
-        if (stored) {
-          const data = JSON.parse(stored)
-          if (data[field]) {
-            setContent(data[field])
-          }
-        }
-      } catch (error) {
-        console.error("Error loading content from localStorage:", error)
-      }
+      setDisplayContent(content || "")
     }
-  }, [storageKey, field])
+  }, [content])
 
-  return <>{content}</>
+  if (!displayContent) {
+    return <div className={`animate-pulse bg-gray-200 h-4 rounded ${className}`} />
+  }
+
+  return <div className={className} dangerouslySetInnerHTML={{ __html: displayContent }} />
 }

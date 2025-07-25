@@ -2,88 +2,141 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react"
 import { useLanguage } from "./language-provider"
-import type { FooterDict } from "@/lib/types"
 
 interface FooterProps {
-  dict: FooterDict
+  dict: any
 }
 
 export default function Footer({ dict }: FooterProps) {
   const { lang } = useLanguage()
 
+  const currentYear = new Date().getFullYear()
+
+  const navigation = [
+    { label: lang === "en" ? "Home" : "Início", path: `/${lang}` },
+    { label: lang === "en" ? "About" : "Sobre", path: `/${lang}/about` },
+    { label: lang === "en" ? "Services" : "Serviços", path: `/${lang}/services` },
+    { label: "Portfolio", path: `/${lang}/portfolio` },
+    { label: "Blog", path: `/${lang}/blog` },
+    { label: lang === "en" ? "Store" : "Loja", path: `/${lang}/store` },
+    { label: lang === "en" ? "Contact" : "Contacto", path: `/${lang}/contact` },
+  ]
+
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Description */}
-          <div className="col-span-1 md:col-span-2">
+          <div className="lg:col-span-2">
             <Link href={`/${lang}`} className="inline-block mb-4">
               <Image
                 src={lang === "en" ? "/images/logo-en.png" : "/images/logo-pt.png"}
-                alt="Alexandra Ribeiro Logo"
+                alt="Alexandra Ribeiro"
                 width={200}
-                height={60}
-                className="h-12 w-auto filter brightness-0 invert"
+                height={67}
+                className="h-12 w-auto"
               />
             </Link>
-            <p className="text-gray-300 mb-4 max-w-md">
+            <p className="text-gray-300 mb-6 max-w-md">
               {lang === "en"
-                ? "Digital consultant and technical virtual assistant specializing in business automation and digital solutions."
-                : "Consultora digital e assistente virtual técnica especializada em automação de negócios e soluções digitais."}
+                ? "Digital Consultant and Technical Virtual Assistant specialized in systems implementation and professional online identity."
+                : "Consultora Digital e Assistente Virtual Técnica especializada em implementação de sistemas e identidade profissional online."}
             </p>
+            <div className="flex space-x-4">
+              <a
+                href="https://facebook.com/alexandraribeiro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook size={20} />
+              </a>
+              <a
+                href="https://instagram.com/alexandraribeiro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-pink-400 transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+              <a
+                href="https://linkedin.com/in/alexandraribeiro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={20} />
+              </a>
+            </div>
+          </div>
+
+          {/* Navigation Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">{lang === "en" ? "Navigation" : "Navegação"}</h3>
+            <ul className="space-y-2">
+              {navigation.map((item) => (
+                <li key={item.path}>
+                  <Link href={item.path} className="text-gray-300 hover:text-white transition-colors">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold mb-4">{lang === "en" ? "Contact" : "Contacto"}</h3>
             <div className="space-y-3">
-              <div className="flex items-center">
-                <Mail className="h-5 w-5 mr-3 text-blue-400" />
-                <a href={`mailto:${dict.contact}`} className="text-gray-300 hover:text-white transition-colors">
-                  {dict.contact}
+              <div className="flex items-center space-x-3">
+                <Mail size={16} className="text-blue-400" />
+                <a href="mailto:info@alexandraribeiro.pt" className="text-gray-300 hover:text-white transition-colors">
+                  info@alexandraribeiro.pt
                 </a>
               </div>
-              <div className="flex items-center">
-                <Phone className="h-5 w-5 mr-3 text-blue-400" />
-                <span className="text-gray-300">+351 XXX XXX XXX</span>
+              <div className="flex items-center space-x-3">
+                <Phone size={16} className="text-blue-400" />
+                <a href="tel:+351123456789" className="text-gray-300 hover:text-white transition-colors">
+                  +351 123 456 789
+                </a>
               </div>
-              <div className="flex items-center">
-                <MapPin className="h-5 w-5 mr-3 text-blue-400" />
+              <div className="flex items-center space-x-3">
+                <MapPin size={16} className="text-blue-400" />
                 <span className="text-gray-300">Portugal</span>
               </div>
-            </div>
-          </div>
-
-          {/* Legal Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">{lang === "en" ? "Legal" : "Legal"}</h3>
-            <div className="space-y-2">
-              <Link href={`/${lang}/privacy`} className="block text-gray-300 hover:text-white transition-colors">
-                {dict.privacy}
-              </Link>
-              <Link href={`/${lang}/terms`} className="block text-gray-300 hover:text-white transition-colors">
-                {dict.terms}
-              </Link>
-              <a
-                href="https://www.livroreclamacoes.pt"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-gray-300 hover:text-white transition-colors"
-              >
-                {dict.complaintsBook}
-              </a>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
-            © {new Date().getFullYear()} Alexandra Ribeiro.{" "}
-            {lang === "en" ? "All rights reserved." : "Todos os direitos reservados."}
-          </p>
+        <div className="border-t border-gray-800 mt-8 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p className="text-gray-400 text-sm">
+              © {currentYear} Alexandra Ribeiro.{" "}
+              {lang === "en" ? "All rights reserved." : "Todos os direitos reservados."}
+            </p>
+            <div className="flex space-x-6 text-sm">
+              <Link href={`/${lang}/privacy`} className="text-gray-400 hover:text-white transition-colors">
+                {dict?.privacy || (lang === "en" ? "Privacy Policy" : "Política de Privacidade")}
+              </Link>
+              <Link href={`/${lang}/terms`} className="text-gray-400 hover:text-white transition-colors">
+                {dict?.terms || (lang === "en" ? "Terms & Conditions" : "Termos e Condições")}
+              </Link>
+              <a
+                href="https://www.livroreclamacoes.pt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                {dict?.complaintsBook || (lang === "en" ? "Complaints Book" : "Livro de Reclamações")}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
