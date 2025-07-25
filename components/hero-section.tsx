@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { useLanguage } from "./language-provider"
 
 interface HeroSectionProps {
   dict: any
@@ -11,10 +10,17 @@ interface HeroSectionProps {
 
 export default function HeroSection({ dict }: HeroSectionProps) {
   const [isVisible, setIsVisible] = useState(false)
-  const { lang } = useLanguage()
+  const [currentLang, setCurrentLang] = useState("pt")
 
   useEffect(() => {
     setIsVisible(true)
+
+    // Get language from pathname
+    if (typeof window !== "undefined") {
+      const pathname = window.location.pathname
+      const lang = pathname.startsWith("/en") ? "en" : "pt"
+      setCurrentLang(lang)
+    }
   }, [])
 
   return (
@@ -51,7 +57,7 @@ export default function HeroSection({ dict }: HeroSectionProps) {
 
             <p className="text-xl sm:text-2xl lg:text-3xl text-blue-100 mb-8 font-light leading-relaxed">
               {dict?.subheadline ||
-                (lang === "en"
+                (currentLang === "en"
                   ? "Digital Consultant & Technical Virtual Assistant"
                   : "Consultora Digital e Assistente Virtual Técnica")}
             </p>
@@ -62,7 +68,9 @@ export default function HeroSection({ dict }: HeroSectionProps) {
                 size="lg"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
-                <Link href={`/${lang}/about`}>{dict?.cta || (lang === "en" ? "Learn More" : "Saber Mais")}</Link>
+                <Link href={`/${currentLang}/about`}>
+                  {dict?.cta || (currentLang === "en" ? "Learn More" : "Saber Mais")}
+                </Link>
               </Button>
 
               <Button
@@ -71,7 +79,9 @@ export default function HeroSection({ dict }: HeroSectionProps) {
                 size="lg"
                 className="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-8 py-3 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-transparent"
               >
-                <Link href={`/${lang}/contact`}>{lang === "en" ? "Get in Touch" : "Entrar em Contacto"}</Link>
+                <Link href={`/${currentLang}/contact`}>
+                  {currentLang === "en" ? "Get in Touch" : "Entrar em Contacto"}
+                </Link>
               </Button>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import { Button } from "@/components/ui/button"
 
 interface ErrorBoundaryState {
   hasError: boolean
@@ -9,7 +10,6 @@ interface ErrorBoundaryState {
 
 interface ErrorBoundaryProps {
   children: React.ReactNode
-  fallback?: React.ComponentType<{ error: Error; resetError: () => void }>
 }
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -26,22 +26,13 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     console.error("Error caught by boundary:", error, errorInfo)
   }
 
-  resetError = () => {
-    this.setState({ hasError: false, error: undefined })
-  }
-
   render() {
     if (this.state.hasError) {
-      if (this.props.fallback) {
-        const FallbackComponent = this.props.fallback
-        return <FallbackComponent error={this.state.error!} resetError={this.resetError} />
-      }
-
       return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6">
-            <div className="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 rounded-full">
-              <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">
+            <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
+              <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -50,18 +41,11 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
                 />
               </svg>
             </div>
-            <div className="mt-4 text-center">
-              <h3 className="text-lg font-medium text-gray-900">Algo correu mal</h3>
-              <p className="mt-2 text-sm text-gray-500">Ocorreu um erro inesperado. Por favor, tente novamente.</p>
-              <div className="mt-4">
-                <button
-                  onClick={this.resetError}
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Tentar novamente
-                </button>
-              </div>
-            </div>
+            <h1 className="text-xl font-semibold text-gray-900 mb-2">Algo correu mal</h1>
+            <p className="text-gray-600 mb-6">Ocorreu um erro inesperado. Por favor, tente novamente.</p>
+            <Button onClick={() => window.location.reload()} className="bg-blue-600 hover:bg-blue-700 text-white">
+              Tentar novamente
+            </Button>
           </div>
         </div>
       )

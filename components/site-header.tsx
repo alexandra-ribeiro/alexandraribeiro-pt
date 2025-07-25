@@ -6,7 +6,6 @@ import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import LanguageSwitcher from "./language-switcher"
-import { useLanguage } from "./language-provider"
 
 interface SiteHeaderProps {
   dict: any
@@ -15,9 +14,16 @@ interface SiteHeaderProps {
 export default function SiteHeader({ dict }: SiteHeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const { lang } = useLanguage()
+  const [currentLang, setCurrentLang] = useState("pt")
 
   useEffect(() => {
+    // Get language from pathname
+    if (typeof window !== "undefined") {
+      const pathname = window.location.pathname
+      const lang = pathname.startsWith("/en") ? "en" : "pt"
+      setCurrentLang(lang)
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
     }
@@ -27,13 +33,13 @@ export default function SiteHeader({ dict }: SiteHeaderProps) {
   }, [])
 
   const navigation = [
-    { label: lang === "en" ? "Home" : "Início", path: `/${lang}` },
-    { label: lang === "en" ? "About" : "Sobre", path: `/${lang}/about` },
-    { label: lang === "en" ? "Services" : "Serviços", path: `/${lang}/services` },
-    { label: "Portfolio", path: `/${lang}/portfolio` },
-    { label: "Blog", path: `/${lang}/blog` },
-    { label: lang === "en" ? "Store" : "Loja", path: `/${lang}/store` },
-    { label: lang === "en" ? "Contact" : "Contacto", path: `/${lang}/contact` },
+    { label: currentLang === "en" ? "Home" : "Início", path: `/${currentLang}` },
+    { label: currentLang === "en" ? "About" : "Sobre", path: `/${currentLang}/about` },
+    { label: currentLang === "en" ? "Services" : "Serviços", path: `/${currentLang}/services` },
+    { label: "Portfolio", path: `/${currentLang}/portfolio` },
+    { label: "Blog", path: `/${currentLang}/blog` },
+    { label: currentLang === "en" ? "Store" : "Loja", path: `/${currentLang}/store` },
+    { label: currentLang === "en" ? "Contact" : "Contacto", path: `/${currentLang}/contact` },
   ]
 
   return (
@@ -45,9 +51,9 @@ export default function SiteHeader({ dict }: SiteHeaderProps) {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href={`/${lang}`} className="flex-shrink-0">
+          <Link href={`/${currentLang}`} className="flex-shrink-0">
             <Image
-              src={lang === "en" ? "/images/logo-en.png" : "/images/logo-pt.png"}
+              src={currentLang === "en" ? "/images/logo-en.png" : "/images/logo-pt.png"}
               alt="Alexandra Ribeiro"
               width={180}
               height={60}
@@ -75,7 +81,7 @@ export default function SiteHeader({ dict }: SiteHeaderProps) {
           <div className="hidden lg:flex items-center space-x-4">
             <LanguageSwitcher />
             <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
-              <Link href={`/${lang}/contact`}>{dict?.headerCTA || (lang === "en" ? "Contact" : "Contactar")}</Link>
+              <Link href={`/${currentLang}/contact`}>{currentLang === "en" ? "Contact" : "Contactar"}</Link>
             </Button>
           </div>
 
@@ -110,8 +116,8 @@ export default function SiteHeader({ dict }: SiteHeaderProps) {
               ))}
               <div className="px-3 py-2">
                 <Button asChild size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
-                  <Link href={`/${lang}/contact`} onClick={() => setIsMenuOpen(false)}>
-                    {dict?.headerCTA || (lang === "en" ? "Contact" : "Contactar")}
+                  <Link href={`/${currentLang}/contact`} onClick={() => setIsMenuOpen(false)}>
+                    {currentLang === "en" ? "Contact" : "Contactar"}
                   </Link>
                 </Button>
               </div>

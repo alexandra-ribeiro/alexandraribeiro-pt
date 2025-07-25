@@ -1,27 +1,36 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin } from "lucide-react"
-import { useLanguage } from "./language-provider"
 
 interface FooterProps {
   dict: any
 }
 
 export default function Footer({ dict }: FooterProps) {
-  const { lang } = useLanguage()
+  const [currentLang, setCurrentLang] = useState("pt")
+
+  useEffect(() => {
+    // Get language from pathname
+    if (typeof window !== "undefined") {
+      const pathname = window.location.pathname
+      const lang = pathname.startsWith("/en") ? "en" : "pt"
+      setCurrentLang(lang)
+    }
+  }, [])
 
   const currentYear = new Date().getFullYear()
 
   const navigation = [
-    { label: lang === "en" ? "Home" : "Início", path: `/${lang}` },
-    { label: lang === "en" ? "About" : "Sobre", path: `/${lang}/about` },
-    { label: lang === "en" ? "Services" : "Serviços", path: `/${lang}/services` },
-    { label: "Portfolio", path: `/${lang}/portfolio` },
-    { label: "Blog", path: `/${lang}/blog` },
-    { label: lang === "en" ? "Store" : "Loja", path: `/${lang}/store` },
-    { label: lang === "en" ? "Contact" : "Contacto", path: `/${lang}/contact` },
+    { label: currentLang === "en" ? "Home" : "Início", path: `/${currentLang}` },
+    { label: currentLang === "en" ? "About" : "Sobre", path: `/${currentLang}/about` },
+    { label: currentLang === "en" ? "Services" : "Serviços", path: `/${currentLang}/services` },
+    { label: "Portfolio", path: `/${currentLang}/portfolio` },
+    { label: "Blog", path: `/${currentLang}/blog` },
+    { label: currentLang === "en" ? "Store" : "Loja", path: `/${currentLang}/store` },
+    { label: currentLang === "en" ? "Contact" : "Contacto", path: `/${currentLang}/contact` },
   ]
 
   return (
@@ -30,9 +39,9 @@ export default function Footer({ dict }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="lg:col-span-2">
-            <Link href={`/${lang}`} className="inline-block mb-4">
+            <Link href={`/${currentLang}`} className="inline-block mb-4">
               <Image
-                src={lang === "en" ? "/images/logo-en.png" : "/images/logo-pt.png"}
+                src={currentLang === "en" ? "/images/logo-en.png" : "/images/logo-pt.png"}
                 alt="Alexandra Ribeiro"
                 width={200}
                 height={67}
@@ -40,7 +49,7 @@ export default function Footer({ dict }: FooterProps) {
               />
             </Link>
             <p className="text-gray-300 mb-6 max-w-md">
-              {lang === "en"
+              {currentLang === "en"
                 ? "Digital Consultant and Technical Virtual Assistant specialized in systems implementation and professional online identity."
                 : "Consultora Digital e Assistente Virtual Técnica especializada em implementação de sistemas e identidade profissional online."}
             </p>
@@ -77,7 +86,7 @@ export default function Footer({ dict }: FooterProps) {
 
           {/* Navigation Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">{lang === "en" ? "Navigation" : "Navegação"}</h3>
+            <h3 className="text-lg font-semibold mb-4">{currentLang === "en" ? "Navigation" : "Navegação"}</h3>
             <ul className="space-y-2">
               {navigation.map((item) => (
                 <li key={item.path}>
@@ -91,7 +100,7 @@ export default function Footer({ dict }: FooterProps) {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">{lang === "en" ? "Contact" : "Contacto"}</h3>
+            <h3 className="text-lg font-semibold mb-4">{currentLang === "en" ? "Contact" : "Contacto"}</h3>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-blue-400" />
@@ -118,14 +127,14 @@ export default function Footer({ dict }: FooterProps) {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
               © {currentYear} Alexandra Ribeiro.{" "}
-              {lang === "en" ? "All rights reserved." : "Todos os direitos reservados."}
+              {currentLang === "en" ? "All rights reserved." : "Todos os direitos reservados."}
             </p>
             <div className="flex space-x-6 text-sm">
-              <Link href={`/${lang}/privacy`} className="text-gray-400 hover:text-white transition-colors">
-                {dict?.privacy || (lang === "en" ? "Privacy Policy" : "Política de Privacidade")}
+              <Link href={`/${currentLang}/privacy`} className="text-gray-400 hover:text-white transition-colors">
+                {currentLang === "en" ? "Privacy Policy" : "Política de Privacidade"}
               </Link>
-              <Link href={`/${lang}/terms`} className="text-gray-400 hover:text-white transition-colors">
-                {dict?.terms || (lang === "en" ? "Terms & Conditions" : "Termos e Condições")}
+              <Link href={`/${currentLang}/terms`} className="text-gray-400 hover:text-white transition-colors">
+                {currentLang === "en" ? "Terms & Conditions" : "Termos e Condições"}
               </Link>
               <a
                 href="https://www.livroreclamacoes.pt"
@@ -133,7 +142,7 @@ export default function Footer({ dict }: FooterProps) {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors"
               >
-                {dict?.complaintsBook || (lang === "en" ? "Complaints Book" : "Livro de Reclamações")}
+                {currentLang === "en" ? "Complaints Book" : "Livro de Reclamações"}
               </a>
             </div>
           </div>

@@ -29,41 +29,124 @@ export async function generateMetadata({ params }: { params: { lang: string } })
 }
 
 export default async function Home({ params }: { params: { lang: string } }) {
+  let dict
+
   try {
-    const dict = await getDictionary(params.lang as "pt" | "en")
-
-    return (
-      <main className="min-h-screen">
-        <SiteHeader dict={dict} />
-        <HeroSection dict={dict.hero} />
-        <AboutMe dict={dict.aboutMe} lang={params.lang} />
-
-        <EnhancedDivider />
-
-        <WhatIsVA dict={dict.whatIsVA} />
-
-        {/* Barra separadora */}
-        <div className="section-divider my-8"></div>
-
-        <WhyChooseVA dict={dict.whyChooseVA} />
-        <CertificationsSection dict={dict.certifications} />
-        {/* Testimonials section temporarily hidden */}
-        {/* <Testimonials dict={dict.testimonials} /> */}
-        <ContentfulBlogPreview dict={dict.blogPreview} lang={params.lang} />
-        <FinalCTA dict={dict.finalCTA} />
-        <Footer dict={dict.footer} />
-        <NewsletterPopup dict={dict.newsletterPopup} />
-      </main>
-    )
+    dict = await getDictionary(params.lang as "pt" | "en")
   } catch (error) {
-    console.error("Error rendering page:", error)
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Alexandra Ribeiro</h1>
-          <p className="text-gray-600">Consultora Digital e Assistente Virtual Técnica</p>
-        </div>
-      </div>
-    )
+    console.error("Error loading dictionary:", error)
+    // Fallback dictionary
+    dict = {
+      metadata: {
+        title: "Alexandra Ribeiro | Consultora Digital",
+        description: "Digital consulting services",
+      },
+      hero: {
+        title: "Alexandra Ribeiro",
+        subtitle: "Consultora Digital e Assistente Virtual Técnica",
+        cta: "Saber Mais",
+      },
+      aboutMe: {
+        title: "Sobre Mim",
+        description: "Consultora digital especializada em assistência virtual técnica",
+        experience: "Anos de experiência",
+        skills: ["Consultoria Digital", "Assistência Virtual", "Gestão de Projetos"],
+      },
+      whatIsVA: {
+        title: "O que é um Assistente Virtual?",
+        description:
+          "Um assistente virtual é um profissional que oferece serviços de apoio administrativo, técnico e criativo de forma remota.",
+        benefits: ["Flexibilidade", "Eficiência", "Economia"],
+      },
+      whyChooseVA: {
+        title: "Porquê Escolher um Assistente Virtual?",
+        reasons: [
+          {
+            title: "Flexibilidade",
+            description: "Trabalho adaptado às suas necessidades",
+          },
+        ],
+      },
+      certifications: {
+        title: "Certificações",
+        description: "Certificações profissionais",
+        items: [],
+      },
+      blogPreview: {
+        title: "Blog",
+        description: "Artigos e dicas",
+        readMore: "Ler mais",
+      },
+      finalCTA: {
+        title: "Pronto para começar?",
+        description: "Entre em contacto connosco",
+        cta: "Contactar",
+      },
+      footer: {
+        contact: {
+          title: "Contacto",
+          email: "info@alexandraribeiro.pt",
+          phone: "+351 123 456 789",
+        },
+        social: {
+          title: "Redes Sociais",
+        },
+        legal: {
+          privacy: "Política de Privacidade",
+          terms: "Termos e Condições",
+        },
+        copyright: "© 2024 Alexandra Ribeiro. Todos os direitos reservados.",
+      },
+      newsletterPopup: {
+        title: "Newsletter",
+        description: "Subscreva a nossa newsletter",
+        placeholder: "O seu email",
+        subscribe: "Subscrever",
+        close: "Fechar",
+      },
+      navigation: {
+        home: "Início",
+        about: "Sobre",
+        services: "Serviços",
+        portfolio: "Portfolio",
+        blog: "Blog",
+        contact: "Contacto",
+        store: "Loja",
+      },
+      store: {
+        title: "Loja Digital",
+        seoHeading: "Produtos e serviços digitais",
+        noProductsFound: "Nenhum produto encontrado",
+        buyButton: "Comprar",
+      },
+      product: {
+        noImage: "Sem imagem disponível",
+        buyNow: "Comprar agora",
+      },
+    }
   }
+
+  return (
+    <main className="min-h-screen">
+      <SiteHeader dict={dict} />
+      <HeroSection dict={dict.hero} />
+      <AboutMe dict={dict.aboutMe} lang={params.lang} />
+
+      <EnhancedDivider />
+
+      <WhatIsVA dict={dict.whatIsVA} />
+
+      {/* Barra separadora */}
+      <div className="section-divider my-8"></div>
+
+      <WhyChooseVA dict={dict.whyChooseVA} />
+      <CertificationsSection dict={dict.certifications} />
+      {/* Testimonials section temporarily hidden */}
+      {/* <Testimonials dict={dict.testimonials} /> */}
+      <ContentfulBlogPreview dict={dict.blogPreview} lang={params.lang} />
+      <FinalCTA dict={dict.finalCTA} />
+      <Footer dict={dict.footer} />
+      <NewsletterPopup dict={dict.newsletterPopup} />
+    </main>
+  )
 }

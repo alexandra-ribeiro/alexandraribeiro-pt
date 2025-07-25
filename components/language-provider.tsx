@@ -1,133 +1,110 @@
 "use client"
 
 import type React from "react"
-import { createContext, useContext, useState, useEffect } from "react"
-import { usePathname, useRouter } from "next/navigation"
+import { createContext, useContext } from "react"
 import type { Dictionary, LanguageContextType } from "@/lib/types"
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
+const LanguageContext = createContext<LanguageContextType>({ lang: "pt" })
 
 const defaultDict: Dictionary = {
   metadata: {
-    title: "Alexandra Ribeiro | Consultora Digital",
+    title: "Alexandra Ribeiro | Digital Consultant",
     description: "Digital consulting services",
   },
   hero: {
     title: "Alexandra Ribeiro",
-    subtitle: "Consultora Digital e Assistente Virtual Técnica",
-    cta: "Contactar",
+    subtitle: "Digital Consultant and Technical Virtual Assistant",
+    cta: "Contact",
   },
   aboutMe: {
-    title: "Sobre Mim",
-    description: "Consultora digital especializada em assistência virtual técnica",
-    experience: "Anos de experiência",
-    skills: ["Consultoria Digital", "Assistência Virtual", "Gestão de Projetos"],
+    title: "About Me",
+    description: "Specialized digital consultant in technical virtual assistance",
+    experience: "Years of experience",
+    skills: ["Digital Consulting", "Technical Virtual Assistance", "Project Management"],
   },
   whatIsVA: {
-    title: "O que é um Assistente Virtual?",
+    title: "What is a Virtual Assistant?",
     description:
-      "Um assistente virtual é um profissional que oferece serviços de apoio administrativo, técnico e criativo de forma remota.",
-    benefits: ["Flexibilidade", "Eficiência", "Economia"],
+      "A virtual assistant is a professional who offers administrative, technical, and creative support services remotely.",
+    benefits: ["Flexibility", "Efficiency", "Cost Savings"],
   },
   whyChooseVA: {
-    title: "Porquê Escolher um Assistente Virtual?",
+    title: "Why Choose a Virtual Assistant?",
     reasons: [
       {
-        title: "Flexibilidade",
-        description: "Trabalho adaptado às suas necessidades",
+        title: "Flexibility",
+        description: "Work adapted to your needs",
       },
     ],
   },
   certifications: {
-    title: "Certificações",
-    description: "Certificações profissionais",
+    title: "Certifications",
+    description: "Professional certifications",
     items: [],
   },
   blogPreview: {
     title: "Blog",
-    description: "Artigos e dicas",
-    readMore: "Ler mais",
+    description: "Articles and tips",
+    readMore: "Read more",
   },
   finalCTA: {
-    title: "Pronto para começar?",
-    description: "Entre em contacto connosco",
-    cta: "Contactar",
+    title: "Ready to start?",
+    description: "Contact us",
+    cta: "Contact",
   },
   footer: {
     contact: {
-      title: "Contacto",
+      title: "Contact",
       email: "info@alexandraribeiro.pt",
       phone: "+351 123 456 789",
     },
     social: {
-      title: "Redes Sociais",
+      title: "Social Media",
     },
     legal: {
-      privacy: "Política de Privacidade",
-      terms: "Termos e Condições",
+      privacy: "Privacy Policy",
+      terms: "Terms and Conditions",
     },
-    copyright: "© 2024 Alexandra Ribeiro. Todos os direitos reservados.",
+    copyright: "© 2024 Alexandra Ribeiro. All rights reserved.",
   },
   newsletterPopup: {
     title: "Newsletter",
-    description: "Subscreva a nossa newsletter",
-    placeholder: "O seu email",
-    subscribe: "Subscrever",
-    close: "Fechar",
+    description: "Subscribe to our newsletter",
+    placeholder: "Your email",
+    subscribe: "Subscribe",
+    close: "Close",
   },
   navigation: {
-    home: "Início",
-    about: "Sobre",
-    services: "Serviços",
+    home: "Home",
+    about: "About",
+    services: "Services",
     portfolio: "Portfolio",
     blog: "Blog",
-    contact: "Contacto",
-    store: "Loja",
+    contact: "Contact",
+    store: "Store",
   },
   store: {
-    title: "Loja Digital",
-    seoHeading: "Produtos e serviços digitais",
-    noProductsFound: "Nenhum produto encontrado",
-    buyButton: "Comprar",
+    title: "Digital Store",
+    seoHeading: "Digital products and services",
+    noProductsFound: "No products found",
+    buyButton: "Buy",
   },
   product: {
-    noImage: "Sem imagem disponível",
-    buyNow: "Comprar agora",
+    noImage: "No image available",
+    buyNow: "Buy now",
   },
 }
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
-  const router = useRouter()
-  const [language, setLanguageState] = useState<"pt" | "en">("pt")
-  const [dict, setDict] = useState<Dictionary>(defaultDict)
+interface LanguageProviderProps {
+  children: React.ReactNode
+  lang?: string
+}
 
-  useEffect(() => {
-    const pathLang = pathname.split("/")[1]
-    if (pathLang === "en" || pathLang === "pt") {
-      setLanguageState(pathLang)
-    }
-  }, [pathname])
-
-  const setLanguage = (lang: "pt" | "en") => {
-    setLanguageState(lang)
-    const currentPath = pathname.split("/").slice(2).join("/")
-    router.push(`/${lang}/${currentPath}`)
-  }
-
-  const value: LanguageContextType = {
-    language,
-    setLanguage,
-    dict,
-  }
-
-  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
+export function LanguageProvider({ children, lang = "pt" }: LanguageProviderProps) {
+  return <LanguageContext.Provider value={{ lang }}>{children}</LanguageContext.Provider>
 }
 
 export function useLanguage() {
   const context = useContext(LanguageContext)
-  if (context === undefined) {
-    throw new Error("useLanguage must be used within a LanguageProvider")
-  }
-  return context
+  return context || { lang: "pt" }
 }

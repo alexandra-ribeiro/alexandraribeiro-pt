@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { usePathname, useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
+import { useRouter, usePathname } from "next/navigation"
 import { ChevronDown, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
@@ -10,8 +10,12 @@ export default function LanguageSwitcher() {
   const pathname = usePathname()
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
+  const [currentLang, setCurrentLang] = useState("pt")
 
-  const currentLang = pathname.startsWith("/en") ? "en" : "pt"
+  useEffect(() => {
+    const lang = pathname.startsWith("/en") ? "en" : "pt"
+    setCurrentLang(lang)
+  }, [pathname])
 
   const switchLanguage = (lang: "pt" | "en") => {
     const segments = pathname.split("/")

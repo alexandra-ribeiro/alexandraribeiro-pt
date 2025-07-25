@@ -46,7 +46,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         <ErrorBoundary>
           <ThemeProvider attribute="class" defaultTheme="light" suppressColorSchemeWarning>
-            <LanguageProvider>
+            <LanguageProvider lang={validLang}>
               {children}
               <Toaster />
             </LanguageProvider>
