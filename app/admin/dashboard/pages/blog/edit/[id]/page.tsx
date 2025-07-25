@@ -6,8 +6,6 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -21,19 +19,26 @@ import WysiwygEditor from "@/components/admin/wysiwyg-editor"
 import AuthCheck from "@/components/auth/auth-check"
 import { getArticleById, updateArticle, saveArticle, type BlogArticle } from "@/lib/blog-storage"
 
-// Form schema
-const formSchema = z.object({
-  title: z.string().min(1, "O título é obrigatório"),
-  slug: z.string().min(1, "O slug é obrigatório"),
-  description: z.string().min(1, "A descrição é obrigatória"),
-  date: z.string().min(1, "A data é obrigatória"),
-  image: z.string().optional(),
-  published: z.boolean().default(false),
-  language: z.enum(["pt", "en"]),
-  content: z.string().optional(),
-})
+interface FormValues {
+  title: string
+  slug: string
+  description: string
+  date: string
+  image: string
+  published: boolean
+  language: "pt" | "en"
+  content: string
+}
 
-type FormValues = z.infer<typeof formSchema>
+interface FormErrors {
+  title?: string
+  slug?: string
+  description?: string
+  date?: string
+  image?: string
+  language?: string
+  content?: string
+}
 
 export default function EditBlogPage({ params }: { params: { id: string } }) {
   const router = useRouter()
@@ -42,10 +47,10 @@ export default function EditBlogPage({ params }: { params: { id: string } }) {
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [article, setArticle] = useState<BlogArticle | null>(null)
   const [isSample, setIsSample] = useState(false)
+  const [errors, setErrors] = useState<FormErrors>({})
 
   // Initialize form
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       slug: "",
@@ -57,6 +62,29 @@ export default function EditBlogPage({ params }: { params: { id: string } }) {
       content: "",
     },
   })
+
+  // Custom validation function
+  const validateForm = (values: FormValues): FormErrors => {
+    const newErrors: FormErrors = {}
+
+    if (!values.title.trim()) {
+      newErrors.title = "O título é obrigatório"
+    }
+
+    if (!values.slug.trim()) {
+      newErrors.slug = "O slug é obrigatório"
+    }
+
+    if (!values.description.trim()) {
+      newErrors.description = "A descrição é obrigatória"
+    }
+
+    if (!values.date.trim()) {
+      newErrors.date = "A data é obrigatória"
+    }
+
+    return newErrors
+  }
 
   // Fetch article data
   useEffect(() => {
@@ -149,6 +177,19 @@ export default function EditBlogPage({ params }: { params: { id: string } }) {
   // Handle form submission
   const onSubmit = async (values: FormValues) => {
     try {
+      // Validate form
+      const validationErrors = validateForm(values)
+      if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors)
+        toast({
+          title: "Erro de validação",
+          description: "Por favor, corrija os erros no formulário.",
+          variant: "destructive",
+        })
+        return
+      }
+
+      setErrors({})
       setIsSaving(true)
 
       // Create updated article object
@@ -249,7 +290,7 @@ export default function EditBlogPage({ params }: { params: { id: string } }) {
             <div className="flex space-x-2">
               {article && (
                 <Link href={`/${article.language}/blog/${article.slug}`} target="_blank">
-                  <Button variant="outline" className="flex items-center">
+                  <Button variant="outline" className="flex items-center bg-transparent">
                     <Eye className="w-4 h-4 mr-2" />
                     Visualizar
                   </Button>
@@ -299,9 +340,13 @@ export default function EditBlogPage({ params }: { params: { id: string } }) {
                                   <FormItem>
                                     <FormLabel>Título</FormLabel>
                                     <FormControl>
-                                      <Input placeholder="Digite o título do artigo" {...field} />
+                                      <Input
+                                        placeholder="Digite o título do artigo"
+                                        {...field}
+                                        className={errors.title ? "border-red-500" : ""}
+                                      />
                                     </FormControl>
-                                    <FormMessage />
+                                    {errors.title && <FormMessage>{errors.title}</FormMessage>}
                                   </FormItem>
                                 )}
                               />
@@ -313,12 +358,16 @@ export default function EditBlogPage({ params }: { params: { id: string } }) {
                                   <FormItem>
                                     <FormLabel>Slug</FormLabel>
                                     <FormControl>
-                                      <Input placeholder="titulo-do-artigo" {...field} />
+                                      <Input
+                                        placeholder="titulo-do-artigo"
+                                        {...field}
+                                        className={errors.slug ? "border-red-500" : ""}
+                                      />
                                     </FormControl>
                                     <FormDescription>
                                       URL amigável do artigo (sem espaços, acentos ou caracteres especiais)
                                     </FormDescription>
-                                    <FormMessage />
+                                    {errors.slug && <FormMessage>{errors.slug}</FormMessage>}
                                   </FormItem>
                                 )}
                               />
@@ -332,11 +381,11 @@ export default function EditBlogPage({ params }: { params: { id: string } }) {
                                     <FormControl>
                                       <Textarea
                                         placeholder="Digite uma breve descrição do artigo"
-                                        className="min-h-[100px]"
+                                        className={`min-h-[100px] ${errors.description ? "border-red-500" : ""}`}
                                         {...field}
                                       />
                                     </FormControl>
-                                    <FormMessage />
+                                    {errors.description && <FormMessage>{errors.description}</FormMessage>}
                                   </FormItem>
                                 )}
                               />
@@ -349,9 +398,13 @@ export default function EditBlogPage({ params }: { params: { id: string } }) {
                                     <FormItem>
                                       <FormLabel>Data</FormLabel>
                                       <FormControl>
-                                        <Input placeholder="18 de abril, 2023" {...field} />
+                                        <Input
+                                          placeholder="18 de abril, 2023"
+                                          {...field}
+                                          className={errors.date ? "border-red-500" : ""}
+                                        />
                                       </FormControl>
-                                      <FormMessage />
+                                      {errors.date && <FormMessage>{errors.date}</FormMessage>}
                                     </FormItem>
                                   )}
                                 />

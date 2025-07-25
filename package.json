@@ -12,7 +12,7 @@
     "@auth/core": "latest",
     "@contentful/rich-text-react-renderer": "latest",
     "@contentful/rich-text-types": "latest",
-    "@hookform/resolvers": "latest",
+    "@hookform/resolvers": "^3.9.1",
     "@notionhq/client": "latest",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
