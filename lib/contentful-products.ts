@@ -2,8 +2,8 @@ import { createClient } from "contentful"
 
 // Re-using the getClient logic from lib/contentful.ts for consistency
 const getClient = () => {
-  const space = process.env.CONTENTFUL_SPACE_ID
-  const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
+  const space = process.env.CONTENTFUL_SPACE_ID || process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID
+  const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN || process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
 
   if (!space || !accessToken) {
     console.warn(
