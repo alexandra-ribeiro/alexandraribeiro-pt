@@ -1,13 +1,14 @@
 import { createClient } from "contentful"
 
-// Replace the getClient function with this updated version that uses the new credentials
 const getClient = () => {
-  // Use the provided Space ID and Access Token for the AV Blog space
-  const space = "s6yvdch48olm"
-  const accessToken = "-7DsC8TRmQ5Ig6drErJdGLk29G7UmAjwwbMFANITzUc"
+  // Use environment variables for Contentful Space ID and Access Token
+  const space = process.env.CONTENTFUL_SPACE_ID || process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID
+  const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN || process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
 
   if (!space || !accessToken) {
-    console.warn("Missing Contentful environment variables. Using fallback data.")
+    console.warn(
+      "Missing Contentful environment variables. Please set CONTENTFUL_SPACE_ID and CONTENTFUL_ACCESS_TOKEN.",
+    )
     return null
   }
 

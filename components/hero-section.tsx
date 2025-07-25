@@ -31,10 +31,10 @@ export default function HeroSection({ dict }: { dict: any }) {
       {/* Content overlay */}
       <div className="relative h-full container mx-auto flex flex-col justify-center px-4 sm:px-6 md:px-8 z-10">
         <div className="w-full max-w-sm sm:max-w-lg md:max-w-2xl bg-card/95 p-4 sm:p-6 md:p-8 rounded-lg backdrop-blur-sm shadow-xl border-l-4 border-accent">
-          <span className="text-accent text-xs sm:text-sm uppercase tracking-wide font-medium mb-2 sm:mb-3 block leading-tight">
+          <span className="text-xs sm:text-sm uppercase tracking-wide font-medium mb-2 sm:mb-3 block leading-tight text-[rgba(204,158,0,1)]">
             {lang === "en" || dict.lang === "en"
-              ? "Simplified Systems Implementation and AI for New Entrepreneurs and Online Stores"
-              : "Simplified Systems Implementation and AI for New Entrepreneurs and Online Stores"}
+              ? "SIMPLIFIED SYSTEMS IMPLEMENTATION, PROFESSIONAL IDENTITY ONLINE & AI FOR NEW ENTREPRENEURS"
+              : "IMPLEMENTAÇÃO DE SISTEMAS DESCOMPLICADOS, IDENTIDADE PROFISSIONAL ONLINE E IA PARA NOVOS EMPREENDEDORES"}
           </span>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4 sm:mb-6 leading-tight">
             <ContentDisplay storageKey={`home_${lang}`} field="headline" fallback={dict.headline} />

@@ -176,7 +176,7 @@
           "description": "I implement systems that grow with your business and that you can manage without constantly depending on technical specialists."
         },
         {
-          "title": "Empathy",
+          "title": "Empatia",
           "description": "I've been on the other side. I understand your doubts, fears, and frustrations with technology. There are no \"silly questions\" when it comes to systems!"
         },
         {
@@ -430,5 +430,12 @@
       "accept": "Accept",
       "decline": "Decline"
     }
+  },
+  "store": {
+    "title": "Digital Store",
+    "subtitle": "Discover our digital products and services",
+    "seoHeading": "Unlock your business potential with our expert digital consulting, technical virtual assistance, beginner e-books for entrepreneurs, and seamless setup services for domain, hosting, WordPress, CRM, and invoice software.",
+    "noProductsFound": "No products are currently available. Please ensure your Notion database has published entries for the 'products' content type with the correct language checkbox checked.",
+    "buyButton": "I need it!"
   }
 }
