@@ -1,19 +1,31 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
+import { useLanguage } from "./language-provider"
 
 interface ContentDisplayProps {
-  storageKey: string
-  field: string
-  fallback: string
+  storageKey?: string
+  field?: string
+  content: {
+    pt?: string
+    en?: string
+  }
+  fallback?: string
   className?: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
-export default function ContentDisplay({ storageKey, field, fallback, className = "", children }: ContentDisplayProps) {
-  const [content, setContent] = useState<string>(fallback)
+export default function ContentDisplay({
+  storageKey,
+  field,
+  content,
+  fallback = "",
+  className = "",
+  children,
+}: ContentDisplayProps) {
+  const { lang } = useLanguage()
+  const [displayContent, setDisplayContent] = useState(fallback)
   const [isLoaded, setIsLoaded] = useState(false)
   const [isClient, setIsClient] = useState(false)
 
@@ -22,7 +34,7 @@ export default function ContentDisplay({ storageKey, field, fallback, className 
     const loadContent = () => {
       try {
         if (typeof window === "undefined") {
-          setContent(fallback)
+          setDisplayContent(fallback)
           setIsLoaded(true)
           return
         }
@@ -35,7 +47,7 @@ export default function ContentDisplay({ storageKey, field, fallback, className 
           try {
             const parsedData = JSON.parse(storedData)
             if (parsedData && parsedData[field]) {
-              setContent(parsedData[field])
+              setDisplayContent(parsedData[field])
               setIsLoaded(true)
               return
             }
@@ -45,17 +57,23 @@ export default function ContentDisplay({ storageKey, field, fallback, className 
         }
 
         // If we couldn't get content from localStorage, use the fallback
-        setContent(fallback)
+        setDisplayContent(fallback)
         setIsLoaded(true)
       } catch (error) {
         console.error(`Error loading content for ${storageKey}.${field}:`, error)
-        setContent(fallback)
+        setDisplayContent(fallback)
         setIsLoaded(true)
       }
     }
 
     // Load content initially
-    loadContent()
+    if (storageKey && field) {
+      loadContent()
+    } else {
+      const selectedContent = content[lang as keyof typeof content] || content.pt || content.en || fallback
+      setDisplayContent(selectedContent)
+      setIsLoaded(true)
+    }
 
     // Set up storage event listener to update content when it changes in another tab
     const handleStorageChange = (event: StorageEvent) => {
@@ -73,7 +91,7 @@ export default function ContentDisplay({ storageKey, field, fallback, className 
         window.removeEventListener("storage", handleStorageChange)
       }
     }
-  }, [storageKey, field, fallback])
+  }, [storageKey, field, content, lang, fallback])
 
   // Return the fallback until client-side code runs
   if (!isClient) {
@@ -84,5 +102,5 @@ export default function ContentDisplay({ storageKey, field, fallback, className 
     return <span className={className}>{fallback}</span>
   }
 
-  return <span className={className}>{content}</span>
+  return <span className={className}>{displayContent}</span>
 }

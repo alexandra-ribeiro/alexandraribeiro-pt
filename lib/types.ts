@@ -7,6 +7,8 @@ export interface Dictionary {
     title: string
     subtitle: string
     cta: string
+    headline?: string
+    subheadline?: string
   }
   aboutMe: {
     title: string
@@ -29,11 +31,7 @@ export interface Dictionary {
   certifications: {
     title: string
     description: string
-    items: Array<{
-      name: string
-      image: string
-      alt: string
-    }>
+    items: any[]
   }
   blogPreview: {
     title: string
@@ -88,8 +86,24 @@ export interface Dictionary {
   }
 }
 
-export interface LanguageContextType {
-  language: "pt" | "en"
-  setLanguage: (lang: "pt" | "en") => void
-  dict: Dictionary
+export interface BlogPost {
+  id: string
+  title: string
+  slug: string
+  excerpt: string
+  content: string
+  publishedAt: string
+  author: string
+  tags: string[]
+  featuredImage?: string
+}
+
+export interface Product {
+  id: string
+  title: string
+  description: string
+  price: number
+  image?: string
+  slug: string
+  category?: string
 }

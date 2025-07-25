@@ -1,66 +1,153 @@
-import type { Metadata } from "next"
 import { getDictionary } from "@/lib/dictionaries"
 import SiteHeader from "@/components/site-header"
-import ContactForm from "@/components/contact-form"
-import CalendarEmbed from "@/components/calendar-embed"
 import Footer from "@/components/footer"
+import ContactForm from "@/components/contact-form"
+import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  const dict = await getDictionary(params.lang)
-
-  return {
-    title: `${dict.contact.title} | ${dict.metadata.title}`,
-    description: dict.contact.description,
-  }
+interface ContactPageProps {
+  params: { lang: "pt" | "en" }
 }
 
-export default async function ContactPage({ params }: { params: { lang: string } }) {
-  const dict = await getDictionary(params.lang)
-  const email = "geral@alexandraribeiro.pt"
-  const calendlyUrl = "https://calendly.com/geral-alexandraribeiro-av/discovery-call-15min"
+export default async function ContactPage({ params: { lang } }: ContactPageProps) {
+  let dict
 
-  // Custom subtitle text with response time guarantee
-  const customSubtitle =
-    params.lang === "pt"
-      ? "Tem questões ou está pronto para começar? Preencha o formulário abaixo (garantia de resposta dentro das próximas 24h) ou agende diretamente uma chamada de 15 minutos."
-      : "Have questions or ready to start? Fill out the form below (guaranteed response within the next 24h) or schedule a 15-minute call directly."
+  try {
+    dict = await getDictionary(lang)
+  } catch (error) {
+    console.error("Error loading dictionary:", error)
+    dict = {
+      footer: {},
+    }
+  }
+
+  const contactInfo = [
+    {
+      icon: <Mail className="w-6 h-6 text-blue-600" />,
+      title: "Email",
+      content: "info@alexandraribeiro.pt",
+      link: "mailto:info@alexandraribeiro.pt",
+    },
+    {
+      icon: <Phone className="w-6 h-6 text-blue-600" />,
+      title: lang === "en" ? "Phone" : "Telefone",
+      content: "+351 123 456 789",
+      link: "tel:+351123456789",
+    },
+    {
+      icon: <MapPin className="w-6 h-6 text-blue-600" />,
+      title: lang === "en" ? "Location" : "Localização",
+      content: "Portugal",
+      link: null,
+    },
+    {
+      icon: <Clock className="w-6 h-6 text-blue-600" />,
+      title: lang === "en" ? "Business Hours" : "Horário de Funcionamento",
+      content: lang === "en" ? "Mon-Fri: 9AM-6PM" : "Seg-Sex: 9h-18h",
+      link: null,
+    },
+  ]
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-800">
+    <main className="min-h-screen">
       <SiteHeader dict={dict} />
 
-      <div className="container py-12 md:py-20">
-        <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-primary">{dict.contact.title}</h1>
-        <p className="text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12">{customSubtitle}</p>
-
-        <div className="grid md:grid-cols-2 gap-12 items-start max-w-5xl mx-auto relative">
-          <div className="text-center">
-            <h2 className="text-xl font-semibold mb-6 text-primary">{dict.contact.formTitle}</h2>
-            <ContactForm dict={dict.contact} />
-          </div>
-
-          {/* OR separator */}
-          <div className="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-            <div className="bg-white rounded-full p-4 shadow-md">
-              <span className="text-customGold font-bold text-xl">{params.lang === "en" ? "OR" : "OU"}</span>
-            </div>
-          </div>
-
-          {/* Mobile OR separator */}
-          <div className="md:hidden flex justify-center my-4">
-            <div className="bg-white rounded-full p-3 shadow-md">
-              <span className="text-customGold font-bold text-lg">{params.lang === "en" ? "OR" : "OU"}</span>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <h2 className="text-xl font-semibold mb-6 text-primary">{dict.contact.calendarTitle}</h2>
-            <CalendarEmbed dict={dict.contact} calendlyUrl={calendlyUrl} />
+      {/* Hero Section */}
+      <section className="pt-20 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              {lang === "en" ? "Contact Me" : "Contactar"}
+            </h1>
+            <p className="text-xl text-gray-600 leading-relaxed">
+              {lang === "en"
+                ? "Ready to take your business to the next level? Let's discuss how I can help you achieve your goals."
+                : "Pronto para levar o seu negócio para o próximo nível? Vamos discutir como posso ajudá-lo a alcançar os seus objetivos."}
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <Footer dict={dict.footer} />
+      {/* Contact Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Form */}
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                {lang === "en" ? "Send a Message" : "Enviar Mensagem"}
+              </h2>
+              <ContactForm lang={lang} />
+            </div>
+
+            {/* Contact Information */}
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                {lang === "en" ? "Get in Touch" : "Entre em Contacto"}
+              </h2>
+              <div className="space-y-6">
+                {contactInfo.map((info, index) => (
+                  <Card key={index}>
+                    <CardHeader className="pb-3">
+                      <CardTitle className="flex items-center space-x-3 text-lg">
+                        {info.icon}
+                        <span>{info.title}</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      {info.link ? (
+                        <a href={info.link} className="text-gray-600 hover:text-blue-600 transition-colors">
+                          {info.content}
+                        </a>
+                      ) : (
+                        <span className="text-gray-600">{info.content}</span>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              <div className="mt-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                  {lang === "en" ? "Why Choose Me?" : "Porquê Escolher-me?"}
+                </h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-start space-x-2">
+                    <span className="text-blue-600 mt-1">•</span>
+                    <span>
+                      {lang === "en"
+                        ? "Personalized solutions tailored to your business needs"
+                        : "Soluções personalizadas adaptadas às necessidades do seu negócio"}
+                    </span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-blue-600 mt-1">•</span>
+                    <span>
+                      {lang === "en"
+                        ? "5+ years of experience in digital consulting"
+                        : "Mais de 5 anos de experiência em consultoria digital"}
+                    </span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-blue-600 mt-1">•</span>
+                    <span>{lang === "en" ? "Ongoing support and maintenance" : "Suporte e manutenção contínuos"}</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-blue-600 mt-1">•</span>
+                    <span>
+                      {lang === "en"
+                        ? "Transparent communication and regular updates"
+                        : "Comunicação transparente e atualizações regulares"}
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer dict={dict?.footer} />
     </main>
   )
 }

@@ -6,53 +6,81 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { formatCurrency } from "@/lib/utils"
 import SiteHeader from "@/components/site-header"
 import Footer from "@/components/footer"
-import { Button } from "@/components/ui/button" // Import Button component
+import { Button } from "@/components/ui/button"
 
 interface StorePageProps {
   params: { lang: "pt" | "en" }
 }
 
 export default async function StorePage({ params: { lang } }: StorePageProps) {
-  const dict = await getDictionary(lang)
+  let dict
   let products: Product[] = []
   let errorMessage: string | null = null
+
+  try {
+    dict = await getDictionary(lang)
+  } catch (error) {
+    console.error("Error loading dictionary:", error)
+    dict = {
+      store: {
+        title: lang === "en" ? "Digital Store" : "Loja Digital",
+        seoHeading: lang === "en" ? "Digital products and services" : "Produtos e serviços digitais",
+        noProductsFound: lang === "en" ? "No products found" : "Nenhum produto encontrado",
+        buyButton: lang === "en" ? "Buy" : "Comprar",
+      },
+      footer: {},
+    }
+  }
 
   try {
     products = await getProductsFromNotion(lang)
     if (products.length === 0) {
       errorMessage =
-        dict?.store?.noProductsFound?.[lang as keyof typeof dict.store.noProductsFound] ||
-        "No products are currently available. Please ensure your Notion database has published entries for the 'products' content type with the correct language checkbox checked."
+        lang === "en"
+          ? "No products are currently available. Please ensure your Notion database has published entries for the 'products' content type with the correct language checkbox checked."
+          : "Não há produtos disponíveis no momento. Certifique-se de que sua base de dados Notion tem entradas publicadas para o tipo de conteúdo 'products' com a caixa de seleção de idioma correta marcada."
     }
   } catch (error: any) {
     console.error("Error fetching store data:", error)
-    errorMessage = `Failed to load products: ${error.message}. Please check your Notion API token, database ID, and network connection.`
+    errorMessage =
+      lang === "en"
+        ? `Failed to load products: ${error.message}. Please check your Notion API token, database ID, and network connection.`
+        : `Falha ao carregar produtos: ${error.message}. Verifique seu token da API Notion, ID da base de dados e conexão de rede.`
   }
 
   return (
     <main className="min-h-screen flex flex-col">
       <SiteHeader dict={dict} />
       <div className="flex-grow container mx-auto py-12 px-4 md:px-6">
-        <h1 className="text-4xl font-bold text-center mb-12 text-gray-900">{dict?.store?.title || "Digital Store"}</h1>
+        <h1 className="text-4xl font-bold text-center mb-12 text-gray-900">
+          {dict?.store?.title || (lang === "en" ? "Digital Store" : "Loja Digital")}
+        </h1>
         <h2 className="text-xl text-gray-600 max-w-2xl mx-auto text-center">
           {dict?.store?.seoHeading ||
-            "Unlock your business potential with our expert digital consulting, technical virtual assistance, beginner e-books for entrepreneurs, and seamless setup services for domain, hosting, WordPress, CRM, and invoice software."}
+            (lang === "en"
+              ? "Unlock your business potential with our expert digital consulting, technical virtual assistance, beginner e-books for entrepreneurs, and seamless setup services for domain, hosting, WordPress, CRM, and invoice software."
+              : "Desbloqueie o potencial do seu negócio com nossa consultoria digital especializada, assistência virtual técnica, e-books para iniciantes empreendedores e serviços de configuração para domínio, hospedagem, WordPress, CRM e software de faturação.")}
         </h2>
 
         {errorMessage ? (
           <div className="text-center text-red-600 text-lg mt-8">
             <p>{errorMessage}</p>
             <p className="mt-2">
-              Please ensure your Notion API token and Database ID are correct and the database has published entries.
+              {lang === "en"
+                ? "Please ensure your Notion API token and Database ID are correct and the database has published entries."
+                : "Certifique-se de que seu token da API Notion e ID da base de dados estão corretos e que a base de dados tem entradas publicadas."}
             </p>
           </div>
         ) : products.length === 0 ? (
           <div className="text-center text-gray-600 text-lg mt-8">
-            <p>{dict?.store?.noProductsFound || "No products are currently available."}</p>
+            <p>
+              {dict?.store?.noProductsFound ||
+                (lang === "en" ? "No products are currently available." : "Não há produtos disponíveis no momento.")}
+            </p>
             <p className="mt-2">
-              {lang === "pt"
-                ? "Por favor, certifique-se de que o seu banco de dados Notion tem entradas publicadas para produtos na categoria 'products'."
-                : "Please ensure your Notion database has published entries for products in the 'products' category."}
+              {lang === "en"
+                ? "Please ensure your Notion database has published entries for products in the 'products' category."
+                : "Certifique-se de que sua base de dados Notion tem entradas publicadas para produtos na categoria 'products'."}
             </p>
           </div>
         ) : (
@@ -66,7 +94,7 @@ export default async function StorePage({ params: { lang } }: StorePageProps) {
                         src={product.imageUrl || "/placeholder.svg?height=400&width=400&text=Product Image"}
                         alt={product.title}
                         fill
-                        objectFit="contain"
+                        style={{ objectFit: "contain" }}
                         className=""
                       />
                     </div>
@@ -77,13 +105,10 @@ export default async function StorePage({ params: { lang } }: StorePageProps) {
                 </CardHeader>
                 <CardContent className="p-4 flex flex-col flex-grow">
                   {product.price !== null && (
-                    <p className="text-lg font-bold text-gray-800 mb-4">
-                      {formatCurrency(product.price, lang === "pt" ? "pt" : "en")}
-                    </p>
+                    <p className="text-lg font-bold text-gray-800 mb-4">{formatCurrency(product.price, lang)}</p>
                   )}
-                  {/* Buy button added here */}
                   <Link href={`/${lang}/store/${product.slug}`} passHref className="mt-auto">
-                    <Button className="w-full">{dict?.store?.buyButton}</Button>
+                    <Button className="w-full">{dict?.store?.buyButton || (lang === "en" ? "Buy" : "Comprar")}</Button>
                   </Link>
                 </CardContent>
               </Card>
