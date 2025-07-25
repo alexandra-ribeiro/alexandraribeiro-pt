@@ -5,25 +5,72 @@ export interface NavigationItem {
   path: string
 }
 
+export interface HeroDict {
+  headline: string
+  subheadline: string
+  cta: string
+}
+
+export interface AboutMeDict {
+  title: string
+  description?: string
+}
+
+export interface WhatIsVADict {
+  title: string
+  description?: string
+}
+
+export interface WhyChooseVADict {
+  title: string
+  description?: string
+}
+
+export interface CertificationsDict {
+  title: string
+  description?: string
+}
+
+export interface BlogPreviewDict {
+  title: string
+  description?: string
+}
+
+export interface FinalCTADict {
+  title: string
+  description?: string
+  cta?: string
+}
+
+export interface FooterDict {
+  links: NavigationItem[]
+  contact: string
+  privacy: string
+  terms: string
+  complaintsBook: string
+}
+
+export interface NewsletterPopupDict {
+  title: string
+  description?: string
+}
+
+export interface MetadataDict {
+  title: string
+  description: string
+}
+
 export interface Dictionary {
-  metadata: {
-    title: string
-    description: string
-  }
+  metadata: MetadataDict
   navigation: NavigationItem[]
-  hero: {
-    headline: string
-    subheadline: string
-    cta: string
-    lang?: string
-  }
-  aboutMe: any
-  whatIsVA: any
-  whyChooseVA: any
-  certifications: any
-  blogPreview: any
-  finalCTA: any
-  footer: any
-  newsletterPopup: any
+  hero: HeroDict
+  aboutMe: AboutMeDict
+  whatIsVA: WhatIsVADict
+  whyChooseVA: WhyChooseVADict
+  certifications: CertificationsDict
+  blogPreview: BlogPreviewDict
+  finalCTA: FinalCTADict
+  footer: FooterDict
+  newsletterPopup: NewsletterPopupDict
   headerCTA: string
 }

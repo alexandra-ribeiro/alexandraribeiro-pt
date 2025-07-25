@@ -2,79 +2,88 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { Mail, Phone, MapPin } from "lucide-react"
 import { useLanguage } from "./language-provider"
+import type { FooterDict } from "@/lib/types"
 
-export default function Footer({ dict }: { dict: any }) {
+interface FooterProps {
+  dict: FooterDict
+}
+
+export default function Footer({ dict }: FooterProps) {
   const { lang } = useLanguage()
-  const currentYear = new Date().getFullYear()
-
-  const logoSrc = lang === "pt" ? "/images/logo-pt.png" : "/images/logo-en.png"
-
-  // Provide fallback values to prevent errors
-  const links = dict?.links || []
-  const contact = dict?.contact || "info@alexandraribeiro.pt"
-  const privacy = dict?.privacy || (lang === "pt" ? "Política de Privacidade" : "Privacy Policy")
-  const terms = dict?.terms || (lang === "pt" ? "Termos e Condições" : "Terms & Conditions")
-  const complaintsBook = dict?.complaintsBook || (lang === "pt" ? "Livro de Reclamações" : "Complaints Book")
 
   return (
-    <footer className="bg-gray-100 py-8 md:py-12">
-      <div className="container mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="flex flex-col items-center md:items-start">
-          <Link href={`/${lang}`} className="mb-4">
-            <Image src={logoSrc || "/placeholder.svg"} alt="Logo" width={150} height={50} />
-          </Link>
-          <p className="text-sm text-gray-600 text-center md:text-left">
-            &copy; {currentYear} Alexandra Ribeiro.{" "}
-            {lang === "pt" ? "Todos os direitos reservados." : "All rights reserved."}
-          </p>
-        </div>
-        <div className="flex flex-col items-center md:items-start">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">
-            {lang === "pt" ? "Links Rápidos" : "Quick Links"}
-          </h3>
-          <nav className="flex flex-col gap-2 text-center md:text-left">
-            {links.map((item: any) => (
-              <Link key={item.url} href={`/${lang}${item.url}`} className="text-gray-600 hover:text-gray-900">
-                {item.text}
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Logo and Description */}
+          <div className="col-span-1 md:col-span-2">
+            <Link href={`/${lang}`} className="inline-block mb-4">
+              <Image
+                src={lang === "en" ? "/images/logo-en.png" : "/images/logo-pt.png"}
+                alt="Alexandra Ribeiro Logo"
+                width={200}
+                height={60}
+                className="h-12 w-auto filter brightness-0 invert"
+              />
+            </Link>
+            <p className="text-gray-300 mb-4 max-w-md">
+              {lang === "en"
+                ? "Digital consultant and technical virtual assistant specializing in business automation and digital solutions."
+                : "Consultora digital e assistente virtual técnica especializada em automação de negócios e soluções digitais."}
+            </p>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">{lang === "en" ? "Contact" : "Contacto"}</h3>
+            <div className="space-y-3">
+              <div className="flex items-center">
+                <Mail className="h-5 w-5 mr-3 text-blue-400" />
+                <a href={`mailto:${dict.contact}`} className="text-gray-300 hover:text-white transition-colors">
+                  {dict.contact}
+                </a>
+              </div>
+              <div className="flex items-center">
+                <Phone className="h-5 w-5 mr-3 text-blue-400" />
+                <span className="text-gray-300">+351 XXX XXX XXX</span>
+              </div>
+              <div className="flex items-center">
+                <MapPin className="h-5 w-5 mr-3 text-blue-400" />
+                <span className="text-gray-300">Portugal</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Legal Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">{lang === "en" ? "Legal" : "Legal"}</h3>
+            <div className="space-y-2">
+              <Link href={`/${lang}/privacy`} className="block text-gray-300 hover:text-white transition-colors">
+                {dict.privacy}
               </Link>
-            ))}
-            <Link href={`/${lang}/store`} className="text-gray-600 hover:text-gray-900">
-              {lang === "pt" ? "Loja" : "Store"}
-            </Link>
-          </nav>
+              <Link href={`/${lang}/terms`} className="block text-gray-300 hover:text-white transition-colors">
+                {dict.terms}
+              </Link>
+              <a
+                href="https://www.livroreclamacoes.pt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-gray-300 hover:text-white transition-colors"
+              >
+                {dict.complaintsBook}
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col items-center md:items-start">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">{lang === "pt" ? "Contacto" : "Contact"}</h3>
-          <p className="text-gray-600 text-center md:text-left">{contact}</p>
-          <div className="flex gap-4 mt-4">
-            {/* Social media icons - placeholder */}
-            <Link href="#" className="text-gray-600 hover:text-gray-900">
-              {/* <FacebookIcon className="h-6 w-6" /> */}
-            </Link>
-            <Link href="#" className="text-gray-600 hover:text-gray-900">
-              {/* <InstagramIcon className="h-6 w-6" /> */}
-            </Link>
-            <Link href="#" className="text-gray-600 hover:text-gray-900">
-              {/* <LinkedinIcon className="h-6 w-6" /> */}
-            </Link>
-          </div>
-          <div className="mt-4 text-sm text-center md:text-left">
-            <Link href={`/${lang}/privacy-policy`} className="text-gray-600 hover:text-gray-900 block">
-              {privacy}
-            </Link>
-            <Link href={`/${lang}/terms-conditions`} className="text-gray-600 hover:text-gray-900 block">
-              {terms}
-            </Link>
-            <Link
-              href="https://www.livroreclamacoes.pt/inicio"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 block"
-            >
-              {complaintsBook}
-            </Link>
-          </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+          <p className="text-gray-400">
+            © {new Date().getFullYear()} Alexandra Ribeiro.{" "}
+            {lang === "en" ? "All rights reserved." : "Todos os direitos reservados."}
+          </p>
         </div>
       </div>
     </footer>

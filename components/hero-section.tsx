@@ -4,7 +4,7 @@ import ContentDisplay from "@/components/content-display"
 
 export default function HeroSection({ dict }: { dict: any }) {
   // Extract language from dict or provide fallback
-  const lang = dict?.lang || "pt"
+  const lang = dict?.lang || (typeof window !== "undefined" && window.location.pathname.includes("/en") ? "en" : "pt")
 
   // Provide fallback values to prevent errors
   const headline = dict?.headline || "Alexandra Ribeiro"
@@ -37,7 +37,7 @@ export default function HeroSection({ dict }: { dict: any }) {
       <div className="relative h-full container mx-auto flex flex-col justify-center px-4 sm:px-6 md:px-8 z-10">
         <div className="w-full max-w-sm sm:max-w-lg md:max-w-2xl bg-card/95 p-4 sm:p-6 md:p-8 rounded-lg backdrop-blur-sm shadow-xl border-l-4 border-accent">
           <span className="text-xs sm:text-sm uppercase tracking-wide font-medium mb-2 sm:mb-3 block leading-tight text-[rgba(204,158,0,1)]">
-            {lang === "en"
+            {lang === "en" || dict.lang === "en"
               ? "SIMPLIFIED SYSTEMS IMPLEMENTATION, PROFESSIONAL IDENTITY ONLINE & AI FOR NEW ENTREPRENEURS"
               : "IMPLEMENTAÇÃO DE SISTEMAS DESCOMPLICADOS, IDENTIDADE PROFISSIONAL ONLINE E IA PARA NOVOS EMPREENDEDORES"}
           </span>

@@ -12,8 +12,9 @@ export default function ContentDisplay({ storageKey, field, fallback }: ContentD
   const [content, setContent] = useState(fallback)
 
   useEffect(() => {
-    try {
-      if (typeof window !== "undefined") {
+    // Only run on client side
+    if (typeof window !== "undefined") {
+      try {
         const stored = localStorage.getItem(storageKey)
         if (stored) {
           const data = JSON.parse(stored)
@@ -21,9 +22,9 @@ export default function ContentDisplay({ storageKey, field, fallback }: ContentD
             setContent(data[field])
           }
         }
+      } catch (error) {
+        console.error("Error loading content from localStorage:", error)
       }
-    } catch (error) {
-      console.error("Error loading content from storage:", error)
     }
   }, [storageKey, field])
 
