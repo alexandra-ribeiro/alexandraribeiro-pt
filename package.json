@@ -12,7 +12,7 @@
     "@auth/core": "latest",
     "@contentful/rich-text-react-renderer": "latest",
     "@contentful/rich-text-types": "latest",
-    "@hookform/resolvers": "^2.9.10",
+    "@hookform/resolvers": "latest",
     "@notionhq/client": "latest",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
@@ -71,7 +71,8 @@
     "styled-components": "latest",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
+    "vaul": "^0.9.6",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "^22",
@@ -80,9 +81,5 @@
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
-  },
-  "engines": {
-  "node": "18.x"
-}
-
+  }
 }
