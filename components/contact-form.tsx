@@ -1,223 +1,262 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { AlertCircle } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
+import { Mail, Phone, MapPin, Send, CheckCircle } from "lucide-react"
 
-export default function ContactForm({ dict }: { dict: any }) {
+interface ContactFormProps {
+  dictionary: {
+    contact?: {
+      title?: string
+      subtitle?: string
+      form?: {
+        name?: string
+        email?: string
+        message?: string
+        submit?: string
+        sending?: string
+        success?: string
+        error?: string
+      }
+      info?: {
+        email?: string
+        phone?: string
+        location?: string
+      }
+    }
+  }
+}
+
+interface FormData {
+  name: string
+  email: string
+  message: string
+}
+
+interface FormErrors {
+  name?: string
+  email?: string
+  message?: string
+}
+
+export default function ContactForm({ dictionary }: ContactFormProps) {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    message: "",
+  })
+  const [errors, setErrors] = useState<FormErrors>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [errorDetails, setErrorDetails] = useState<string | null>(null)
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
-  // Create schema based on form requirements
-  const formSchema = z.object({
-    name: z.string().min(2, {
-      message: dict.validation.nameRequired,
-    }),
-    email: z.string().email({
-      message: dict.validation.emailInvalid,
-    }),
-    phone: z.string().optional(),
-    services: z.array(z.string()).nonempty({
-      message: dict.validation.serviceRequired,
-    }),
-    message: z.string().optional(),
-  })
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {}
 
-  // Initialize form with react-hook-form
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      services: [],
-      message: "",
-    },
-  })
+    if (!formData.name.trim()) {
+      newErrors.name = "Nome é obrigatório"
+    }
 
-  // Handle form submission
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true)
-    setErrorDetails(null)
+    if (!formData.email.trim()) {
+      newErrors.email = "Email é obrigatório"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Email inválido"
+    }
 
-    // Send an email with form data
-    fetch("/api/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: values.name,
-        email: values.email,
-        phone: values.phone || "Não informado",
-        services: values.services.join(", "),
-        message: values.message || "Sem mensagem",
-        subject: "Nova mensagem website AV",
-        recipient: "geral@alexandraribeiro.pt",
-      }),
-    })
-      .then(async (response) => {
-        const data = await response.json()
-        if (!response.ok) {
-          console.error("Server returned error:", data)
-          throw new Error(data.details || data.error || "Erro ao enviar mensagem")
-        }
-        return data
-      })
-      .then(() => {
-        toast({
-          title: dict.formSuccess.title,
-          description: dict.formSuccess.message,
-        })
-        form.reset()
-      })
-      .catch((error) => {
-        console.error("Error sending email:", error)
-        setErrorDetails(error.message || "Unknown error occurred")
-        toast({
-          title: "Erro",
-          description: "Ocorreu um erro ao enviar sua mensagem. Por favor, verifique os detalhes abaixo.",
-          variant: "destructive",
-        })
-      })
-      .finally(() => {
-        setIsSubmitting(false)
-      })
+    if (!formData.message.trim()) {
+      newErrors.message = "Mensagem é obrigatória"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
 
-  const services = [
-    { id: "virtual-assistance", label: dict.serviceOptions.virtualAssistance },
-    { id: "crm-erp", label: dict.serviceOptions.crmErp },
-    { id: "other", label: dict.serviceOptions.other },
-  ]
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        setFormData({ name: "", email: "", message: "" })
+      } else {
+        throw new Error("Failed to send message")
+      }
+    } catch (error) {
+      console.error("Error sending message:", error)
+      // Handle error - could show error message to user
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleInputChange = (field: keyof FormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: undefined }))
+    }
+  }
+
+  if (isSubmitted) {
+    return (
+      <Card className="w-full max-w-2xl mx-auto">
+        <CardContent className="p-8 text-center">
+          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+          <h3 className="text-2xl font-bold text-green-700 mb-2">
+            {dictionary.contact?.form?.success || "Mensagem enviada com sucesso!"}
+          </h3>
+          <p className="text-gray-600">Obrigada pelo seu contacto. Responderei em breve.</p>
+          <Button onClick={() => setIsSubmitted(false)} className="mt-4" variant="outline">
+            Enviar nova mensagem
+          </Button>
+        </CardContent>
+      </Card>
+    )
+  }
 
   return (
-    <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6">
-      {errorDetails && (
-        <Alert variant="destructive" className="mb-6">
-          <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            <p>There was an error sending your message:</p>
-            <p className="font-mono text-sm mt-2 p-2 bg-red-100 dark:bg-red-900 rounded">{errorDetails}</p>
-          </AlertDescription>
-        </Alert>
-      )}
+    <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* Contact Form */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">{dictionary.contact?.title || "Entre em Contacto"}</CardTitle>
+          <CardDescription>
+            {dictionary.contact?.subtitle || "Envie-me uma mensagem e responderei em breve."}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="name">{dictionary.contact?.form?.name || "Nome"} *</Label>
+              <Input
+                id="name"
+                type="text"
+                value={formData.name}
+                onChange={(e) => handleInputChange("name", e.target.value)}
+                className={errors.name ? "border-red-500" : ""}
+                placeholder="O seu nome"
+              />
+              {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+            </div>
 
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{dict.form.name} *</FormLabel>
-                <FormControl>
-                  <Input placeholder={dict.form.namePlaceholder} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <div className="space-y-2">
+              <Label htmlFor="email">{dictionary.contact?.form?.email || "Email"} *</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => handleInputChange("email", e.target.value)}
+                className={errors.email ? "border-red-500" : ""}
+                placeholder="o.seu.email@exemplo.com"
+              />
+              {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
+            </div>
 
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{dict.form.email} *</FormLabel>
-                <FormControl>
-                  <Input placeholder={dict.form.emailPlaceholder} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <div className="space-y-2">
+              <Label htmlFor="message">{dictionary.contact?.form?.message || "Mensagem"} *</Label>
+              <Textarea
+                id="message"
+                value={formData.message}
+                onChange={(e) => handleInputChange("message", e.target.value)}
+                className={errors.message ? "border-red-500" : ""}
+                placeholder="A sua mensagem..."
+                rows={5}
+              />
+              {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
+            </div>
 
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{dict.form.phone}</FormLabel>
-                <FormControl>
-                  <Input placeholder={dict.form.phonePlaceholder} {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  {dictionary.contact?.form?.sending || "A enviar..."}
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4 mr-2" />
+                  {dictionary.contact?.form?.submit || "Enviar Mensagem"}
+                </>
+              )}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
 
-          <FormField
-            control={form.control}
-            name="services"
-            render={() => (
-              <FormItem>
-                <div className="mb-4">
-                  <FormLabel>{dict.form.services}</FormLabel>
-                  <FormDescription>{dict.form.servicesDescription}</FormDescription>
-                </div>
-                {services.map((service) => (
-                  <FormField
-                    key={service.id}
-                    control={form.control}
-                    name="services"
-                    render={({ field }) => {
-                      return (
-                        <FormItem key={service.id} className="flex flex-row items-start space-x-3 space-y-0 mb-2">
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value?.includes(service.id)}
-                              onCheckedChange={(checked) => {
-                                return checked
-                                  ? field.onChange([...field.value, service.id])
-                                  : field.onChange(field.value?.filter((value) => value !== service.id))
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className="font-normal cursor-pointer">{service.label}</FormLabel>
-                        </FormItem>
-                      )
-                    }}
-                  />
-                ))}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+      {/* Contact Information */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">Informações de Contacto</CardTitle>
+          <CardDescription>Outras formas de entrar em contacto comigo.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="flex items-center space-x-4">
+            <div className="bg-blue-100 p-3 rounded-full">
+              <Mail className="w-6 h-6 text-blue-600" />
+            </div>
+            <div>
+              <h3 className="font-semibold">Email</h3>
+              <p className="text-gray-600">{dictionary.contact?.info?.email || "alexandra@alexandraribeiro.pt"}</p>
+            </div>
+          </div>
 
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{dict.form.message}</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder={dict.form.messagePlaceholder}
-                    className="resize-none min-h-[120px]"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex items-center space-x-4">
+            <div className="bg-green-100 p-3 rounded-full">
+              <Phone className="w-6 h-6 text-green-600" />
+            </div>
+            <div>
+              <h3 className="font-semibold">Telefone</h3>
+              <p className="text-gray-600">{dictionary.contact?.info?.phone || "+351 XXX XXX XXX"}</p>
+            </div>
+          </div>
 
-          <Button type="submit" className="w-full bg-accent hover:bg-accent/90 text-white" disabled={isSubmitting}>
-            {isSubmitting ? dict.form.submitting : dict.form.submit}
-          </Button>
-        </form>
-      </Form>
+          <div className="flex items-center space-x-4">
+            <div className="bg-purple-100 p-3 rounded-full">
+              <MapPin className="w-6 h-6 text-purple-600" />
+            </div>
+            <div>
+              <h3 className="font-semibold">Localização</h3>
+              <p className="text-gray-600">{dictionary.contact?.info?.location || "Lisboa, Portugal"}</p>
+            </div>
+          </div>
+
+          <div className="pt-6 border-t">
+            <h3 className="font-semibold mb-3">Horário de Atendimento</h3>
+            <div className="space-y-2 text-sm text-gray-600">
+              <div className="flex justify-between">
+                <span>Segunda - Sexta:</span>
+                <span>9:00 - 18:00</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Sábado:</span>
+                <span>9:00 - 13:00</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Domingo:</span>
+                <span>Fechado</span>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

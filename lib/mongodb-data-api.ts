@@ -1,207 +1,235 @@
-// Simplified data API without MongoDB - uses local storage fallbacks only
-import type { BlogArticle } from "../models/BlogArticle"
+// Simplified data API without MongoDB - uses local storage fallbacks
+interface BlogPost {
+  id: string
+  title: string
+  content: string
+  excerpt: string
+  slug: string
+  author: string
+  publishedAt: string
+  tags: string[]
+  featured: boolean
+  language: "pt" | "en"
+}
 
-// Simple in-memory storage for development/demo purposes
-let articlesStore: BlogArticle[] = []
-let usersStore: any[] = []
+interface ContactMessage {
+  id: string
+  name: string
+  email: string
+  message: string
+  createdAt: string
+  read: boolean
+}
 
-export class MongoDBDataAPI {
-  private static instance: MongoDBDataAPI
+interface User {
+  id: string
+  email: string
+  name: string
+  role: "admin" | "user"
+  createdAt: string
+}
 
-  static getInstance(): MongoDBDataAPI {
-    if (!MongoDBDataAPI.instance) {
-      MongoDBDataAPI.instance = new MongoDBDataAPI()
+// In-memory storage for development/fallback
+let blogPosts: BlogPost[] = []
+let contactMessages: ContactMessage[] = []
+const users: User[] = [
+  {
+    id: "1",
+    email: "admin@alexandraribeiro.pt",
+    name: "Alexandra Ribeiro",
+    role: "admin",
+    createdAt: new Date().toISOString(),
+  },
+]
+
+// Blog Posts API
+export async function getBlogPosts(language?: "pt" | "en"): Promise<BlogPost[]> {
+  try {
+    // Try to load from localStorage if available
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("blogPosts")
+      if (stored) {
+        blogPosts = JSON.parse(stored)
+      }
     }
-    return MongoDBDataAPI.instance
-  }
 
-  // Blog Articles
-  async getArticles(): Promise<BlogArticle[]> {
-    try {
-      // Try to load from localStorage first
-      if (typeof window !== "undefined") {
-        const stored = localStorage.getItem("blog_articles")
-        if (stored) {
-          articlesStore = JSON.parse(stored)
-        }
-      }
-      return articlesStore
-    } catch (error) {
-      console.error("Error getting articles:", error)
-      return []
-    }
-  }
-
-  async getArticle(id: string): Promise<BlogArticle | null> {
-    try {
-      const articles = await this.getArticles()
-      return articles.find((article) => article.id === id) || null
-    } catch (error) {
-      console.error("Error getting article:", error)
-      return null
-    }
-  }
-
-  async createArticle(article: Omit<BlogArticle, "id" | "createdAt" | "updatedAt">): Promise<BlogArticle> {
-    try {
-      const newArticle: BlogArticle = {
-        ...article,
-        id: Date.now().toString(),
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      }
-
-      articlesStore.push(newArticle)
-
-      // Save to localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem("blog_articles", JSON.stringify(articlesStore))
-      }
-
-      return newArticle
-    } catch (error) {
-      console.error("Error creating article:", error)
-      throw error
-    }
-  }
-
-  async updateArticle(id: string, updates: Partial<BlogArticle>): Promise<BlogArticle | null> {
-    try {
-      const articles = await this.getArticles()
-      const index = articles.findIndex((article) => article.id === id)
-
-      if (index === -1) {
-        return null
-      }
-
-      const updatedArticle = {
-        ...articles[index],
-        ...updates,
-        updatedAt: new Date().toISOString(),
-      }
-
-      articlesStore[index] = updatedArticle
-
-      // Save to localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem("blog_articles", JSON.stringify(articlesStore))
-      }
-
-      return updatedArticle
-    } catch (error) {
-      console.error("Error updating article:", error)
-      return null
-    }
-  }
-
-  async deleteArticle(id: string): Promise<boolean> {
-    try {
-      const articles = await this.getArticles()
-      const index = articles.findIndex((article) => article.id === id)
-
-      if (index === -1) {
-        return false
-      }
-
-      articlesStore.splice(index, 1)
-
-      // Save to localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem("blog_articles", JSON.stringify(articlesStore))
-      }
-
-      return true
-    } catch (error) {
-      console.error("Error deleting article:", error)
-      return false
-    }
-  }
-
-  // Users
-  async getUsers(): Promise<any[]> {
-    try {
-      // Try to load from localStorage first
-      if (typeof window !== "undefined") {
-        const stored = localStorage.getItem("users")
-        if (stored) {
-          usersStore = JSON.parse(stored)
-        }
-      }
-      return usersStore
-    } catch (error) {
-      console.error("Error getting users:", error)
-      return []
-    }
-  }
-
-  async createUser(user: any): Promise<any> {
-    try {
-      const newUser = {
-        ...user,
-        id: Date.now().toString(),
-        createdAt: new Date().toISOString(),
-      }
-
-      usersStore.push(newUser)
-
-      // Save to localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem("users", JSON.stringify(usersStore))
-      }
-
-      return newUser
-    } catch (error) {
-      console.error("Error creating user:", error)
-      throw error
-    }
-  }
-
-  // Contact form submissions
-  async saveContactSubmission(submission: any): Promise<any> {
-    try {
-      const newSubmission = {
-        ...submission,
-        id: Date.now().toString(),
-        createdAt: new Date().toISOString(),
-      }
-
-      // Try to load existing submissions
-      let submissions: any[] = []
-      if (typeof window !== "undefined") {
-        const stored = localStorage.getItem("contact_submissions")
-        if (stored) {
-          submissions = JSON.parse(stored)
-        }
-      }
-
-      submissions.push(newSubmission)
-
-      // Save to localStorage
-      if (typeof window !== "undefined") {
-        localStorage.setItem("contact_submissions", JSON.stringify(submissions))
-      }
-
-      return newSubmission
-    } catch (error) {
-      console.error("Error saving contact submission:", error)
-      throw error
-    }
-  }
-
-  async getContactSubmissions(): Promise<any[]> {
-    try {
-      if (typeof window !== "undefined") {
-        const stored = localStorage.getItem("contact_submissions")
-        if (stored) {
-          return JSON.parse(stored)
-        }
-      }
-      return []
-    } catch (error) {
-      console.error("Error getting contact submissions:", error)
-      return []
-    }
+    return language ? blogPosts.filter((post) => post.language === language) : blogPosts
+  } catch (error) {
+    console.error("Error fetching blog posts:", error)
+    return []
   }
 }
 
-export default MongoDBDataAPI
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+  try {
+    const posts = await getBlogPosts()
+    return posts.find((post) => post.slug === slug) || null
+  } catch (error) {
+    console.error("Error fetching blog post:", error)
+    return null
+  }
+}
+
+export async function createBlogPost(post: Omit<BlogPost, "id">): Promise<BlogPost> {
+  try {
+    const newPost: BlogPost = {
+      ...post,
+      id: Date.now().toString(),
+    }
+
+    blogPosts.push(newPost)
+
+    // Save to localStorage if available
+    if (typeof window !== "undefined") {
+      localStorage.setItem("blogPosts", JSON.stringify(blogPosts))
+    }
+
+    return newPost
+  } catch (error) {
+    console.error("Error creating blog post:", error)
+    throw error
+  }
+}
+
+export async function updateBlogPost(id: string, updates: Partial<BlogPost>): Promise<BlogPost | null> {
+  try {
+    const index = blogPosts.findIndex((post) => post.id === id)
+    if (index === -1) return null
+
+    blogPosts[index] = { ...blogPosts[index], ...updates }
+
+    // Save to localStorage if available
+    if (typeof window !== "undefined") {
+      localStorage.setItem("blogPosts", JSON.stringify(blogPosts))
+    }
+
+    return blogPosts[index]
+  } catch (error) {
+    console.error("Error updating blog post:", error)
+    return null
+  }
+}
+
+export async function deleteBlogPost(id: string): Promise<boolean> {
+  try {
+    const index = blogPosts.findIndex((post) => post.id === id)
+    if (index === -1) return false
+
+    blogPosts.splice(index, 1)
+
+    // Save to localStorage if available
+    if (typeof window !== "undefined") {
+      localStorage.setItem("blogPosts", JSON.stringify(blogPosts))
+    }
+
+    return true
+  } catch (error) {
+    console.error("Error deleting blog post:", error)
+    return false
+  }
+}
+
+// Contact Messages API
+export async function getContactMessages(): Promise<ContactMessage[]> {
+  try {
+    // Try to load from localStorage if available
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("contactMessages")
+      if (stored) {
+        contactMessages = JSON.parse(stored)
+      }
+    }
+
+    return contactMessages
+  } catch (error) {
+    console.error("Error fetching contact messages:", error)
+    return []
+  }
+}
+
+export async function createContactMessage(
+  message: Omit<ContactMessage, "id" | "createdAt" | "read">,
+): Promise<ContactMessage> {
+  try {
+    const newMessage: ContactMessage = {
+      ...message,
+      id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+      read: false,
+    }
+
+    contactMessages.push(newMessage)
+
+    // Save to localStorage if available
+    if (typeof window !== "undefined") {
+      localStorage.setItem("contactMessages", JSON.stringify(contactMessages))
+    }
+
+    return newMessage
+  } catch (error) {
+    console.error("Error creating contact message:", error)
+    throw error
+  }
+}
+
+export async function markMessageAsRead(id: string): Promise<boolean> {
+  try {
+    const index = contactMessages.findIndex((msg) => msg.id === id)
+    if (index === -1) return false
+
+    contactMessages[index].read = true
+
+    // Save to localStorage if available
+    if (typeof window !== "undefined") {
+      localStorage.setItem("contactMessages", JSON.stringify(contactMessages))
+    }
+
+    return true
+  } catch (error) {
+    console.error("Error marking message as read:", error)
+    return false
+  }
+}
+
+// Users API
+export async function getUsers(): Promise<User[]> {
+  try {
+    return users
+  } catch (error) {
+    console.error("Error fetching users:", error)
+    return []
+  }
+}
+
+export async function getUserByEmail(email: string): Promise<User | null> {
+  try {
+    return users.find((user) => user.email === email) || null
+  } catch (error) {
+    console.error("Error fetching user by email:", error)
+    return null
+  }
+}
+
+export async function createUser(user: Omit<User, "id" | "createdAt">): Promise<User> {
+  try {
+    const newUser: User = {
+      ...user,
+      id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+    }
+
+    users.push(newUser)
+    return newUser
+  } catch (error) {
+    console.error("Error creating user:", error)
+    throw error
+  }
+}
+
+// Health check
+export async function healthCheck(): Promise<{ status: string; timestamp: string }> {
+  return {
+    status: "ok",
+    timestamp: new Date().toISOString(),
+  }
+}

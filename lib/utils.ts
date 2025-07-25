@@ -8,6 +8,22 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value)
+    }, delay)
+
+    return () => {
+      clearTimeout(handler)
+    }
+  }, [value, delay])
+
+  return debouncedValue
+}
+
 export function formatDate(dateString: string): string {
   const date = new Date(dateString)
   const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "long", day: "numeric" }
@@ -55,18 +71,30 @@ export function formatCurrency(amount: number, locale: "pt" | "en"): string {
   }
 }
 
-export function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value)
+export function truncateText(text: string, maxLength: number): string {
+  if (text.length <= maxLength) return text
+  return text.slice(0, maxLength).trim() + "..."
+}
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value)
-    }, delay)
+export function isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
 
-    return () => {
-      clearTimeout(handler)
-    }
-  }, [value, delay])
+export function generateId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2)
+}
 
-  return debouncedValue
+export function capitalizeFirst(text: string): string {
+  return text.charAt(0).toUpperCase() + text.slice(1)
+}
+
+export function removeHtmlTags(html: string): string {
+  return html.replace(/<[^>]*>/g, "")
+}
+
+export function getReadingTime(text: string): number {
+  const wordsPerMinute = 200
+  const words = text.trim().split(/\s+/).length
+  return Math.ceil(words / wordsPerMinute)
 }
