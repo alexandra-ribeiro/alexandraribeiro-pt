@@ -26,6 +26,11 @@
       "path": "/blog"
     },
     {
+    "label": "Loja",
+    "path": "https://store.alexandraribeiro.pt/pt/store",
+    "external": true
+  },
+    {
       "label": "Contacto",
       "path": "/contact"
     }
