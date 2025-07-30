@@ -9,10 +9,12 @@ interface PrivacyPolicyPopupProps {
   isOpen: boolean
   onClose: () => void
   title: string
+  language?: string
 }
 
-export default function PrivacyPolicyPopup({ isOpen, onClose, title }: PrivacyPolicyPopupProps) {
-  const { language } = useLanguage()
+export default function PrivacyPolicyPopup({ isOpen, onClose, title, language: propLanguage }: PrivacyPolicyPopupProps) {
+  const { language: contextLanguage } = useLanguage()
+  const language = propLanguage || contextLanguage
 
   const getPrivacyPolicyContent = () => {
     if (language === 'en') {
