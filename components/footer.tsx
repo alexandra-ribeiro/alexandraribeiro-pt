@@ -160,6 +160,7 @@ export default function Footer({ dict }: { dict: any }) {
         isOpen={isPrivacyPolicyOpen}
         onClose={() => setIsPrivacyPolicyOpen(false)}
         title={dict.privacy}
+        language={language}
       />
       <TermsConditionsPopup
         isOpen={isTermsConditionsOpen}
