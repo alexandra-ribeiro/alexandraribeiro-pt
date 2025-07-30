@@ -15,7 +15,7 @@ export default function Footer({ dict }: { dict: any }) {
   const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false)
   const [isTermsConditionsOpen, setIsTermsConditionsOpen] = useState(false)
 
-  const { lang } = useLanguage()
+  const { language } = useLanguage()
 
   // Add translations for Terms and Conditions
   const termsConditionsText = {
@@ -24,7 +24,7 @@ export default function Footer({ dict }: { dict: any }) {
   }
 
   // Determine language from dict
-  const language = dict.privacy === "Privacy Policy" ? "en" : "pt"
+ // const language = dict.privacy === "Privacy Policy" ? "en" : "pt"
 
   // Add translation for location text
   const locationText = {
