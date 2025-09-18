@@ -115,6 +115,38 @@ function renderRichText(content: any): string {
         case "hr":
           return `<hr class="my-8 border-gray-300" />`
 
+        case "embedded-asset-block":
+          // Handle embedded images
+          if (node.data && node.data.target) {
+            const asset = node.data.target
+            if (asset.fields && asset.fields.file) {
+              const imageUrl = asset.fields.file.url.startsWith("//")
+                ? `https:${asset.fields.file.url}`
+                : asset.fields.file.url
+              const altText = asset.fields.title || asset.fields.description || "Embedded image"
+              const width = asset.fields.file.details?.image?.width || 800
+              const height = asset.fields.file.details?.image?.height || 600
+
+              return `
+                <div class="my-8 text-center">
+                  <img 
+                    src="${imageUrl}" 
+                    alt="${altText}" 
+                    class="max-w-full h-auto rounded-lg shadow-md mx-auto"
+                    style="max-width: ${Math.min(width, 800)}px;"
+                    loading="lazy"
+                  />
+                  ${asset.fields.description ? `<p class="text-sm text-gray-500 mt-2 italic">${asset.fields.description}</p>` : ""}
+                </div>
+              `
+            }
+          }
+          return ""
+
+        case "embedded-entry-block":
+          // Handle embedded entries if needed
+          return ""
+
         default:
           return ""
       }
