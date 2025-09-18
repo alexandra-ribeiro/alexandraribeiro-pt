@@ -30,6 +30,98 @@ export async function generateMetadata({ params }: { params: { slug: string; lan
   }
 }
 
+// Function to render rich text content from Contentful
+function renderRichText(content: any): string {
+  if (!content || !content.content) {
+    return ""
+  }
+
+  return content.content
+    .map((node: any) => {
+      switch (node.nodeType) {
+        case "paragraph":
+          const text = node.content
+            ?.map((textNode: any) => {
+              if (textNode.nodeType === "text") {
+                let text = textNode.value
+                if (textNode.marks) {
+                  textNode.marks.forEach((mark: any) => {
+                    switch (mark.type) {
+                      case "bold":
+                        text = `<strong>${text}</strong>`
+                        break
+                      case "italic":
+                        text = `<em>${text}</em>`
+                        break
+                      case "underline":
+                        text = `<u>${text}</u>`
+                        break
+                    }
+                  })
+                }
+                return text
+              }
+              return ""
+            })
+            .join("")
+          return `<p class="mb-4 text-gray-700 leading-relaxed">${text}</p>`
+
+        case "heading-1":
+          const h1Text = node.content?.map((textNode: any) => textNode.value).join("") || ""
+          return `<h1 class="text-3xl font-bold text-primary mb-6 mt-8">${h1Text}</h1>`
+
+        case "heading-2":
+          const h2Text = node.content?.map((textNode: any) => textNode.value).join("") || ""
+          return `<h2 class="text-2xl font-bold text-primary mb-4 mt-6">${h2Text}</h2>`
+
+        case "heading-3":
+          const h3Text = node.content?.map((textNode: any) => textNode.value).join("") || ""
+          return `<h3 class="text-xl font-bold text-primary mb-3 mt-5">${h3Text}</h3>`
+
+        case "unordered-list":
+          const listItems = node.content
+            ?.map((listItem: any) => {
+              const itemText = listItem.content
+                ?.map((paragraph: any) => {
+                  return paragraph.content?.map((textNode: any) => textNode.value).join("") || ""
+                })
+                .join("")
+              return `<li class="mb-2">${itemText}</li>`
+            })
+            .join("")
+          return `<ul class="list-disc list-inside mb-4 text-gray-700">${listItems}</ul>`
+
+        case "ordered-list":
+          const orderedItems = node.content
+            ?.map((listItem: any) => {
+              const itemText = listItem.content
+                ?.map((paragraph: any) => {
+                  return paragraph.content?.map((textNode: any) => textNode.value).join("") || ""
+                })
+                .join("")
+              return `<li class="mb-2">${itemText}</li>`
+            })
+            .join("")
+          return `<ol class="list-decimal list-inside mb-4 text-gray-700">${orderedItems}</ol>`
+
+        case "blockquote":
+          const quoteText = node.content
+            ?.map((paragraph: any) => {
+              return paragraph.content?.map((textNode: any) => textNode.value).join("") || ""
+            })
+            .join("")
+          return `<blockquote class="border-l-4 border-accent pl-4 italic text-gray-600 mb-4">${quoteText}</blockquote>`
+
+        case "hr":
+          return `<hr class="my-8 border-gray-300" />`
+
+        default:
+          return ""
+      }
+    })
+    .join("")
+}
+
 export default async function BlogArticlePage({ params }: { params: { slug: string; lang: string } }) {
   const dict = await getDictionary(params.lang)
 
@@ -72,31 +164,6 @@ export default async function BlogArticlePage({ params }: { params: { slug: stri
         </div>
         <Footer dict={dict.footer} />
       </main>
-    )
-  }
-
-  // Simple content rendering function that handles basic HTML
-  const renderContent = () => {
-    if (!post || !post.fields.content) return null
-
-    // For now, just return a simple div with the content as HTML
-    // This avoids potential issues with the rich text renderer
-    return (
-      <div
-        className="prose prose-lg max-w-none"
-        dangerouslySetInnerHTML={{
-          __html: post.fields.content.content
-            ? post.fields.content.content
-                .map((item: any) => {
-                  if (item.nodeType === "paragraph") {
-                    return `<p>${item.content.map((c: any) => c.value).join("")}</p>`
-                  }
-                  return ""
-                })
-                .join("")
-            : "No content available",
-        }}
-      />
     )
   }
 
@@ -146,13 +213,15 @@ export default async function BlogArticlePage({ params }: { params: { slug: stri
             <p className="text-xl text-gray-600">{post.fields.description}</p>
           </div>
 
-          {/* Article Content - Simple Version */}
+          {/* Article Content - Rich Text */}
           <div className="prose prose-lg max-w-none">
             {post.fields.content ? (
-              <div className="text-gray-700 leading-relaxed">
-                <p>{post.fields.description}</p>
-                {/* More content would be rendered here */}
-              </div>
+              <div
+                className="text-gray-700 leading-relaxed"
+                dangerouslySetInnerHTML={{
+                  __html: renderRichText(post.fields.content),
+                }}
+              />
             ) : (
               <p className="text-gray-500">
                 {params.lang === "en" ? "No content available." : "Conteúdo não disponível."}
