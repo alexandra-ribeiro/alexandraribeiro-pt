@@ -210,88 +210,169 @@ export default async function BlogArticlePage({ params }: { params: { slug: stri
     )
   }
 
+  const isPortuguese = params.lang === "pt"
+
   return (
     <main className="min-h-screen bg-gray-50">
       <SiteHeader dict={dict} />
 
-      <article className="container py-16 md:py-24">
-        <div className="max-w-4xl mx-auto">
-          {/* Featured Image */}
-          {post.fields.featuredImage && (
-            <div className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden">
-              <Image
-                src={getImageUrl(post.fields.featuredImage) || "/placeholder.svg"}
-                alt={post.fields.title}
-                fill
-                className="object-cover"
-                unoptimized
-                priority
-              />
-            </div>
-          )}
-
-          {/* Article Header */}
-          <div className="mb-12">
-            <div className="flex items-center text-sm text-accent mb-4">
-              <span className="mr-4">
-                {post.fields.publishedDate ? formatDate(post.fields.publishedDate, params.lang) : ""}
-              </span>
-              {post.fields.author && post.fields.author.fields && (
-                <span className="flex items-center">
-                  {post.fields.author.fields.picture && (
+      <div className="container py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-4 gap-8">
+            {/* Main Article Content */}
+            <article className="lg:col-span-3">
+              <div className="max-w-4xl">
+                {/* Featured Image */}
+                {post.fields.featuredImage && (
+                  <div className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden">
                     <Image
-                      src={getImageUrl(post.fields.author.fields.picture) || "/placeholder.svg"}
-                      alt={post.fields.author.fields.name}
-                      width={24}
-                      height={24}
-                      className="rounded-full mr-2"
+                      src={getImageUrl(post.fields.featuredImage) || "/placeholder.svg"}
+                      alt={post.fields.title}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                      priority
+                    />
+                  </div>
+                )}
+
+                {/* Article Header */}
+                <div className="mb-12">
+                  <div className="flex items-center text-sm text-accent mb-4">
+                    <span className="mr-4">
+                      {post.fields.publishedDate ? formatDate(post.fields.publishedDate, params.lang) : ""}
+                    </span>
+                    {post.fields.author && post.fields.author.fields && (
+                      <span className="flex items-center">
+                        {post.fields.author.fields.picture && (
+                          <Image
+                            src={getImageUrl(post.fields.author.fields.picture) || "/placeholder.svg"}
+                            alt={post.fields.author.fields.name}
+                            width={24}
+                            height={24}
+                            className="rounded-full mr-2"
+                            unoptimized
+                          />
+                        )}
+                        {post.fields.author.fields.name}
+                      </span>
+                    )}
+                  </div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">{post.fields.title}</h1>
+                  <p className="text-xl text-gray-600">{post.fields.description}</p>
+                </div>
+
+                {/* Article Content - Rich Text */}
+                <div className="prose prose-lg max-w-none">
+                  {post.fields.content ? (
+                    <div
+                      className="text-gray-700 leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: renderRichText(post.fields.content),
+                      }}
+                    />
+                  ) : (
+                    <p className="text-gray-500">
+                      {params.lang === "en" ? "No content available." : "Conteúdo não disponível."}
+                    </p>
+                  )}
+                </div>
+
+                {/* Back to Blog */}
+                <div className="mt-16 pt-8 border-t border-gray-200">
+                  <Link
+                    href={`/${params.lang}/blog`}
+                    className="inline-flex items-center text-primary hover:text-accent transition-colors"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                      />
+                    </svg>
+                    {params.lang === "en" ? "Back to all articles" : "Voltar para todos os artigos"}
+                  </Link>
+                </div>
+              </div>
+            </article>
+
+            {/* Author Sidebar */}
+            <aside className="lg:col-span-1">
+              <div className="bg-white rounded-xl shadow-lg p-6 sticky top-8">
+                <div className="text-center mb-6">
+                  <div className="relative w-24 h-24 mx-auto mb-4">
+                    <Image
+                      src="/images/alexandra-photo.jpeg"
+                      alt="Alexandra Ribeiro"
+                      fill
+                      className="object-cover rounded-full"
                       unoptimized
                     />
+                  </div>
+                  <h3 className="text-xl font-bold text-primary mb-4">{isPortuguese ? "Quem sou eu?" : "Who am I?"}</h3>
+                </div>
+
+                <div className="text-sm text-gray-700 leading-relaxed space-y-3">
+                  {isPortuguese ? (
+                    <>
+                      <p>
+                        Olá 👋 Sou Alexandra Ribeiro, consultora digital com mais de 20 anos de experiência em
+                        tecnologia, Engenharia Informática e gestão de projetos. Hoje ajudo empreendedores e freelancers
+                        em Portugal a dar os primeiros passos no digital sem complicações técnicas.
+                      </p>
+                      <p>
+                        No meu blog encontras dicas práticas sobre domínios, websites, lojas online e automação.
+                        Acredito que todos podem criar uma presença digital profissional — mesmo sem conhecimentos
+                        técnicos.
+                      </p>
+                      <p>👉 Se estás a começar e precisas de orientação simples, estás no sítio certo!</p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        Hello 👋 I'm Alexandra Ribeiro, a digital consultant with over 20 years of experience in
+                        technology, Computer Engineering and project management. Today I help entrepreneurs and
+                        freelancers in Portugal take their first steps in digital without technical complications.
+                      </p>
+                      <p>
+                        In my blog you'll find practical tips about domains, websites, online stores and automation. I
+                        believe everyone can create a professional digital presence — even without technical knowledge.
+                      </p>
+                      <p>👉 If you're starting out and need simple guidance, you're in the right place!</p>
+                    </>
                   )}
-                  {post.fields.author.fields.name}
-                </span>
-              )}
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">{post.fields.title}</h1>
-            <p className="text-xl text-gray-600">{post.fields.description}</p>
-          </div>
+                </div>
 
-          {/* Article Content - Rich Text */}
-          <div className="prose prose-lg max-w-none">
-            {post.fields.content ? (
-              <div
-                className="text-gray-700 leading-relaxed"
-                dangerouslySetInnerHTML={{
-                  __html: renderRichText(post.fields.content),
-                }}
-              />
-            ) : (
-              <p className="text-gray-500">
-                {params.lang === "en" ? "No content available." : "Conteúdo não disponível."}
-              </p>
-            )}
-          </div>
-
-          {/* Back to Blog */}
-          <div className="mt-16 pt-8 border-t border-gray-200">
-            <Link
-              href={`/${params.lang}/blog`}
-              className="inline-flex items-center text-primary hover:text-accent transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              {params.lang === "en" ? "Back to all articles" : "Voltar para todos os artigos"}
-            </Link>
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <Link
+                    href={`/${params.lang}/about`}
+                    className="inline-flex items-center text-primary hover:text-accent transition-colors text-sm font-medium"
+                  >
+                    {isPortuguese ? "Saber mais sobre mim" : "Learn more about me"}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 ml-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
-      </article>
+      </div>
 
       <Footer dict={dict.footer} />
     </main>
