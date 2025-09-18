@@ -30,6 +30,40 @@ export async function generateMetadata({ params }: { params: { slug: string; lan
   }
 }
 
+// Function to process text nodes with formatting and hyperlinks
+function processTextContent(content: any[]): string {
+  if (!content) return ""
+
+  return content
+    .map((item: any) => {
+      if (item.nodeType === "text") {
+        let text = item.value
+        if (item.marks) {
+          item.marks.forEach((mark: any) => {
+            switch (mark.type) {
+              case "bold":
+                text = `<strong>${text}</strong>`
+                break
+              case "italic":
+                text = `<em>${text}</em>`
+                break
+              case "underline":
+                text = `<u>${text}</u>`
+                break
+            }
+          })
+        }
+        return text
+      } else if (item.nodeType === "hyperlink") {
+        const url = item.data?.uri || "#"
+        const linkText = processTextContent(item.content)
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-accent underline transition-colors">${linkText}</a>`
+      }
+      return ""
+    })
+    .join("")
+}
+
 // Function to render rich text content from Contentful
 function renderRichText(content: any): string {
   if (!content || !content.content) {
@@ -40,42 +74,19 @@ function renderRichText(content: any): string {
     .map((node: any) => {
       switch (node.nodeType) {
         case "paragraph":
-          const text = node.content
-            ?.map((textNode: any) => {
-              if (textNode.nodeType === "text") {
-                let text = textNode.value
-                if (textNode.marks) {
-                  textNode.marks.forEach((mark: any) => {
-                    switch (mark.type) {
-                      case "bold":
-                        text = `<strong>${text}</strong>`
-                        break
-                      case "italic":
-                        text = `<em>${text}</em>`
-                        break
-                      case "underline":
-                        text = `<u>${text}</u>`
-                        break
-                    }
-                  })
-                }
-                return text
-              }
-              return ""
-            })
-            .join("")
+          const text = processTextContent(node.content)
           return `<p class="mb-4 text-gray-700 leading-relaxed">${text}</p>`
 
         case "heading-1":
-          const h1Text = node.content?.map((textNode: any) => textNode.value).join("") || ""
+          const h1Text = processTextContent(node.content)
           return `<h1 class="text-3xl font-bold text-primary mb-6 mt-8">${h1Text}</h1>`
 
         case "heading-2":
-          const h2Text = node.content?.map((textNode: any) => textNode.value).join("") || ""
+          const h2Text = processTextContent(node.content)
           return `<h2 class="text-2xl font-bold text-primary mb-4 mt-6">${h2Text}</h2>`
 
         case "heading-3":
-          const h3Text = node.content?.map((textNode: any) => textNode.value).join("") || ""
+          const h3Text = processTextContent(node.content)
           return `<h3 class="text-xl font-bold text-primary mb-3 mt-5">${h3Text}</h3>`
 
         case "unordered-list":
@@ -83,7 +94,7 @@ function renderRichText(content: any): string {
             ?.map((listItem: any) => {
               const itemText = listItem.content
                 ?.map((paragraph: any) => {
-                  return paragraph.content?.map((textNode: any) => textNode.value).join("") || ""
+                  return processTextContent(paragraph.content)
                 })
                 .join("")
               return `<li class="mb-2">${itemText}</li>`
@@ -96,7 +107,7 @@ function renderRichText(content: any): string {
             ?.map((listItem: any) => {
               const itemText = listItem.content
                 ?.map((paragraph: any) => {
-                  return paragraph.content?.map((textNode: any) => textNode.value).join("") || ""
+                  return processTextContent(paragraph.content)
                 })
                 .join("")
               return `<li class="mb-2">${itemText}</li>`
@@ -107,7 +118,7 @@ function renderRichText(content: any): string {
         case "blockquote":
           const quoteText = node.content
             ?.map((paragraph: any) => {
-              return paragraph.content?.map((textNode: any) => textNode.value).join("") || ""
+              return processTextContent(paragraph.content)
             })
             .join("")
           return `<blockquote class="border-l-4 border-accent pl-4 italic text-gray-600 mb-4">${quoteText}</blockquote>`
