@@ -324,7 +324,14 @@ export default async function ServicesPage({ params }: { params: { lang: string 
                 </p>
               </div>
               <div className="flex-shrink-0">
-                <Link href="https://alexandraribeiro.gumroad.com/" target="_blank" rel="noopener noreferrer">
+                <Link
+  href={isPortuguese 
+    ? "https://store.alexandraribeiro.pt/pt/store"
+    : "https://store.alexandraribeiro.pt/en/store"
+  }
+  target="_blank"
+  rel="noopener noreferrer"
+>
                   <Button size="lg" className="bg-primary hover:bg-primary/90 text-white whitespace-nowrap">
                     {isPortuguese ? "Ver a loja digital" : "View digital store"}
                   </Button>
