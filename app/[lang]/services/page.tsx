@@ -178,8 +178,8 @@ export default async function ServicesPage({ params }: { params: { lang: string 
         ? "Pack Pro mensal (30h): 600€\n\n(Apenas 1 vaga por mês para projetos estruturais.)"
         : "Pro monthly pack (30h): 600€\n\n(Only 1 spot per month for structural projects.)",
       buttonText: isPortuguese
-        ? "Quero trabalhar contigo."
-        : "I want to work with you.",
+        ? "Quero trabalhar contigo"
+        : "I want to work with you",
     },
   ]
 
