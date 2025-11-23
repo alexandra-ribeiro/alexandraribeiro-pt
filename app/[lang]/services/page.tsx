@@ -410,7 +410,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
                   {isPortuguese ? "Confidencialidade total" : "Total confidentiality"}
                 </h3>
                 <p className="text-sm text-gray-600">
-                  {isPortuguese ? "Proteção dos teus dados" : "Protection of your data"}
+                  {isPortuguese ? "Proteção dos seus dados" : "Protection of your data"}
                 </p>
               </div>
             </div>
