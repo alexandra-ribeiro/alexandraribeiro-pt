@@ -130,13 +130,12 @@ export default async function ServicesPage({ params }: { params: { lang: string 
       <SiteHeader dict={dict} />
 
       {/* Hero Section */}
-      <section className="relative py-20 md:py-28 bg-primary overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-black"></div>
+      <section className="relative py-20 md:py-28 bg-white overflow-hidden">
         <div className="container mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
+            <div className="text-primary">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">{dict.servicesPage.hero.title}</h1>
-              <p className="text-xl mb-8 text-white/90">{dict.servicesPage.hero.subtitle}</p>
+              <p className="text-xl mb-8 text-primary/90">{dict.servicesPage.hero.subtitle}</p>
               <Link href={`/${params.lang}/contact`}>
                 <Button size="lg" className="bg-customGold hover:bg-primary text-primary hover:text-white">
                   {isPortuguese ? "Agendar chamada" : "Schedule a call"}
@@ -146,7 +145,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
             <div className="hidden md:block">
               <div className="relative h-[400px] w-full overflow-hidden">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3photo.png-go0cyTfYxlMPXTlpYl53E0Mf6meZiS.jpeg?v=1"
+                  src="/images/3photo.jpg"
                   alt="Virtual Assistant Services"
                   width={800}
                   height={400}
@@ -155,28 +154,6 @@ export default async function ServicesPage({ params }: { params: { lang: string 
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Differentiators Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl font-bold mb-6 text-primary">{dict.servicesPage.differentiators.title}</h2>
-            <p className="text-lg text-gray-700">{dict.servicesPage.differentiators.description}</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {dict.servicesPage.differentiators.items.map((item: any, index: number) => (
-              <div key={index} className="bg-gray-50 p-8 rounded-lg text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl font-bold text-primary">{index + 1}</span>
-                </div>
-                <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -217,6 +194,61 @@ export default async function ServicesPage({ params }: { params: { lang: string 
                     </Button>
                   </Link>
                 </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Digital Products Card */}
+          <div className="mt-12 bg-white rounded-lg shadow-lg overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center gap-8 p-8">
+              <div className="flex-shrink-0">
+                <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
+                  <ShoppingCart className="h-10 w-10 text-primary" />
+                </div>
+              </div>
+              <div className="flex-grow text-center md:text-left">
+                <h3 className="text-2xl font-bold text-primary mb-2">
+                  {isPortuguese ? "Produtos Digitais" : "Digital Products"}
+                </h3>
+                <p className="text-lg font-medium text-gray-700 mb-3">
+                  {isPortuguese
+                    ? "Templates e Ferramentas para o teu Negócio"
+                    : "Templates and Tools for Your Business"}
+                </p>
+                <p className="text-gray-600">
+                  {isPortuguese
+                    ? "Checklists, SOPs, templates para Notion, planners e recursos para empreendedoras que querem organização, clareza e automação do teu negócio."
+                    : "Checklists, SOPs, Notion templates, planners and resources for entrepreneurs who want organization, clarity and automation for your business."}
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <Link href="https://alexandraribeiro.gumroad.com/" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90 text-white whitespace-nowrap">
+                    {isPortuguese ? "Ver a loja digital" : "View digital store"}
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Differentiators Section */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-3xl font-bold mb-6 text-primary">{dict.servicesPage.differentiators.title}</h2>
+            <p className="text-lg text-gray-700">{dict.servicesPage.differentiators.description}</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {dict.servicesPage.differentiators.items.map((item: any, index: number) => (
+              <div key={index} className="bg-gray-50 p-8 rounded-lg text-center">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-3xl font-bold text-primary">{index + 1}</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
               </div>
             ))}
           </div>
