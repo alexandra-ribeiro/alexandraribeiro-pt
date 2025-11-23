@@ -119,7 +119,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
       pricing: isPortuguese
         ? "Pack Mensal (10h): 220€\n\n(Este é o plano mais escolhido pelos meus clientes.)"
         : "Monthly Pack (10h): 220€\n\n(This is the most chosen plan by my clients.)",
-      buttonText: isPortuguese ? "Quero reservar o meu pack de 10h" : "I want to reserve my 10h pack",
+      buttonText: isPortuguese ? "Quero o meu pack de 10h" : "I want my 10h pack",
     },
     {
       title: isPortuguese ? "GROWTH" : "GROWTH",
@@ -149,7 +149,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
       pricing: isPortuguese
         ? "Opções de Pack Growth:\n15h / mês → 320€\n20h / mês → 420€\n\nTrabalho Técnico Avulso:\n35€/h (para tarefas específicas sem necessidade de pack)"
         : "Growth Pack Options:\n15h / month → 320€\n20h / month → 420€\n\nAd-hoc Technical Work:\n35€/h (for specific tasks without the need for a pack)",
-      buttonText: isPortuguese ? "Quero passar para o plano Growth" : "I want to upgrade to the Growth plan",
+      buttonText: isPortuguese ? "Quero o plano Growth" : "I want the Growth plan",
     },
     {
       title: isPortuguese ? "PRO" : "PRO",
@@ -175,11 +175,11 @@ export default async function ServicesPage({ params }: { params: { lang: string 
             "Domain configuration + professional email",
           ],
       pricing: isPortuguese
-        ? "Pack Pro mensal (30h): 600€\n\n(Apenas 1 vaga por mês para projetos estruturantes.)"
+        ? "Pack Pro mensal (30h): 600€\n\n(Apenas 1 vaga por mês para projetos estruturais.)"
         : "Pro monthly pack (30h): 600€\n\n(Only 1 spot per month for structural projects.)",
       buttonText: isPortuguese
-        ? "Quero trabalhar contigo num projeto técnico"
-        : "I want to work with you on a technical project",
+        ? "Quero trabalhar contigo."
+        : "I want to work with you.",
     },
   ]
 
