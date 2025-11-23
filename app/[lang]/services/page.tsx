@@ -42,7 +42,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
         : "1:1 Session (60 min) + personalized report",
       icon: <Lightbulb className="h-8 w-8 text-primary" />,
       intro: isPortuguese
-        ? "Para empreendedoras que precisam de orientação técnica, validação das suas escolhas, ajuda na configuração das ferramentas, ou apoio na estrutura inicial do projeto."
+        ? "Para empreendedores que precisam de orientação técnica, validação das suas escolhas, ajuda na configuração das ferramentas, ou apoio na estrutura inicial do projeto."
         : "For entrepreneurs who need technical guidance, validation of their choices, help with tool configuration, or support in the initial project structure.",
       perfectFor: isPortuguese
         ? [
@@ -81,7 +81,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
       title: isPortuguese ? "SUPPORT" : "SUPPORT",
       subtitle: isPortuguese ? "Assistência Digital Mensal (10h)" : "Monthly Digital Assistance (10h)",
       description: isPortuguese
-        ? "O teu apoio técnico e operacional, sempre que precisas."
+        ? "O apoio técnico e operacional, sempre que precisa."
         : "Your technical and operational support, whenever you need it.",
       icon: <Calendar className="h-8 w-8 text-primary" />,
       intro: isPortuguese
@@ -314,12 +314,12 @@ export default async function ServicesPage({ params }: { params: { lang: string 
                 </h3>
                 <p className="text-lg font-medium text-gray-700 mb-3">
                   {isPortuguese
-                    ? "Templates e Ferramentas para o teu Negócio"
+                    ? "Templates e Ferramentas para o seu Negócio"
                     : "Templates and Tools for Your Business"}
                 </p>
                 <p className="text-gray-600">
                   {isPortuguese
-                    ? "Checklists, SOPs, templates para Notion, planners e recursos para empreendedoras que querem organização, clareza e automação do teu negócio."
+                    ? "Checklists, SOPs, templates para Notion, planners e recursos para empreendedores que querem organização, clareza e automação."
                     : "Checklists, SOPs, Notion templates, planners and resources for entrepreneurs who want organization, clarity and automation for your business."}
                 </p>
               </div>
@@ -343,7 +343,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
               {isPortuguese ? "O que está incluído em todos os planos" : "What's Included in All Plans"}
             </h2>
             <p className="text-lg text-gray-700 mb-8">
-              {isPortuguese ? "Independentemente do plano, tens sempre:" : "Regardless of the plan, you always have:"}
+              {isPortuguese ? "Independentemente do plano, tem sempre:" : "Regardless of the plan, you always have:"}
             </p>
           </div>
 
