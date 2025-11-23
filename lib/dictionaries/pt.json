@@ -155,7 +155,7 @@
     ]
   },
   "finalCTA": {
-    "title": "Está pronto para simplificar o seu dia a dia?",
+    "title": "Está pronto(a) para simplificar o seu dia a dia?",
     "description": "Vamos conversar durante 15 minutos, sem compromisso, para descobrir como posso ajudar o seu negócio.",
     "button": "Agendar conversa"
   },
@@ -225,8 +225,8 @@
       ]
     },
     "cta": {
-      "title": "Pronto para trabalhar comigo?",
-      "description": "Vamos conversar sobre como posso ajudar o seu negócio a crescer e se tornar mais eficiente.",
+      "title": "Pronto(a) para trabalhar comigo?",
+      "description": "Vamos conversar sobre como posso ajudar o seu negócio a crescer e a tornar-se mais eficiente.",
       "button": "Agendar uma chamada"
     },
     "tools": {
