@@ -430,7 +430,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
             </h2>
             <p className="text-lg text-white/80">
               {isPortuguese
-                ? "Um processo simples, transparente e flexível para garantir que recebes exatamente o suporte de que precisas."
+                ? "Um processo simples, transparente e flexível para garantir que recebe exatamente o suporte de que precisa."
                 : "A simple, transparent and flexible process to ensure you receive exactly the support you need."}
             </p>
           </div>
@@ -443,7 +443,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
               <div className="flex-grow bg-white/10 backdrop-blur-sm p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-white mb-2">
                   {isPortuguese
-                    ? "Escolhes o plano que melhor se adapta ao teu momento"
+                    ? "Escolhe o plano que melhor se adapta ao seu momento"
                     : "Choose the plan that best suits your moment"}
                 </h3>
                 <p className="text-white/80">
@@ -461,8 +461,8 @@ export default async function ServicesPage({ params }: { params: { lang: string 
               <div className="flex-grow bg-white/10 backdrop-blur-sm p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-white mb-2">
                   {isPortuguese
-                    ? "Agendamos uma pequena reunião de alinhamento (opcional)"
-                    : "We schedule a small alignment meeting (optional)"}
+                    ? "Agendamos uma pequena reunião de alinhamento."
+                    : "We schedule a small alignment meeting."}
                 </h3>
                 <p className="text-white/80">
                   {isPortuguese
@@ -482,7 +482,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
                 </h3>
                 <p className="text-white/80">
                   {isPortuguese
-                    ? "Tens acesso ao teu espaço dedicado para tarefas, horas e entregas."
+                    ? "Terá acesso ao seu espaço dedicado para tarefas, horas e entregas."
                     : "You have access to your dedicated space for tasks, hours and deliveries."}
                 </p>
               </div>
@@ -514,7 +514,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
                 </h3>
                 <p className="text-white/80">
                   {isPortuguese
-                    ? "No final de cada mês, revemos objetivos e otimizamos o plano conforme o teu crescimento."
+                    ? "No final de cada mês, revemos objetivos e optimizamos o plano conforme o seu crescimento."
                     : "At the end of each month, we review goals and optimize the plan according to your growth."}
                 </p>
               </div>
