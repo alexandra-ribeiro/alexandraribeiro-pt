@@ -101,6 +101,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
             "Suporte técnico básico (WordPress, Shopify, Shopkit)",
             "Criação e atualização de páginas de produto",
             "Geração de imagens para websites com ajuda de IA",
+            "envio de newsletters",
             "Integrações simples (e-mail, formulários, automações leves)",
             "Organização de conteúdos, documentos e sistemas",
             "Preparação de checklists, SOPs e templates",
