@@ -157,11 +157,11 @@ export default async function AboutPage({ params }: { params: { lang: string } }
                 </p>
                 <p className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
-                  <span>CRM e Gestão: Notion, ClickUp, Trello, Atlassian Jira, Hubspot</span>
+                  <span>CRM e Gestão: Notion, Trello, Atlassian Jira</span>
                 </p>
                 <p className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
-                  <span>E-commerce: Shopify, Etsy, WooCommerce</span>
+                  <span>E-commerce: Shopify, Shopkit, Etsy, WooCommerce</span>
                 </p>
                 <p className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
@@ -178,7 +178,7 @@ export default async function AboutPage({ params }: { params: { lang: string } }
                 <p className="flex items-start">
                   <CheckCircle className="h-5 w-5 text-accent mr-2 mt-1 flex-shrink-0" />
                   <span>
-                    Automação e IA: ferramentas no-code (n8n, GPT Maker, Make.com), assistentes virtuais, Mailerlite,
+                    Automação e IA: ferramentas no-code (n8n, GPT Maker, Zapier, Make.com), Mailerlite,
                     Mailchimp
                   </span>
                 </p>
