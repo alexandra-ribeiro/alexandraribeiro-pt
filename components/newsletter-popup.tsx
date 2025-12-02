@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 export default function NewsletterPopup({ dict }: { dict: any }) {
   const [isOpen, setIsOpen] = useState(false)
   const [hasInteracted, setHasInteracted] = useState(false)
+  const [name, setName] = useState("") // Added name state
   const [email, setEmail] = useState("")
   const [isSuccess, setIsSuccess] = useState(false)
   const popupRef = useRef<HTMLDivElement>(null)
@@ -81,13 +82,12 @@ export default function NewsletterPopup({ dict }: { dict: any }) {
     }
 
     try {
-      // This would be replaced by an actual API route in the final implementation
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, name }),
       })
 
       if (response.ok) {
@@ -156,6 +156,13 @@ export default function NewsletterPopup({ dict }: { dict: any }) {
             <CardContent>
               <form onSubmit={handleSubmit}>
                 <div className="space-y-4">
+                  <Input
+                    type="text"
+                    placeholder={dict.namePlaceholder}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full"
+                  />
                   <Input
                     type="email"
                     placeholder={dict.emailPlaceholder}

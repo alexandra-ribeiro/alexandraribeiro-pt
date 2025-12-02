@@ -26,10 +26,10 @@
       "path": "/blog"
     },
     {
-    "label": "Store",
-    "path": "https://store.alexandraribeiro.pt/en/store",
-    "external": true
-  },
+      "label": "Store",
+      "path": "https://store.alexandraribeiro.pt/en/store",
+      "external": true
+    },
     {
       "label": "Contact",
       "path": "/contact"
@@ -122,6 +122,7 @@
   "newsletterPopup": {
     "title": "Get Exclusive Tips!",
     "description": "Subscribe to our newsletter to receive tips, resources, and special offers for virtual assistants.",
+    "namePlaceholder": "Your name",
     "emailPlaceholder": "Your best email",
     "buttonText": "I want to subscribe!",
     "privacyText": "We respect your privacy. You can unsubscribe at any time.",
@@ -403,6 +404,17 @@
     }
   },
   "footer": {
+    "newsletterForm": {
+      "description": "Sign up for my newsletter to receive tips and tricks about business organization.",
+      "namePlaceholder": "Name",
+      "emailPlaceholder": "Email",
+      "buttonText": "Subscribe!",
+      "subscribing": "Subscribing...",
+      "privacyText": "By providing this information, you agree to receive free content about our content and services. You can unsubscribe at any time.",
+      "successMessage": "Thank you for subscribing! You will soon receive our tips and resources.",
+      "errorMessage": "An error occurred. Please try again.",
+      "emailValidationError": "Please enter a valid email"
+    },
     "links": [
       {
         "text": "Home",

@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import Link from "next/link"
 import { Linkedin, Instagram, Mail, ChevronRight, ExternalLink, MapPin } from "lucide-react"
@@ -7,6 +9,7 @@ import CookieConsent from "./cookie-consent"
 import PrivacyPolicyPopup from "./privacy-policy-popup"
 import TermsConditionsPopup from "./terms-conditions-popup"
 import { useLanguage } from "./language-provider"
+import { Button } from "@/components/ui/button"
 
 export default function Footer({ dict }: { dict: any }) {
   const email = "geral@alexandraribeiro.pt"
@@ -14,22 +17,62 @@ export default function Footer({ dict }: { dict: any }) {
   const instagramUrl = "https://www.instagram.com/alexandraribeiro.pt"
   const [isPrivacyPolicyOpen, setIsPrivacyPolicyOpen] = useState(false)
   const [isTermsConditionsOpen, setIsTermsConditionsOpen] = useState(false)
+  const [newsletterName, setNewsletterName] = useState("")
+  const [newsletterEmail, setNewsletterEmail] = useState("")
+  const [isSubscribing, setIsSubscribing] = useState(false)
+  const [subscribeSuccess, setSubscribeSuccess] = useState(false)
 
   const { lang } = useLanguage()
 
-  // Add translations for Terms and Conditions
   const termsConditionsText = {
     en: "Terms and Conditions",
     pt: "Termos e Condições",
   }
 
-  // Determine language from dict
   const language = dict.privacy === "Privacy Policy" ? "en" : "pt"
 
-  // Add translation for location text
   const locationText = {
     en: "From Leiria, Portugal... to the world!",
     pt: "De Leiria, Portugal... para o mundo!",
+  }
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!newsletterEmail || !isValidEmail(newsletterEmail)) {
+      alert(dict.newsletterForm.emailValidationError || "Por favor, insira um email válido")
+      return
+    }
+
+    setIsSubscribing(true)
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: newsletterEmail, name: newsletterName }),
+      })
+
+      if (response.ok) {
+        setSubscribeSuccess(true)
+        setNewsletterName("")
+        setNewsletterEmail("")
+        setTimeout(() => setSubscribeSuccess(false), 5000)
+      } else {
+        throw new Error("Failed to subscribe")
+      }
+    } catch (error) {
+      console.error("Newsletter subscription error:", error)
+      alert(dict.newsletterForm.errorMessage || "Ocorreu um erro. Tente novamente.")
+    } finally {
+      setIsSubscribing(false)
+    }
+  }
+
+  const isValidEmail = (email: string) => {
+    return /\S+@\S+\.\S+/.test(email)
   }
 
   return (
@@ -43,6 +86,46 @@ export default function Footer({ dict }: { dict: any }) {
       <div className="absolute bottom-10 left-10 w-24 h-24 bg-accent/10 rounded-lg transform rotate-12"></div>
 
       <div className="container relative">
+        {/* Newsletter subscription form section */}
+        <div className="mb-16 bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <h3 className="text-white font-semibold text-2xl mb-4">Newsletter</h3>
+          <p className="text-primary-foreground/80 mb-6">{dict.newsletterForm.description}</p>
+
+          {subscribeSuccess ? (
+            <div className="bg-accent/20 border border-accent text-white px-6 py-4 rounded-lg">
+              {dict.newsletterForm.successMessage}
+            </div>
+          ) : (
+            <form onSubmit={handleNewsletterSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto] gap-3">
+                <input
+                  type="text"
+                  placeholder={dict.newsletterForm.namePlaceholder}
+                  value={newsletterName}
+                  onChange={(e) => setNewsletterName(e.target.value)}
+                  className="px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                />
+                <input
+                  type="email"
+                  placeholder={dict.newsletterForm.emailPlaceholder}
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  required
+                  className="px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                />
+                <Button
+                  type="submit"
+                  disabled={isSubscribing}
+                  className="bg-accent hover:bg-accent/90 text-white px-8 py-3 rounded-lg font-semibold transition-colors duration-300 whitespace-nowrap md:w-auto w-full"
+                >
+                  {isSubscribing ? dict.newsletterForm.subscribing : "Quero receber as dicas!"}
+                </Button>
+              </div>
+              <p className="text-primary-foreground/60 text-sm mt-3">{dict.newsletterForm.privacyText}</p>
+            </form>
+          )}
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <h3 className="text-white font-semibold text-xl mb-6 border-b border-white/10 pb-2">Alexandra Ribeiro</h3>

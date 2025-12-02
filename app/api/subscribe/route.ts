@@ -2,13 +2,12 @@ import { type NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json()
+    const { email, name } = await request.json()
 
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 })
     }
 
-    // MailerLite API integration
     const response = await fetch("https://api.mailerlite.com/api/v2/subscribers", {
       method: "POST",
       headers: {
@@ -17,6 +16,7 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         email,
+        name: name || "",
         resubscribe: true,
       }),
     })
