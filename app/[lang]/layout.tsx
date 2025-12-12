@@ -6,6 +6,7 @@ import { LanguageProvider } from "@/components/language-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import ErrorBoundary from "@/components/error-boundary"
+import { FormsAppWidget } from "@/components/forms-app-widget"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     icon: [
       { url: "/favicon.ico" },
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AV%20favicon-FWdgglhaNmL080fqQbkTJ1M0HTfOqx.png",
+        url: "/images/av-20favicon.png",
         type: "image/png",
       },
     ],
@@ -37,11 +38,7 @@ export default function RootLayout({
   return (
     <html lang={validLang} suppressHydrationWarning>
       <head>
-        <link
-          rel="icon"
-          href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AV%20favicon-FWdgglhaNmL080fqQbkTJ1M0HTfOqx.png"
-          type="image/png"
-        />
+        <link rel="icon" href="/images/av-20favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       </head>
       <body className={inter.className} suppressHydrationWarning>
@@ -53,6 +50,7 @@ export default function RootLayout({
             </LanguageProvider>
           </ThemeProvider>
         </ErrorBoundary>
+        <FormsAppWidget />
       </body>
     </html>
   )
