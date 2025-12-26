@@ -23,6 +23,12 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png" }],
   },
+  alternates: {
+    languages: {
+      pt: "https://www.alexandraribeiro.pt/pt",
+      en: "https://www.alexandraribeiro.pt/en",
+    },
+  },
 }
 
 export default function RootLayout({
