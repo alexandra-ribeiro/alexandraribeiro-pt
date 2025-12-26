@@ -12,25 +12,6 @@ import Footer from "@/components/footer"
 import NewsletterPopup from "@/components/newsletter-popup"
 import EnhancedDivider from "@/components/enhanced-divider"
 
-export async function generateMetadata(
-  { params }: { params: { lang: string } }
-): Promise<Metadata> {
-  const dict = await getDictionary(params.lang)
-
-  const baseUrl = "https://www.alexandraribeiro.pt"
-  const canonicalUrl =
-    params.lang === "pt"
-      ? `${baseUrl}/pt`
-      : `${baseUrl}/${params.lang}`
-
-  return {
-    title: dict.metadata.title,
-    description: dict.metadata.description,
-    alternates: {
-      canonical: canonicalUrl,
-    },
-  }
-}
 
 export default async function Home({ params }: { params: { lang: string } }) {
   const dict = await getDictionary(params.lang)
