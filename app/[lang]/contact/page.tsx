@@ -5,12 +5,28 @@ import ContactForm from "@/components/contact-form"
 import CalendarEmbed from "@/components/calendar-embed"
 import Footer from "@/components/footer"
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string }
+}): Promise<Metadata> {
   const dict = await getDictionary(params.lang)
+  const lang = params.lang === "en" ? "en" : "pt"
+
+  const baseUrl = "https://www.alexandraribeiro.pt"
 
   return {
     title: `${dict.contact.title} | ${dict.metadata.title}`,
     description: dict.contact.description,
+
+    alternates: {
+      canonical: `${baseUrl}/${lang}/contact`,
+      languages: {
+        pt: `${baseUrl}/pt/contact`,
+        en: `${baseUrl}/en/contact`,
+        "x-default": `${baseUrl}/pt/contact`,
+      },
+    },
   }
 }
 
