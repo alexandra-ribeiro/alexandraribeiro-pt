@@ -55,9 +55,6 @@ export default function RootLayout({
   const htmlLang = validLang === "pt" ? "pt-PT" : "en"
 
   return (
-    <html lang={htmlLang} suppressHydrationWarning>
-  
-      <body className={inter.className} suppressHydrationWarning>
         <ErrorBoundary>
           <ThemeProvider attribute="class" defaultTheme="light" suppressColorSchemeWarning>
             <LanguageProvider lang={validLang}>
@@ -66,8 +63,5 @@ export default function RootLayout({
             </LanguageProvider>
           </ThemeProvider>
         </ErrorBoundary>
-        <FormsAppWidget />
-      </body>
-    </html>
   )
 }
