@@ -19,12 +19,28 @@ import {
 } from "lucide-react"
 import FAQSection from "@/components/faq-section"
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string }
+}): Promise<Metadata> {
   const dict = await getDictionary(params.lang)
+  const lang = params.lang === "en" ? "en" : "pt"
+
+  const baseUrl = "https://www.alexandraribeiro.pt"
 
   return {
     title: `${dict.servicesPage.title} | ${dict.metadata.title}`,
     description: dict.servicesPage.description,
+
+    alternates: {
+      canonical: `${baseUrl}/${lang}/services`,
+      languages: {
+        pt: `${baseUrl}/pt/services`,
+        en: `${baseUrl}/en/services`,
+        "x-default": `${baseUrl}/pt/services`,
+      },
+    },
   }
 }
 
