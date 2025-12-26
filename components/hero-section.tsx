@@ -12,10 +12,7 @@ export default function HeroSection({ dict }: { dict: any }) {
       <div
         className="fixed inset-0 w-full h-screen -z-10 bg-primary"
         style={{
-          backgroundImage:
-            "url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/free-stock-ivory-mix-2-2021%20%285%29.jpg-kWMnTreFldUT18FD89P0DtoANaA8a1.jpeg?v=" +
-            Date.now() +
-            "')",
+          backgroundImage: "url('/images/free-stock-ivory-mix-2-2021-20-285-29.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -39,9 +36,9 @@ export default function HeroSection({ dict }: { dict: any }) {
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4 sm:mb-6 leading-tight">
             <ContentDisplay storageKey={`home_${lang}`} field="headline" fallback={dict.headline} />
           </h1>
-          <p className="text-base sm:text-lg md:text-xl text-foreground/80 mb-6 sm:mb-8 font-light leading-relaxed">
+          <h2 className="text-base sm:text-lg md:text-xl text-foreground/80 mb-6 sm:mb-8 font-light leading-relaxed">
             <ContentDisplay storageKey={`home_${lang}`} field="subheadline" fallback={dict.subheadline} />
-          </p>
+          </h2>
           <Link href={`/${lang}/services`}>
             <Button
               size="lg"
