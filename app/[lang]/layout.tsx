@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Alexandra Ribeiro | Consultora Digital e Assistente Virtual Técnica em Portugal",
-  description: "Digital consulting and simplified systems implementation for entrepreneurs and online stores",
+  description: "Consultoria Digital e Implementação de Sistemas para Empreendedores e Lojas Online em Portugal",
   icons: {
     icon: [
       { url: "/favicon.ico" },
