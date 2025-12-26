@@ -56,10 +56,7 @@ export default function RootLayout({
 
   return (
     <html lang={htmlLang} suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/images/av-20favicon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      </head>
+  
       <body className={inter.className} suppressHydrationWarning>
         <ErrorBoundary>
           <ThemeProvider attribute="class" defaultTheme="light" suppressColorSchemeWarning>
