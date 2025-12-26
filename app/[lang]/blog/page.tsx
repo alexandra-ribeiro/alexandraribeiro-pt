@@ -5,10 +5,41 @@ import { getBlogPosts, type BlogPost, getImageUrl } from "@/lib/contentful"
 import Image from "next/image"
 import Link from "next/link"
 import { formatDate } from "@/lib/utils"
+import type { Metadata } from "next"
 
-export const metadata = {
-  title: "Blog | Alexandra Ribeiro | Consultora Digital",
-  description: "Descubra as últimas novidades, dicas e recursos para assistência virtual e consultoria digital",
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string }
+}): Promise<Metadata> {
+  const dict = await getDictionary(params.lang)
+  const lang = params.lang === "en" ? "en" : "pt"
+
+  const baseUrl = "https://www.alexandraribeiro.pt"
+
+  const titles = {
+    pt: "Blog | Alexandra Ribeiro | Consultora Digital",
+    en: "Blog | Alexandra Ribeiro | Digital Consultant",
+  }
+
+  const descriptions = {
+    pt: "Descubra dicas, guias e recursos práticos sobre tecnologia, assistência virtual e consultoria digital para empreendedores.",
+    en: "Discover tips, guides and practical resources on technology, virtual assistance and digital consulting for entrepreneurs.",
+  }
+
+  return {
+    title: titles[lang],
+    description: descriptions[lang],
+
+    alternates: {
+      canonical: `${baseUrl}/${lang}/blog`,
+      languages: {
+        pt: `${baseUrl}/pt/blog`,
+        en: `${baseUrl}/en/blog`,
+        "x-default": `${baseUrl}/pt/blog`,
+      },
+    },
+  }
 }
 
 export default async function BlogPage({ params }: { params: { lang: string } }) {
