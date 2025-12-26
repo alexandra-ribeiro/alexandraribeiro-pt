@@ -32,11 +32,11 @@ export default function RootLayout({
   children: React.ReactNode
   params: { lang: string }
 }) {
-  // Ensure lang parameter is valid
   const validLang = params?.lang || "pt"
+  const htmlLang = validLang === "pt" ? "pt-PT" : "en"
 
   return (
-    <html lang={validLang} suppressHydrationWarning>
+    <html lang={htmlLang} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/images/av-20favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
