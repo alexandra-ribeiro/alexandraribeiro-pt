@@ -94,7 +94,7 @@ export default function SanityBlogPreview({ dict, lang }: BlogPreviewProps) {
           {posts.map((post) => (
             <div
               key={post._id}
-              className="bg-white rounded-lg shadow-lg overflow-hidden border border-border/10 hover-lift group"
+              className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover-lift group"
             >
               <div className="relative h-56 w-full overflow-hidden">
                 {post.mainImage ? (
@@ -133,7 +133,10 @@ export default function SanityBlogPreview({ dict, lang }: BlogPreviewProps) {
 
         <div className="text-center mt-16">
           <Link href={`/${lang}/blog`}>
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 px-8 py-6 text-base">
+            <Button
+              variant="outline"
+              className="border-primary text-primary hover:bg-primary/10 px-8 py-6 text-base bg-transparent"
+            >
               {dict.viewAllButton}
             </Button>
           </Link>

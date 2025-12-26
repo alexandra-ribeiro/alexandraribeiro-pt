@@ -23,7 +23,7 @@ export default function FAQSection({ dict }: { dict: any }) {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border border-border/30 rounded-lg px-6 bg-white shadow-sm overflow-hidden group"
+                className="border border-gray-300 rounded-lg px-6 bg-white shadow-sm overflow-hidden group"
               >
                 <AccordionTrigger className="text-lg font-medium py-5 text-left hover:text-primary transition-colors duration-300 group-data-[state=open]:text-primary">
                   {item.question}
