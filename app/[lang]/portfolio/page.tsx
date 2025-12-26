@@ -3,20 +3,33 @@ import { getDictionary } from "@/lib/dictionaries"
 import SiteHeader from "@/components/site-header"
 import Footer from "@/components/footer"
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  try {
-    const dict = await getDictionary(params.lang)
-    return {
-      title: dict.portfolio?.title || "Portfolio - Alexandra Ribeiro",
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string }
+}): Promise<Metadata> {
+  const dict = await getDictionary(params.lang)
+  const lang = params.lang === "en" ? "en" : "pt"
+
+  const baseUrl = "https://www.alexandraribeiro.pt"
+
+  return {
+     title: dict.portfolio?.title || "Portfolio - Alexandra Ribeiro",
       description: dict.portfolio?.description || "View my portfolio of digital projects and services",
-    }
-  } catch (error) {
-    return {
-      title: "Portfolio - Alexandra Ribeiro",
-      description: "View my portfolio of digital projects and services",
-    }
+
+    alternates: {
+      canonical: `${baseUrl}/${lang}/contact`,
+      languages: {
+        pt: `${baseUrl}/pt/contact`,
+        en: `${baseUrl}/en/contact`,
+        "x-default": `${baseUrl}/pt/contact`,
+      },
+    },
   }
 }
+
 
 export default async function PortfolioPage({ params }: { params: { lang: string } }) {
   try {
