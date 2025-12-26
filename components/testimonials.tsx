@@ -20,7 +20,7 @@ export default function Testimonials({ dict }: { dict: any }) {
 
         <div className="max-w-3xl mx-auto">
           {dict.items.map((item: any, index: number) => (
-            <Card key={index} className="bg-white border-gray-200 shadow-lg mb-8 overflow-hidden hover-lift">
+            <Card key={index} className="bg-white border-border/20 shadow-lg mb-8 overflow-hidden hover-lift">
               <div className="absolute top-0 left-0 w-full h-1 bg-accent"></div>
               <CardContent className="pt-8 pb-8 px-8">
                 <div className="flex flex-col items-center text-center">
