@@ -7,12 +7,28 @@ import { CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string }
+}): Promise<Metadata> {
   const dict = await getDictionary(params.lang)
+  const lang = params.lang === "en" ? "en" : "pt"
+
+  const baseUrl = "https://www.alexandraribeiro.pt"
 
   return {
     title: `${dict.about.title} | ${dict.metadata.title}`,
     description: dict.about.description,
+
+    alternates: {
+      canonical: `${baseUrl}/${lang}/about`,
+      languages: {
+        pt: `${baseUrl}/pt/about`,
+        en: `${baseUrl}/en/about`,
+        "x-default": `${baseUrl}/pt/about`,
+      },
+    },
   }
 }
 
