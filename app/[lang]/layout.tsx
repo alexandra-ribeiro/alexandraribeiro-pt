@@ -10,25 +10,38 @@ import { FormsAppWidget } from "@/components/forms-app-widget"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "Alexandra Ribeiro | Consultora Digital e Assistente Virtual Técnica em Portugal",
-  description: "Digital consulting and simplified systems implementation for entrepreneurs and online stores",
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      {
-        url: "/images/av-20favicon.png",
-        type: "image/png",
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string }
+}): Promise<Metadata> {
+  const lang = params.lang === "en" ? "en" : "pt"
+
+  const baseUrl = "https://www.alexandraribeiro.pt"
+
+  return {
+    title: "Alexandra Ribeiro | Consultora Digital e Assistente Virtual Técnica em Portugal",
+    description:
+      "Digital consulting and simplified systems implementation for entrepreneurs and online stores",
+    alternates: {
+      canonical: `${baseUrl}/${lang}`,
+      languages: {
+        pt: `${baseUrl}/pt`,
+        en: `${baseUrl}/en`,
+        "x-default": `${baseUrl}/pt`,
       },
-    ],
-    apple: [{ url: "/apple-touch-icon.png" }],
-  },
-  alternates: {
-    languages: {
-      pt: "https://www.alexandraribeiro.pt/pt",
-      en: "https://www.alexandraribeiro.pt/en",
     },
-  },
+    icons: {
+      icon: [
+        { url: "/favicon.ico" },
+        {
+          url: "/images/av-20favicon.png",
+          type: "image/png",
+        },
+      ],
+      apple: [{ url: "/apple-touch-icon.png" }],
+    },
+  }
 }
 
 export default function RootLayout({
