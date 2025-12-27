@@ -102,6 +102,17 @@ export default async function BlogTagPage({
   url: `https://www.alexandraribeiro.pt/${params.lang}/blog/tag/${params.tag}`,
 }
 
+  const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: posts.map((post, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: `https://www.alexandraribeiro.pt/${params.lang}/blog/${post.fields.slug}`,
+    name: post.fields.title,
+  })),
+}
+
   return (
     <main className="min-h-screen bg-gray-50">
       <SiteHeader dict={dict} />
@@ -112,6 +123,10 @@ export default async function BlogTagPage({
       <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }}
+/>
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
 />
 
       <div className="container py-16 md:py-24 max-w-5xl mx-auto">
