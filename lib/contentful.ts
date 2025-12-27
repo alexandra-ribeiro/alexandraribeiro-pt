@@ -73,6 +73,54 @@ export interface BlogPost {
   }
 }
 
+export async function getAllBlogSlugs(): Promise<string[]> {
+  try {
+    const client = getClient()
+
+    if (!client) {
+      console.warn("Contentful client not available")
+      return []
+    }
+
+    const response = await client.getEntries({
+      content_type: "blogPost",
+      select: "fields.slug",
+      limit: 1000,
+    })
+
+    return response.items
+      .map((item: any) => item.fields.slug)
+      .filter(Boolean)
+  } catch (error) {
+    console.error("Error fetching blog slugs from Contentful:", error)
+    return []
+  }
+}
+
+
+export async function getRecentPosts(lang: string, limit = 3): Promise<BlogPost[]> {
+  try {
+    const client = getClient()
+
+    if (!client) {
+      console.warn("Contentful client not available")
+      return []
+    }
+
+    const response = await client.getEntries({
+      content_type: "blogPost",
+      "fields.language": lang,
+      order: "-fields.publishedDate",
+      limit,
+    })
+
+    return response.items as unknown as BlogPost[]
+  } catch (error) {
+    console.error("Error fetching recent blog posts from Contentful:", error)
+    return []
+  }
+}
+
 /* ---------------------------
    BLOG LIST (por idioma)
 ---------------------------- */
