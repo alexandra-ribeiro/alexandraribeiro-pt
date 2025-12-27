@@ -1,13 +1,11 @@
 import { createClient } from "contentful"
 
-// Replace the getClient function with this updated version that uses the new credentials
 const getClient = () => {
-  // Use the provided Space ID and Access Token for the AV Blog space
   const space = "s6yvdch48olm"
   const accessToken = "-7DsC8TRmQ5Ig6drErJdGLk29G7UmAjwwbMFANITzUc"
 
   if (!space || !accessToken) {
-    console.warn("Missing Contentful environment variables. Using fallback data.")
+    console.warn("Missing Contentful credentials")
     return null
   }
 
@@ -32,6 +30,8 @@ export interface BlogPost {
     description: string
     content?: any
     publishedDate?: string
+    language: string
+
     featuredImage?: {
       fields: {
         file: {
@@ -46,6 +46,7 @@ export interface BlogPost {
         title?: string
       }
     }
+
     author?: {
       fields: {
         name: string
@@ -58,112 +59,49 @@ export interface BlogPost {
         }
       }
     }
-    language: string
+
+    // 👉 Campos SEO futuros (opcional mas recomendado)
+    seoTitle?: string
+    seoDescription?: string
   }
 }
 
+/* Lista de posts por idioma */
 export async function getBlogPosts(lang: string): Promise<BlogPost[]> {
-  try {
-    const client = getClient()
+  const client = getClient()
+  if (!client) return []
 
-    if (!client) {
-      console.warn("Contentful client not available")
-      return []
-    }
+  const response = await client.getEntries({
+    content_type: "blogPost",
+    "fields.language": lang,
+    order: "-fields.publishedDate",
+  })
 
-    const response = await client.getEntries({
-      content_type: "blogPost",
-      "fields.language": lang,
-      order: "-fields.publishedDate",
-    })
-
-    return response.items as unknown as BlogPost[]
-  } catch (error) {
-    console.error("Error fetching blog posts from Contentful:", error)
-    return []
-  }
+  return response.items as unknown as BlogPost[]
 }
 
-export async function getAllBlogSlugs(): Promise<string[]> {
-  try {
-    const client = getClient()
+/* Post individual por slug + idioma */
+export async function getPostBySlug(
+  slug: string,
+  lang: string
+): Promise<BlogPost | null> {
+  const client = getClient()
+  if (!client) return null
 
-    if (!client) {
-      console.warn("Contentful client not available")
-      return []
-    }
+  const response = await client.getEntries({
+    content_type: "blogPost",
+    "fields.slug": slug,
+    "fields.language": lang,
+    limit: 1,
+  })
 
-    const response = await client.getEntries({
-      content_type: "blogPost",
-      select: "fields.slug",
-      limit: 1000,
-    })
-
-    return response.items
-      .map((item: any) => item.fields.slug)
-      .filter(Boolean)
-  } catch (error) {
-    console.error("Error fetching blog slugs from Contentful:", error)
-    return []
-  }
+  return response.items?.[0]
+    ? (response.items[0] as unknown as BlogPost)
+    : null
 }
 
-
-export async function getRecentPosts(lang: string, limit = 3): Promise<BlogPost[]> {
-  try {
-    const client = getClient()
-
-    if (!client) {
-      console.warn("Contentful client not available")
-      return []
-    }
-
-    const response = await client.getEntries({
-      content_type: "blogPost",
-      "fields.language": lang,
-      order: "-fields.publishedDate",
-      limit,
-    })
-
-    return response.items as unknown as BlogPost[]
-  } catch (error) {
-    console.error("Error fetching recent blog posts from Contentful:", error)
-    return []
-  }
-}
-
-export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  try {
-    const client = getClient()
-
-    if (!client) {
-      console.warn("Contentful client not available")
-      return null
-    }
-
-    const response = await client.getEntries({
-      content_type: "blogPost",
-      "fields.slug": slug,
-      limit: 1,
-    })
-
-    if (!response.items || response.items.length === 0) {
-      return null
-    }
-
-    return response.items[0] as unknown as BlogPost
-  } catch (error) {
-    console.error("Error fetching blog post from Contentful:", error)
-    return null
-  }
-}
-
-export function getImageUrl(image: any): string {
-  if (!image || !image.fields || !image.fields.file || !image.fields.file.url) {
-    return "/placeholder.svg"
-  }
-
-  // Make sure the URL starts with https:
-  const url = image.fields.file.url
-  return url.startsWith("//") ? `https:${url}` : url.startsWith("http") ? url : `https:${url}`
-}
+/* Todos os slugs (para sitemap) */
+export async function getAllBlogSlugs(): Promise<
+  { slug: string; language: string; updatedAt: string }[]
+> {
+  const client = ge
