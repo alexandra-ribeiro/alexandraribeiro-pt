@@ -61,7 +61,7 @@ export default async function BlogTagPage({
   params: { lang: string; tag: string }
 }) {
   const dict = await getDictionary(params.lang)
-
+const tagSeo = await getTagSeo(params.tag, lang)
 
   const tagId = params.tag
   const tagLabel = decodeURIComponent(params.tag)
@@ -115,78 +115,106 @@ export default async function BlogTagPage({
 }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <SiteHeader dict={dict} />
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-/>
-      <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }}
-/>
-        <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
-/>
+   <main className="min-h-screen bg-gray-50">
+  <SiteHeader dict={dict} />
 
-      <div className="container py-16 md:py-24 max-w-5xl mx-auto">
-        {/* HEADER */}
-        <header className="mb-12">
-          <h1 className="text-4xl font-bold mb-4">
-            {params.lang === "pt"
-              ? `Artigos sobre ${tagLabel}`
-              : `Articles about ${tagLabel}`}
-          </h1>
-         
-        </header>
+  {/* Schema.org */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+  />
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }}
+  />
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+  />
 
-        {/* LISTA DE ARTIGOS */}
-        <section className="grid gap-10">
-          {posts.map((post: BlogPost) => (
-            <article
-              key={post.sys.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden"
+  <div className="container py-16 md:py-24 max-w-5xl mx-auto">
+    {/* HEADER */}
+    <header className="mb-12">
+      <h1 className="text-4xl font-bold mb-4">
+        {params.lang === "pt"
+          ? `Artigos sobre ${tagLabel}`
+          : `Articles about ${tagLabel}`}
+      </h1>
+
+      {/* TEXTO SEO INTRO (importante) */}
+      {tagSeo?.fields?.introText ? (
+        <div
+          className="prose prose-lg text-gray-700"
+          dangerouslySetInnerHTML={{
+            __html: renderRichText(tagSeo.fields.introText),
+          }}
+        />
+      ) : (
+        <p className="text-lg text-gray-600">
+          {params.lang === "pt"
+            ? `Aqui encontras artigos práticos e guias sobre ${tagLabel}, pensados para empreendedores e freelancers em Portugal.`
+            : `Here you'll find practical articles and guides about ${tagLabel}.`}
+        </p>
+      )}
+    </header>
+
+    {/* LISTA DE ARTIGOS */}
+    <section className="grid gap-10">
+      {posts.map((post: BlogPost) => (
+        <article
+          key={post.sys.id}
+          className="bg-white rounded-xl shadow-md overflow-hidden"
+        >
+          {post.fields.featuredImage && (
+            <div className="relative h-56 w-full">
+              <Image
+                src={getImageUrl(post.fields.featuredImage)}
+                alt={post.fields.title}
+                fill
+                className="object-cover"
+                unoptimized
+              />
+            </div>
+          )}
+
+          <div className="p-6">
+            <h2 className="text-2xl font-bold mb-2">
+              <Link
+                href={`/${params.lang}/blog/${post.fields.slug}`}
+                className="hover:text-accent"
+              >
+                {post.fields.title}
+              </Link>
+            </h2>
+
+            <p className="text-gray-600 mb-4">
+              {post.fields.description}
+            </p>
+
+            <Link
+              href={`/${params.lang}/blog/${post.fields.slug}`}
+              className="text-primary font-medium"
             >
-              {post.fields.featuredImage && (
-                <div className="relative h-56 w-full">
-                  <Image
-                    src={getImageUrl(post.fields.featuredImage)}
-                    alt={post.fields.title}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-              )}
+              {params.lang === "pt" ? "Ler artigo →" : "Read article →"}
+            </Link>
+          </div>
+        </article>
+      ))}
+    </section>
 
-              <div className="p-6">
-                <h2 className="text-2xl font-bold mb-2">
-                  <Link
-                    href={`/${params.lang}/blog/${post.fields.slug}`}
-                    className="hover:text-accent"
-                  >
-                    {post.fields.title}
-                  </Link>
-                </h2>
-
-                <p className="text-gray-600 mb-4">
-                  {post.fields.description}
-                </p>
-
-                <Link
-                  href={`/${params.lang}/blog/${post.fields.slug}`}
-                  className="text-primary font-medium"
-                >
-                  {params.lang === "pt" ? "Ler artigo →" : "Read article →"}
-                </Link>
-              </div>
-            </article>
-          ))}
-        </section>
+    {/* TEXTO SEO FINAL (opcional mas muito bom) */}
+    {tagSeo?.fields?.bottomText && (
+      <div className="prose prose-lg mt-16">
+        <div
+          dangerouslySetInnerHTML={{
+            __html: renderRichText(tagSeo.fields.bottomText),
+          }}
+        />
       </div>
+    )}
+  </div>
 
-      <Footer dict={dict.footer} />
-    </main>
+  <Footer dict={dict.footer} />
+</main>
   )
 }
