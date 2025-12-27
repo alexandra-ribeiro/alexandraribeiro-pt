@@ -143,12 +143,11 @@ const tagSeo = await getTagSeo(params.tag, lang)
 
       {/* TEXTO SEO INTRO (importante) */}
       {tagSeo?.fields?.introText ? (
-        <div
-          className="prose prose-lg text-gray-700"
-          dangerouslySetInnerHTML={{
-            __html: renderRichText(tagSeo.fields.introText),
-          }}
-        />
+       
+          <p className="text-lg text-gray-600">
+  {tagSeo.fields.introText}
+</p>
+       
       ) : (
         <p className="text-lg text-gray-600">
           {params.lang === "pt"
@@ -205,11 +204,9 @@ const tagSeo = await getTagSeo(params.tag, lang)
     {/* TEXTO SEO FINAL (opcional mas muito bom) */}
     {tagSeo?.fields?.bottomText && (
       <div className="prose prose-lg mt-16">
-        <div
-          dangerouslySetInnerHTML={{
-            __html: renderRichText(tagSeo.fields.bottomText),
-          }}
-        />
+        <p className="text-gray-700">
+  {tagSeo.fields.bottomText}
+</p>
       </div>
     )}
   </div>
