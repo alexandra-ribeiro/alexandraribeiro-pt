@@ -18,6 +18,38 @@ import Footer from "@/components/footer"
 
 const BASE_URL = "https://www.alexandraribeiro.pt"
 
+export async function generateMetadata({
+  params,
+}: {
+  params: { lang: string; tag: string }
+}): Promise<Metadata> {
+  const lang = params.lang === "en" ? "en" : "pt"
+  const baseUrl = "https://www.alexandraribeiro.pt"
+
+  const tagSeo = await getTagSeo(params.tag, lang)
+
+  if (!tagSeo) {
+    return {
+      title:
+        lang === "pt"
+          ? `Artigos sobre ${params.tag} | Alexandra Ribeiro`
+          : `Articles about ${params.tag} | Alexandra Ribeiro`,
+      description:
+        lang === "pt"
+          ? `Artigos e guias práticos sobre ${params.tag}.`
+          : `Articles and practical guides about ${params.tag}.`,
+    }
+  }
+
+  return {
+    title: tagSeo.fields.seoTitle,
+    description: tagSeo.fields.seoDescription,
+    alternates: {
+      canonical: `${baseUrl}/${params.lang}/blog/tag/${params.tag}`,
+    },
+  }
+}
+
 export default async function BlogTagPage({
   params,
 }: {
