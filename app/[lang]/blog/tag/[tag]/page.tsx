@@ -1,9 +1,22 @@
+
+import Script from "next/script"
+import Link from "next/link"
+import Image from "next/image"
+import { notFound } from "next/navigation"
+
+import { getDictionary } from "@/lib/i18n"
+
 import {
   getPostsByTag,
   getTagSeo,
   getImageUrl,
   type BlogPost,
 } from "@/lib/contentful"
+
+import SiteHeader from "@/components/site-header"
+import Footer from "@/components/footer"
+
+
 
 export default async function BlogTagPage({
   params,
