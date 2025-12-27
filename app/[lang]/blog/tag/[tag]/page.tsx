@@ -1,5 +1,5 @@
 import Script from "next/script"
-import { getDictionary } from "@/lib/dictionaries"
+import { getDictionary } from "../../../../lib/dictionaries"
 
 export default async function BlogTagPage({
   params,
