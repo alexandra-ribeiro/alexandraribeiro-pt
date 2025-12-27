@@ -135,6 +135,31 @@ function renderRichText(content: any): string {
           return `<blockquote class="border-l-4 pl-4 italic my-6">${processTextContent(
             node.content[0].content
           )}</blockquote>`
+case "embedded-asset-block": {
+  const file = node.data?.target?.fields?.file
+  const title = node.data?.target?.fields?.title || ""
+
+  if (!file?.url) return ""
+
+  const imageUrl = file.url.startsWith("//")
+    ? `https:${file.url}`
+    : file.url
+
+  return `
+    <figure class="my-8">
+      <img
+        src="${imageUrl}"
+        alt="${title}"
+        class="rounded-lg shadow-md mx-auto"
+      />
+      ${
+        title
+          ? `<figcaption class="text-sm text-gray-500 text-center mt-2">${title}</figcaption>`
+          : ""
+      }
+    </figure>
+  `
+}
 
         default:
           return ""
