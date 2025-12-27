@@ -69,7 +69,7 @@ export default async function BlogTagPage({
 
   if (!posts.length) notFound()
 
-  const breadcrumbSchema = {
+ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
@@ -77,13 +77,13 @@ export default async function BlogTagPage({
       "@type": "ListItem",
       position: 1,
       name: "Blog",
-      item: `https://www.alexandraribeiro.pt/${params.lang}/blog`,
+      item: `${BASE_URL}/${params.lang}/blog`,
     },
     {
       "@type": "ListItem",
       position: 2,
-      name: tagName,
-      item: `https://www.alexandraribeiro.pt/${params.lang}/blog/tag/${params.tag}`,
+      name: tagLabel,
+      item: `${BASE_URL}/${params.lang}/blog/tag/${params.tag}`,
     },
   ],
 }
@@ -93,13 +93,13 @@ export default async function BlogTagPage({
   "@type": "CollectionPage",
   name:
     params.lang === "pt"
-      ? `Artigos sobre ${tagName}`
-      : `Articles about ${tagName}`,
+      ? `Artigos sobre ${tagLabel}`
+      : `Articles about ${tagLabel}`,
   description:
     params.lang === "pt"
-      ? `Coleção de artigos e guias sobre ${tagName}.`
-      : `A collection of articles and guides about ${tagName}.`,
-  url: `https://www.alexandraribeiro.pt/${params.lang}/blog/tag/${params.tag}`,
+      ? `Coleção de artigos e guias sobre ${tagLabel}.`
+      : `A collection of articles and guides about ${tagLabel}.`,
+  url: `${BASE_URL}/${params.lang}/blog/tag/${params.tag}`,
 }
 
   const itemListSchema = {
