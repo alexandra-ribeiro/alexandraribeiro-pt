@@ -22,7 +22,7 @@ export async function generateMetadata({
   return {
     title: "Alexandra Ribeiro | Consultora Digital e Assistente Virtual Técnica em Portugal",
     description:
-      "Digital consulting and simplified systems implementation for entrepreneurs and online stores",
+      "Consultoria digital e implementação de sistemas simples para empreendedores e negócios online.",
     alternates: {
       canonical: `${baseUrl}/${lang}`,
       languages: {
