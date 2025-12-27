@@ -62,7 +62,6 @@ export default async function BlogTagPage({
 }) {
   const dict = await getDictionary(params.lang)
 
-  const tagSeo = await getTagSeo(tagId, params.lang)
 
   const tagId = params.tag
   const tagLabel = decodeURIComponent(params.tag)
