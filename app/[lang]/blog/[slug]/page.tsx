@@ -211,11 +211,49 @@ export default async function BlogArticlePage({
   if (!post) notFound()
 
   const isPortuguese = params.lang === "pt"
+  const BASE_URL = "https://www.alexandraribeiro.pt"
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.fields.seoTitle || post.fields.title,
+    description:
+      post.fields.seoDescription || post.fields.description || "",
+    image: post.fields.featuredImage
+      ? [getImageUrl(post.fields.featuredImage)]
+      : undefined,
+    datePublished: post.fields.publishedDate,
+    dateModified: post.sys?.updatedAt || post.fields.publishedDate,
+    author: {
+      "@type": "Person",
+      name: post.fields.author?.fields?.name || "Alexandra Ribeiro",
+      url: `${BASE_URL}/about`,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Alexandra Ribeiro",
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/images/av-20favicon.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`,
+    },
+  }
 
   return (
     <main className="min-h-screen bg-gray-50">
       <SiteHeader dict={dict} />
 
+      {/* ✅ Schema.org Article */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema),
+        }}
+      />
 
       <div className="container py-16 md:py-24">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-4 gap-8">
@@ -292,13 +330,25 @@ export default async function BlogArticlePage({
               <div className="text-sm text-gray-700 space-y-3">
                 {isPortuguese ? (
                   <>
-                    <p>Sou Alexandra Ribeiro, consultora digital com +20 anos de experiência.</p>
-                    <p>No blog partilho dicas práticas para empreendedores em Portugal.</p>
+                    <p>
+                      Sou Alexandra Ribeiro, consultora digital com +20 anos de
+                      experiência.
+                    </p>
+                    <p>
+                      No blog partilho dicas práticas para empreendedores em
+                      Portugal.
+                    </p>
                   </>
                 ) : (
                   <>
-                    <p>I'm Alexandra Ribeiro, a digital consultant with 20+ years of experience.</p>
-                    <p>I help entrepreneurs build their digital presence with confidence.</p>
+                    <p>
+                      I'm Alexandra Ribeiro, a digital consultant with 20+ years
+                      of experience.
+                    </p>
+                    <p>
+                      I help entrepreneurs build their digital presence with
+                      confidence.
+                    </p>
                   </>
                 )}
               </div>
@@ -308,7 +358,10 @@ export default async function BlogArticlePage({
                   href={`/${params.lang}/about`}
                   className="text-primary text-sm font-medium"
                 >
-                  {isPortuguese ? "Saber mais sobre mim" : "Learn more about me"} →
+                  {isPortuguese
+                    ? "Saber mais sobre mim"
+                    : "Learn more about me"}{" "}
+                  →
                 </Link>
               </div>
             </div>
