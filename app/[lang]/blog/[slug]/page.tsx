@@ -240,13 +240,20 @@ export default async function BlogArticlePage({
     <main className="min-h-screen bg-gray-50">
       <SiteHeader dict={dict} />
 
-      {/* Schema.org */}
+      {/* Schema.org - Article */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(articleSchema),
         }}
       />
+      {/* Schema.org – Breadcrumbs */}
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(breadcrumbSchema),
+  }}
+/>
 
       <div className="container py-16 md:py-24">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-4 gap-8">
