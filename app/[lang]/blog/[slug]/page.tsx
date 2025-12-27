@@ -29,6 +29,35 @@ export async function generateMetadata({
     }
   }
 
+   const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.fields.seoTitle || post.fields.title,
+  description: post.fields.seoDescription || post.fields.description,
+  image: post.fields.featuredImage
+    ? [getImageUrl(post.fields.featuredImage)]
+    : undefined,
+  datePublished: post.fields.publishedDate,
+  dateModified: post.sys?.updatedAt || post.fields.publishedDate,
+  author: {
+    "@type": "Person",
+    name: post.fields.author?.fields?.name || "Alexandra Ribeiro",
+    url: "https://www.alexandraribeiro.pt/about",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Alexandra Ribeiro",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://www.alexandraribeiro.pt/images/av-20favicon.png",
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`,
+  },
+}
+
   const title = post.fields.seoTitle || post.fields.title
   const description =
     post.fields.seoDescription || post.fields.description || ""
