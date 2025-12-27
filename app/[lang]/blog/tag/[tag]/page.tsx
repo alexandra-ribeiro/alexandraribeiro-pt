@@ -16,7 +16,7 @@ import {
 import SiteHeader from "@/components/site-header"
 import Footer from "@/components/footer"
 
-
+const BASE_URL = "https://www.alexandraribeiro.pt"
 
 export default async function BlogTagPage({
   params,
