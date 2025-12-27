@@ -1,5 +1,9 @@
-import Script from "next/script"
-import { getDictionary } from "@/lib/i18n"
+import {
+  getPostsByTag,
+  getTagSeo,
+  getImageUrl,
+  type BlogPost,
+} from "@/lib/contentful"
 
 export default async function BlogTagPage({
   params,
