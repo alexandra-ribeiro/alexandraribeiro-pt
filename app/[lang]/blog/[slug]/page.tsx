@@ -62,13 +62,7 @@ export async function generateMetadata({
   const description =
     post.fields.seoDescription || post.fields.description || ""
 
-   const tagIds = post.metadata.tags.map(tag => tag.sys.id)
-
-const relatedPosts = await getRelatedPostsByTags(
-  tagIds,
-  params.lang,
-  post.fields.slug
-)
+  
 
   const canonicalUrl = `${BASE_URL}/${lang}/blog/${post.fields.slug}`
   const imageUrl = post.fields.featuredImage
