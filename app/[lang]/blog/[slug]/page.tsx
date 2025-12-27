@@ -334,6 +334,21 @@ export default async function BlogArticlePage({
                 <p className="text-xl text-gray-600">
                   {post.fields.description}
                 </p>
+{/* TAGS */}
+{post.metadata?.tags?.length > 0 && (
+  <div className="mt-6 flex flex-wrap gap-2">
+    {post.metadata.tags.map((tag) => (
+      <Link
+        key={tag.sys.id}
+        href={`/${params.lang}/blog/tag/${tag.sys.id}`}
+        className="text-sm bg-gray-100 px-3 py-1 rounded-full hover:bg-accent hover:text-white transition"
+      >
+        #{tag.name}
+      </Link>
+    ))}
+  </div>
+)}
+                
               </div>
 
               <div className="prose prose-lg max-w-none">
