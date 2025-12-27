@@ -1,5 +1,8 @@
 import { createClient } from "contentful"
 
+/* ---------------------------
+   CLIENT
+---------------------------- */
 const getClient = () => {
   const space = "s6yvdch48olm"
   const accessToken = "-7DsC8TRmQ5Ig6drErJdGLk29G7UmAjwwbMFANITzUc"
@@ -20,9 +23,14 @@ const getClient = () => {
   }
 }
 
+/* ---------------------------
+   TYPES
+---------------------------- */
 export interface BlogPost {
   sys: {
     id: string
+    updatedAt: string
+    publishedAt?: string
   }
   fields: {
     title: string
@@ -60,13 +68,14 @@ export interface BlogPost {
       }
     }
 
- 
     seoTitle?: string
     seoDescription?: string
   }
 }
 
-/* Lista de posts por idioma */
+/* ---------------------------
+   BLOG LIST (por idioma)
+---------------------------- */
 export async function getBlogPosts(lang: string): Promise<BlogPost[]> {
   const client = getClient()
   if (!client) return []
@@ -80,7 +89,9 @@ export async function getBlogPosts(lang: string): Promise<BlogPost[]> {
   return response.items as unknown as BlogPost[]
 }
 
-/* Post individual por slug + idioma */
+/* ---------------------------
+   BLOG POST (slug + idioma)
+---------------------------- */
 export async function getPostBySlug(
   slug: string,
   lang: string
@@ -100,31 +111,30 @@ export async function getPostBySlug(
     : null
 }
 
-/* Todos os slugs (para sitemap) */
-export async function getAllBlogSlugs(): Promise<
-  { slug: string; language: string; updatedAt: string }[]
-> {
+/* ---------------------------
+   TODOS OS POSTS (SITEMAP)
+---------------------------- */
+export async function getAllBlogPosts(): Promise<BlogPost[]> {
   const client = getClient()
   if (!client) return []
 
   const response = await client.getEntries({
     content_type: "blogPost",
-    select: "fields.slug,fields.language,sys.updatedAt",
+    select: "fields.slug,fields.publishedDate,sys.updatedAt",
     limit: 1000,
   })
 
-  return response.items.map((item: any) => ({
-    slug: item.fields.slug,
-    language: item.fields.language,
-    updatedAt: item.sys.updatedAt,
-  }))
+  return response.items as unknown as BlogPost[]
 }
 
-/* Utilitário seguro para imagens */
+/* ---------------------------
+   IMAGE HELPER
+---------------------------- */
 export function getImageUrl(image: any): string {
   if (!image?.fields?.file?.url) return "/placeholder.svg"
 
   const url = image.fields.file.url
+
   return url.startsWith("//")
     ? `https:${url}`
     : url.startsWith("http")
