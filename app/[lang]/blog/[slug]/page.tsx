@@ -282,7 +282,9 @@ export default async function BlogArticlePage({
 
       <div className="container py-16 md:py-24">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-4 gap-8">
+          
           {/* ARTICLE */}
+          
           <article className="lg:col-span-3">
         <nav aria-label="Breadcrumb" className="mb-6 text-sm text-gray-500">
   <ol className="flex flex-wrap items-center gap-2">
@@ -398,7 +400,47 @@ export default async function BlogArticlePage({
           </article>
 
           {/* SIDEBAR */}
-          {/* (inalterado) */}
+          <aside className="lg:col-span-1">
+            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-8">
+              <div className="text-center mb-6">
+                <div className="relative w-24 h-24 mx-auto mb-4">
+                  <Image
+                    src="/images/alexandra-photo.jpeg"
+                    alt="Alexandra Ribeiro"
+                    fill
+                    className="rounded-full object-cover"
+                    unoptimized
+                  />
+                </div>
+                <h3 className="text-xl font-bold">
+                  {isPortuguese ? "Quem sou eu?" : "Who am I?"}
+                </h3>
+              </div>
+
+              <div className="text-sm text-gray-700 space-y-3">
+                {isPortuguese ? (
+                  <>
+                    <p>Sou Alexandra Ribeiro, consultora digital com +20 anos de experiência.</p>
+                    <p>No blog partilho dicas práticas para empreendedores em Portugal.</p>
+                  </>
+                ) : (
+                  <>
+                    <p>I'm Alexandra Ribeiro, a digital consultant with 20+ years of experience.</p>
+                    <p>I help entrepreneurs build their digital presence with confidence.</p>
+                  </>
+                )}
+              </div>
+
+              <div className="mt-6 pt-4 border-t">
+                <Link
+                  href={`/${params.lang}/about`}
+                  className="text-primary text-sm font-medium"
+                >
+                  {isPortuguese ? "Saber mais sobre mim" : "Learn more about me"} →
+                </Link>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
 
