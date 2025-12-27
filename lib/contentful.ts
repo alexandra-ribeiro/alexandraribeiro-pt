@@ -71,6 +71,13 @@ export interface BlogPost {
     seoTitle?: string
     seoDescription?: string
   }
+   metadata: {
+    tags: {
+      sys: {
+        id: string
+      }
+    }[]
+  }
 }
 
 export async function getAllBlogSlugs(): Promise<string[]> {
