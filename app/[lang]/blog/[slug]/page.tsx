@@ -1,7 +1,7 @@
 import { getDictionary } from "@/lib/dictionaries"
 import SiteHeader from "@/components/site-header"
 import Footer from "@/components/footer"
-import { getBlogPosts, type BlogPost, getImageUrl } from "@/lib/contentful"
+import { getBlogPosts, getImageUrl } from "@/lib/contentful"
 import Image from "next/image"
 import Link from "next/link"
 import { formatDate } from "@/lib/utils"
@@ -25,15 +25,11 @@ export async function generateMetadata({
   const posts = await getBlogPosts(lang)
   const post = posts.find((p) => p.fields.slug === params.slug)
 
-  if (!post) {
-    return {}
-  }
+  if (!post) return {}
 
   const title = post.fields.seoTitle || post.fields.title
   const description =
-    post.fields.seoDescription ||
-    post.fields.description ||
-    ""
+    post.fields.seoDescription || post.fields.description || ""
 
   const canonicalUrl = `${BASE_URL}/${lang}/blog/${post.fields.slug}`
 
@@ -93,9 +89,7 @@ export default async function BlogPostPage({
   const posts = await getBlogPosts(params.lang)
   const post = posts.find((p) => p.fields.slug === params.slug)
 
-  if (!post) {
-    notFound()
-  }
+  if (!post) notFound()
 
   return (
     <main className="min-h-screen bg-white">
@@ -117,79 +111,44 @@ export default async function BlogPostPage({
         )}
 
         {/* Meta */}
-        <p className="text-accent text-sm mb-4">
-          {post.fields.publishedDate
-            ? formatDate(post.fields.publishedDate, params.lang)
-            : ""}
-        </p>
+        <div className="mb-12">
+          <div className="flex items-center text-sm text-accent mb-4">
+            {post.fields.publishedDate && (
+              <span className="mr-4">
+                {formatDate(post.fields.publishedDate, params.lang)}
+              </span>
+            )}
 
-        
-{/* Content */}
-        {/* Article Header */}
-                <div className="mb-12">
-                  <div className="flex items-center text-sm text-accent mb-4">
-                    <span className="mr-4">
-                      {post.fields.publishedDate ? formatDate(post.fields.publishedDate, params.lang) : ""}
-                    </span>
-                    {post.fields.author && post.fields.author.fields && (
-                      <span className="flex items-center">
-                        {post.fields.author.fields.picture && (
-                          <Image
-                            src={getImageUrl(post.fields.author.fields.picture) || "/placeholder.svg"}
-                            alt={post.fields.author.fields.name}
-                            width={24}
-                            height={24}
-                            className="rounded-full mr-2"
-                            unoptimized
-                          />
-                        )}
-                        {post.fields.author.fields.name}
-                      </span>
-                    )}
-                  </div>
-                  <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">{post.fields.title}</h1>
-                  <p className="text-xl text-gray-600">{post.fields.description}</p>
-                </div>
-
-                {/* Article Content - Rich Text */}
-                <div className="prose prose-lg max-w-none">
-                  {post.fields.content ? (
-                    <div
-                      className="text-gray-700 leading-relaxed"
-                      dangerouslySetInnerHTML={{
-                        __html: renderRichText(post.fields.content),
-                      }}
-                    />
-                  ) : (
-                    <p className="text-gray-500">
-                      {params.lang === "en" ? "No content available." : "Conteúdo não disponível."}
-                    </p>
-                  )}
-                  {post.fields.author.fields.name}
-                </span>
-              )}
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">{post.fields.title}</h1>
-            <p className="text-xl text-gray-600">{post.fields.description}</p>
+            {post.fields.author?.fields?.name && (
+              <span className="flex items-center">
+                {post.fields.author.fields.picture && (
+                  <Image
+                    src={getImageUrl(post.fields.author.fields.picture)}
+                    alt={post.fields.author.fields.name}
+                    width={24}
+                    height={24}
+                    className="rounded-full mr-2"
+                    unoptimized
+                  />
+                )}
+                {post.fields.author.fields.name}
+              </span>
+            )}
           </div>
-                </div>
-       
-        )}
 
-        
+          <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+            {post.fields.title}
+          </h1>
 
-        {/* Back to blog */}
-        <div className="mt-16">
-          <Link
-            href={`/${params.lang}/blog`}
-            className="text-primary hover:text-accent transition-colors"
-          >
-            ← {params.lang === "en" ? "Back to blog" : "Voltar ao blog"}
-          </Link>
+          <p className="text-xl text-gray-600">
+            {post.fields.description}
+          </p>
         </div>
-      </article>
 
-      <Footer dict={dict.footer} />
-    </main>
-  )
-}
+        {/* Article Content */}
+        <div className="prose prose-lg max-w-none">
+          {post.fields.content
+            ? documentToReactComponents(post.fields.content)
+            : (
+              <p className="text-gray-500">
+                {params.lang === "en"
