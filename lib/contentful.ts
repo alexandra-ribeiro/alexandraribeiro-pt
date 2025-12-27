@@ -166,6 +166,24 @@ export async function getPostBySlug(
     : null
 }
 
+/* Posts relacionados por TAG (Contentful native tags) */
+export async function getPostsByTag(
+  tagId: string,
+  lang: string
+): Promise<BlogPost[]> {
+  const client = getClient()
+  if (!client) return []
+
+  const response = await client.getEntries({
+    content_type: "blogPost",
+    "metadata.tags.sys.id[in]": tagId,
+    "fields.language": lang,
+    order: "-fields.publishedDate",
+  })
+
+  return response.items as unknown as BlogPost[]
+}
+
 /* ---------------------------
    TODOS OS POSTS (SITEMAP)
 ---------------------------- */
