@@ -137,8 +137,11 @@ export default async function BlogPostPage({
 
         {/* Content */}
         <div className="prose prose-lg max-w-none">
-          {/* aqui assumes que já estás a renderizar o body (Rich Text / Markdown)
-              como fazias antes */}
+          {post.fields.content && (
+  <article className="prose prose-lg max-w-none mt-8">
+    {documentToReactComponents(post.fields.content)}
+  </article>
+)}
         </div>
 
         {/* Back to blog */}
