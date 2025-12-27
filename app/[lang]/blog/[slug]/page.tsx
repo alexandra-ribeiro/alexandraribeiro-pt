@@ -343,7 +343,7 @@ export default async function BlogArticlePage({
         href={`/${params.lang}/blog/tag/${tag.sys.id}`}
         className="text-sm bg-gray-100 px-3 py-1 rounded-full hover:bg-accent hover:text-white transition"
       >
-        #{tag.name}
+        #{tag.sys.id.replace(/-/g, " ")}
       </Link>
     ))}
   </div>
