@@ -7,7 +7,7 @@ import Link from "next/link"
 import { formatDate } from "@/lib/utils"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 const BASE_URL = "https://www.alexandraribeiro.pt"
 
