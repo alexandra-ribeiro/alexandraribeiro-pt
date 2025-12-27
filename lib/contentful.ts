@@ -60,7 +60,7 @@ export interface BlogPost {
       }
     }
 
-    // 👉 Campos SEO futuros (opcional mas recomendado)
+
     seoTitle?: string
     seoDescription?: string
   }
