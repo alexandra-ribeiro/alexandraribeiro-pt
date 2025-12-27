@@ -8,7 +8,6 @@ import { formatDate } from "@/lib/utils"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 
 const BASE_URL = "https://www.alexandraribeiro.pt"
 
@@ -25,7 +24,12 @@ export async function generateMetadata({
   const posts = await getBlogPosts(lang)
   const post = posts.find((p) => p.fields.slug === params.slug)
 
-  if (!post) return {}
+  if (!post) {
+    return {
+      title: "Artigo não encontrado | Alexandra Ribeiro",
+      description: "",
+    }
+  }
 
   const title = post.fields.seoTitle || post.fields.title
   const description =
@@ -89,7 +93,9 @@ export default async function BlogPostPage({
   const posts = await getBlogPosts(params.lang)
   const post = posts.find((p) => p.fields.slug === params.slug)
 
-  if (!post) notFound()
+  if (!post) {
+    notFound()
+  }
 
   return (
     <main className="min-h-screen bg-white">
@@ -110,7 +116,7 @@ export default async function BlogPostPage({
           </div>
         )}
 
-        {/* Meta */}
+        {/* Meta + Header */}
         <div className="mb-12">
           <div className="flex items-center text-sm text-accent mb-4">
             {post.fields.publishedDate && (
@@ -147,8 +153,29 @@ export default async function BlogPostPage({
 
         {/* Article Content */}
         <div className="prose prose-lg max-w-none">
-          {post.fields.content
-            ? documentToReactComponents(post.fields.content)
-            : (
-              <p className="text-gray-500">
-                {params.lang === "en"
+          {post.fields.content ? (
+            documentToReactComponents(post.fields.content)
+          ) : (
+            <p className="text-gray-500">
+              {params.lang === "en"
+                ? "No content available."
+                : "Conteúdo não disponível."}
+            </p>
+          )}
+        </div>
+
+        {/* Back to blog */}
+        <div className="mt-16">
+          <Link
+            href={`/${params.lang}/blog`}
+            className="text-primary hover:text-accent transition-colors"
+          >
+            ← {params.lang === "en" ? "Back to blog" : "Voltar ao blog"}
+          </Link>
+        </div>
+      </article>
+
+      <Footer dict={dict.footer} />
+    </main>
+  )
+}
