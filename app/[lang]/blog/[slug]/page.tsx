@@ -123,19 +123,8 @@ export default async function BlogPostPage({
             : ""}
         </p>
 
-        {/* Title */}
-        <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-          {post.fields.title}
-        </h1>
-
-        {/* Description / Intro */}
-        {post.fields.description && (
-          <p className="text-lg text-gray-600 mb-10">
-            {post.fields.description}
-          </p>
-        )}
-
-        {/* Content */}
+        
+{/* Content */}
         {/* Article Header */}
                 <div className="mb-12">
                   <div className="flex items-center text-sm text-accent mb-4">
@@ -184,6 +173,10 @@ export default async function BlogPostPage({
             <p className="text-xl text-gray-600">{post.fields.description}</p>
           </div>
                 </div>
+       
+        )}
+
+        
 
         {/* Back to blog */}
         <div className="mt-16">
