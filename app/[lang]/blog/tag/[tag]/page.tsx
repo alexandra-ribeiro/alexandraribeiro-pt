@@ -62,6 +62,8 @@ export default async function BlogTagPage({
 }) {
   const dict = await getDictionary(params.lang)
 
+  const tagSeo = await getTagSeo(tagId, params.lang)
+
   const tagId = params.tag
   const tagLabel = decodeURIComponent(params.tag)
 
@@ -137,11 +139,20 @@ export default async function BlogTagPage({
               ? `Artigos sobre ${tagLabel}`
               : `Articles about ${tagLabel}`}
           </h1>
-          <p className="text-lg text-gray-600">
-            {params.lang === "pt"
-              ? `Conteúdos práticos relacionados com ${tagLabel}.`
-              : `Practical content related to ${tagLabel}.`}
-          </p>
+          {tagSeo?.fields?.introText ? (
+  <div
+    className="prose prose-lg mb-12"
+    dangerouslySetInnerHTML={{
+      __html: renderRichText(tagSeo.fields.introText),
+    }}
+  />
+) : (
+  <p className="text-lg text-gray-600 mb-12">
+    {params.lang === "pt"
+      ? `Nesta página encontras artigos práticos relacionados com ${tagLabel}, pensados para empreendedores e freelancers em Portugal.`
+      : `Here you'll find practical articles related to ${tagLabel}.`}
+  </p>
+)}
         </header>
 
         {/* LISTA DE ARTIGOS */}
