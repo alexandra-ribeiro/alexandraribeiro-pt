@@ -139,20 +139,7 @@ export default async function BlogTagPage({
               ? `Artigos sobre ${tagLabel}`
               : `Articles about ${tagLabel}`}
           </h1>
-          {tagSeo?.fields?.introText ? (
-  <div
-    className="prose prose-lg mb-12"
-    dangerouslySetInnerHTML={{
-      __html: renderRichText(tagSeo.fields.introText),
-    }}
-  />
-) : (
-  <p className="text-lg text-gray-600 mb-12">
-    {params.lang === "pt"
-      ? `Nesta página encontras artigos práticos relacionados com ${tagLabel}, pensados para empreendedores e freelancers em Portugal.`
-      : `Here you'll find practical articles related to ${tagLabel}.`}
-  </p>
-)}
+         
         </header>
 
         {/* LISTA DE ARTIGOS */}
