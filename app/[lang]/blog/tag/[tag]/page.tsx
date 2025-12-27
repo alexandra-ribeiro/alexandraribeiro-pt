@@ -88,12 +88,30 @@ export default async function BlogTagPage({
   ],
 }
 
+  const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name:
+    params.lang === "pt"
+      ? `Artigos sobre ${tagName}`
+      : `Articles about ${tagName}`,
+  description:
+    params.lang === "pt"
+      ? `Coleção de artigos e guias sobre ${tagName}.`
+      : `A collection of articles and guides about ${tagName}.`,
+  url: `https://www.alexandraribeiro.pt/${params.lang}/blog/tag/${params.tag}`,
+}
+
   return (
     <main className="min-h-screen bg-gray-50">
       <SiteHeader dict={dict} />
 <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+/>
+      <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }}
 />
 
       <div className="container py-16 md:py-24 max-w-5xl mx-auto">
