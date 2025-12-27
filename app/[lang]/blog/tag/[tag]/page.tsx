@@ -10,6 +10,7 @@ import Footer from "@/components/footer"
 import {
   getPostsByTag,
   getImageUrl,
+   getTagSeo,
   type BlogPost,
 } from "@/lib/contentful"
 
