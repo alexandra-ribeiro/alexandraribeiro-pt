@@ -28,13 +28,13 @@ export async function generateMetadata({
 
   const title =
     lang === "pt"
-      ? `${tagName} | Blog Alexandra Ribeiro`
-      : `${tagName} | Alexandra Ribeiro Blog`
+      ? `${tagName} – Artigos e guias práticos | Blog Alexandra Ribeiro`
+      : `${tagName} – Articles & practical guides | Alexandra Ribeiro Blog`
 
   const description =
     lang === "pt"
-      ? `Artigos sobre ${tagName} para empreendedores em Portugal.`
-      : `Articles about ${tagName} for digital entrepreneurs.`
+      ? `Artigos, guias e recursos sobre ${tagName} para empreendedores e negócios digitais em Portugal.`
+      : `Articles, guides and resources about ${tagName} for digital entrepreneurs.`
 
   const canonicalUrl = `${BASE_URL}/${lang}/blog/tag/${params.tag}`
 
@@ -69,9 +69,32 @@ export default async function BlogTagPage({
 
   if (!posts.length) notFound()
 
+  const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Blog",
+      item: `https://www.alexandraribeiro.pt/${params.lang}/blog`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: tagName,
+      item: `https://www.alexandraribeiro.pt/${params.lang}/blog/tag/${params.tag}`,
+    },
+  ],
+}
+
   return (
     <main className="min-h-screen bg-gray-50">
       <SiteHeader dict={dict} />
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+/>
 
       <div className="container py-16 md:py-24 max-w-5xl mx-auto">
         {/* HEADER */}
