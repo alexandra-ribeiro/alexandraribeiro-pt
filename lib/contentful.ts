@@ -196,3 +196,22 @@ export function getImageUrl(image: any): string {
     ? url
     : `https:${url}`
 }
+
+export async function getRelatedPostsByTags(
+  tagIds: string[],
+  lang: string,
+  excludeSlug: string
+): Promise<BlogPost[]> {
+  const client = getClient()
+  if (!client || tagIds.length === 0) return []
+
+  const response = await client.getEntries({
+    content_type: "blogPost",
+    "fields.language": lang,
+    "metadata.tags.sys.id[in]": tagIds.join(","),
+    "fields.slug[ne]": excludeSlug,
+    limit: 3,
+  })
+
+  return response.items as BlogPost[]
+}
