@@ -284,7 +284,25 @@ export default async function BlogArticlePage({
         <div className="max-w-7xl mx-auto grid lg:grid-cols-4 gap-8">
           {/* ARTICLE */}
           <article className="lg:col-span-3">
-        
+        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-gray-500">
+  <ol className="flex flex-wrap items-center gap-2">
+    <li>
+      <Link href={`/${params.lang}`} className="hover:text-primary">
+        {isPortuguese ? "Início" : "Home"}
+      </Link>
+    </li>
+    <li>/</li>
+    <li>
+      <Link href={`/${params.lang}/blog`} className="hover:text-primary">
+        Blog
+      </Link>
+    </li>
+    <li>/</li>
+    <li className="text-gray-700 font-medium truncate">
+      {post.fields.title}
+    </li>
+  </ol>
+</nav>
 
             <div className="max-w-4xl">
               {post.fields.featuredImage && (
