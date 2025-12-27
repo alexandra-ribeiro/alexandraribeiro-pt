@@ -203,6 +203,38 @@ export default async function BlogArticlePage({
         )
       : []
 
+  const primaryTag =
+  post.metadata?.tags?.[0]?.sys?.id || null
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Blog",
+      item: `${BASE_URL}/${params.lang}/blog`,
+    },
+    ...(primaryTag
+      ? [
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: primaryTag.replace(/-/g, " "),
+            item: `${BASE_URL}/${params.lang}/blog/tag/${primaryTag}`,
+          },
+        ]
+      : []),
+    {
+      "@type": "ListItem",
+      position: primaryTag ? 3 : 2,
+      name: post.fields.title,
+      item: `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`,
+    },
+  ],
+}
+
   /* -----------------------
      SCHEMA
   ----------------------- */
