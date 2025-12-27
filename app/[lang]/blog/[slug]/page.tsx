@@ -417,19 +417,36 @@ export default async function BlogArticlePage({
                 </h3>
               </div>
 
-              <div className="text-sm text-gray-700 space-y-3">
-                {isPortuguese ? (
-                  <>
-                    <p>Sou Alexandra Ribeiro, consultora digital com +20 anos de experiência.</p>
-                    <p>No blog partilho dicas práticas para empreendedores em Portugal.</p>
-                  </>
-                ) : (
-                  <>
-                    <p>I'm Alexandra Ribeiro, a digital consultant with 20+ years of experience.</p>
-                    <p>I help entrepreneurs build their digital presence with confidence.</p>
-                  </>
-                )}
-              </div>
+              <div className="text-sm text-gray-700 leading-relaxed space-y-3">
+                  {isPortuguese ? (
+                    <>
+                      <p>
+                        Olá 👋 Sou Alexandra Ribeiro, consultora digital com mais de 20 anos de experiência em
+                        tecnologia, Engenharia Informática e gestão de projetos. Hoje ajudo empreendedores e freelancers
+                        em Portugal a dar os primeiros passos no digital sem complicações técnicas.
+                      </p>
+                      <p>
+                        No meu blog encontras dicas práticas sobre domínios, websites, lojas online e automação.
+                        Acredito que todos podem criar uma presença digital profissional — mesmo sem conhecimentos
+                        técnicos.
+                      </p>
+                      <p>👉 Se estás a começar e precisas de orientação simples, estás no sítio certo!</p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        Hello 👋 I'm Alexandra Ribeiro, a digital consultant with over 20 years of experience in
+                        technology, Computer Engineering and project management. Today I help entrepreneurs and
+                        freelancers in Portugal take their first steps in digital without technical complications.
+                      </p>
+                      <p>
+                        In my blog you'll find practical tips about domains, websites, online stores and automation. I
+                        believe everyone can create a professional digital presence — even without technical knowledge.
+                      </p>
+                      <p>👉 If you're starting out and need simple guidance, you're in the right place!</p>
+                    </>
+                  )}
+                </div>
 
               <div className="mt-6 pt-4 border-t">
                 <Link
