@@ -16,7 +16,6 @@ export async function generateMetadata({
   const lang = params.lang === "en" ? "en" : "pt"
 
   const baseUrl = "https://www.alexandraribeiro.pt"
-
   const titles = {
     pt: "Blog | Alexandra Ribeiro | Consultora Digital",
     en: "Blog | Alexandra Ribeiro | Digital Consultant",
