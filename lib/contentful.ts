@@ -235,6 +235,9 @@ export async function getRelatedPostsByTags(
 }
 
 export async function getTagSeo(tagId: string, lang: string) {
+  const client = getClient()
+  if (!client) return null
+
   const res = await client.getEntries({
     content_type: "blogTagSeo",
     "fields.tagId": tagId,
@@ -242,9 +245,5 @@ export async function getTagSeo(tagId: string, lang: string) {
     limit: 1,
   })
 
-  if (!res.items.length) {
-    return null
-  }
-
-  return res.items[0]
+  return res.items?.[0] ?? null
 }
