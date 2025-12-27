@@ -233,3 +233,14 @@ export async function getRelatedPostsByTags(
 
   return response.items as BlogPost[]
 }
+
+export async function getTagSeo(tagId: string, lang: string) {
+  const res = await client.getEntries({
+    content_type: "blogTagSeo",
+    "fields.tagId": tagId,
+    "fields.lang": lang,
+    limit: 1,
+  })
+
+  return res.items[0] || null
+}
