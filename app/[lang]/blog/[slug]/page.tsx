@@ -1,75 +1,83 @@
-import { Metadata } from "next"
 import { getPostBySlug, getImageUrl } from "@/lib/contentful"
-import { notFound } from "next/navigation"
+import Image from "next/image"
+import { formatDate } from "@/lib/utils"
 
-const BASE_URL = "https://www.alexandraribeiro.pt"
-
+export async function generateMetadata({ params }: { params: { slug: string; lang: string } }) {
+  try {
+    const post = await getPostBySlug(params.slug)
 export async function generateMetadata({
   params,
 }: {
   params: { lang: string; slug: string }
 }): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug, params.lang)
+  const lang = params.lang === "en" ? "en" : "pt"
+  const baseUrl = "https://www.alexandraribeiro.pt"
 
-  if (!post) return {}
+    if (!post) {
+      return {
+        title: "Article Not Found",
+        description: "The requested article could not be found.",
+      }
+    }
+  const post = await getPostBySlug(params.slug, lang)
 
-  const url = `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`
-  const imageUrl = getImageUrl(post.fields.featuredImage)
+    return {
+      title: `${post.fields.title} | Virtual Assistant Blog`,
+      description: post.fields.description,
+    }
+  } catch (error) {
+    console.error("Error generating metadata:", error)
+    return {
+      title: "Blog Article | Virtual Assistant",
+      description: "Read our latest blog article.",
+    }
+  if (!post) {
+    return {}
+  }
+
+  const title = post.fields.title
+  const description = post.fields.description
+  const imageUrl = post.fields.featuredImage
+    ? getImageUrl(post.fields.featuredImage)
+    : undefined
 
   return {
-    title: post.fields.seoTitle || post.fields.title,
-    description: post.fields.seoDescription || post.fields.description,
+    title,
+    description,
 
     alternates: {
-      canonical: url,
+      canonical: `${baseUrl}/${lang}/blog/${params.slug}`,
       languages: {
-        pt: `${BASE_URL}/pt/blog/${post.fields.slug}`,
-        en: `${BASE_URL}/en/blog/${post.fields.slug}`,
-        "x-default": `${BASE_URL}/pt/blog/${post.fields.slug}`,
+        pt: `${baseUrl}/pt/blog/${params.slug}`,
+        en: `${baseUrl}/en/blog/${params.slug}`,
+        "x-default": `${baseUrl}/pt/blog/${params.slug}`,
       },
     },
 
     openGraph: {
-      title: post.fields.seoTitle || post.fields.title,
-      description: post.fields.seoDescription || post.fields.description,
-      url,
-      siteName: "Alexandra Ribeiro",
-      locale: params.lang === "pt" ? "pt_PT" : "en_US",
       type: "article",
+      locale: lang === "pt" ? "pt_PT" : "en_US",
+      url: `${baseUrl}/${lang}/blog/${params.slug}`,
+      title,
+      description,
       images: imageUrl
         ? [
             {
               url: imageUrl,
               width: 1200,
               height: 630,
-              alt: post.fields.title,
+              alt: title,
             },
           ]
         : [],
+      publishedTime: post.fields.publishedDate,
     },
 
     twitter: {
       card: "summary_large_image",
-      title: post.fields.seoTitle || post.fields.title,
-      description: post.fields.seoDescription || post.fields.description,
+      title,
+      description,
       images: imageUrl ? [imageUrl] : [],
     },
   }
-}
-
-export default async function BlogPostPage({
-  params,
-}: {
-  params: { lang: string; slug: string }
-}) {
-  const post = await getPostBySlug(params.slug, params.lang)
-
-  if (!post) notFound()
-
-  /* resto do teu JSX mantém-se igual */
-  return (
-    <article>
-      {/* conteúdo existente */}
-    </article>
-  )
 }
