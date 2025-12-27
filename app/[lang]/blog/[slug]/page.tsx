@@ -268,30 +268,7 @@ const breadcrumbSchema = {
     },
   }
 
-  const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: isPortuguese ? "Início" : "Home",
-      item: `${BASE_URL}/${params.lang}`,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Blog",
-      item: `${BASE_URL}/${params.lang}/blog`,
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: post.fields.title,
-      item: `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`,
-    },
-  ],
-}
+ 
 
   return (
     <main className="min-h-screen bg-gray-50">
