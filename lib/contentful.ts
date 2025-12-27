@@ -60,7 +60,7 @@ export interface BlogPost {
       }
     }
 
-
+ 
     seoTitle?: string
     seoDescription?: string
   }
@@ -104,4 +104,30 @@ export async function getPostBySlug(
 export async function getAllBlogSlugs(): Promise<
   { slug: string; language: string; updatedAt: string }[]
 > {
-  const client = ge
+  const client = getClient()
+  if (!client) return []
+
+  const response = await client.getEntries({
+    content_type: "blogPost",
+    select: "fields.slug,fields.language,sys.updatedAt",
+    limit: 1000,
+  })
+
+  return response.items.map((item: any) => ({
+    slug: item.fields.slug,
+    language: item.fields.language,
+    updatedAt: item.sys.updatedAt,
+  }))
+}
+
+/* Utilitário seguro para imagens */
+export function getImageUrl(image: any): string {
+  if (!image?.fields?.file?.url) return "/placeholder.svg"
+
+  const url = image.fields.file.url
+  return url.startsWith("//")
+    ? `https:${url}`
+    : url.startsWith("http")
+    ? url
+    : `https:${url}`
+}
