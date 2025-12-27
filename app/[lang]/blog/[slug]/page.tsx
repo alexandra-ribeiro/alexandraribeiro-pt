@@ -215,12 +215,7 @@ export default async function BlogArticlePage({
   return (
     <main className="min-h-screen bg-gray-50">
       <SiteHeader dict={dict} />
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify(articleSchema),
-  }}
-/>
+
 
       <div className="container py-16 md:py-24">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-4 gap-8">
