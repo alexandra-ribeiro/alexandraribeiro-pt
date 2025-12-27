@@ -242,5 +242,9 @@ export async function getTagSeo(tagId: string, lang: string) {
     limit: 1,
   })
 
-  return res.items[0] || null
+  if (!res.items.length) {
+    return null
+  }
+
+  return res.items[0]
 }
