@@ -136,13 +136,54 @@ export default async function BlogPostPage({
         )}
 
         {/* Content */}
-        <div className="prose prose-lg max-w-none">
-          {post.fields.content && (
-  <article className="prose prose-lg max-w-none mt-8">
-    {documentToReactComponents(post.fields.content)}
-  </article>
-)}
-        </div>
+        {/* Article Header */}
+                <div className="mb-12">
+                  <div className="flex items-center text-sm text-accent mb-4">
+                    <span className="mr-4">
+                      {post.fields.publishedDate ? formatDate(post.fields.publishedDate, params.lang) : ""}
+                    </span>
+                    {post.fields.author && post.fields.author.fields && (
+                      <span className="flex items-center">
+                        {post.fields.author.fields.picture && (
+                          <Image
+                            src={getImageUrl(post.fields.author.fields.picture) || "/placeholder.svg"}
+                            alt={post.fields.author.fields.name}
+                            width={24}
+                            height={24}
+                            className="rounded-full mr-2"
+                            unoptimized
+                          />
+                        )}
+                        {post.fields.author.fields.name}
+                      </span>
+                    )}
+                  </div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">{post.fields.title}</h1>
+                  <p className="text-xl text-gray-600">{post.fields.description}</p>
+                </div>
+
+                {/* Article Content - Rich Text */}
+                <div className="prose prose-lg max-w-none">
+                  {post.fields.content ? (
+                    <div
+                      className="text-gray-700 leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: renderRichText(post.fields.content),
+                      }}
+                    />
+                  ) : (
+                    <p className="text-gray-500">
+                      {params.lang === "en" ? "No content available." : "Conteúdo não disponível."}
+                    </p>
+                  )}
+                  {post.fields.author.fields.name}
+                </span>
+              )}
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">{post.fields.title}</h1>
+            <p className="text-xl text-gray-600">{post.fields.description}</p>
+          </div>
+                </div>
 
         {/* Back to blog */}
         <div className="mt-16">
