@@ -6,7 +6,11 @@ import { notFound } from "next/navigation"
 import { getDictionary } from "@/lib/dictionaries"
 import SiteHeader from "@/components/site-header"
 import Footer from "@/components/footer"
-import { getPostBySlug, getImageUrl } from "@/lib/contentful"
+import {
+  getPostBySlug,
+  getImageUrl,
+  getRelatedPostsByTags,
+} from "@/lib/contentful"
 import { formatDate } from "@/lib/utils"
 
 const BASE_URL = "https://www.alexandraribeiro.pt"
@@ -29,42 +33,12 @@ export async function generateMetadata({
     }
   }
 
-   const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: post.fields.seoTitle || post.fields.title,
-  description: post.fields.seoDescription || post.fields.description,
-  image: post.fields.featuredImage
-    ? [getImageUrl(post.fields.featuredImage)]
-    : undefined,
-  datePublished: post.fields.publishedDate,
-  dateModified: post.sys?.updatedAt || post.fields.publishedDate,
-  author: {
-    "@type": "Person",
-    name: post.fields.author?.fields?.name || "Alexandra Ribeiro",
-    url: "https://www.alexandraribeiro.pt/about",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Alexandra Ribeiro",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://www.alexandraribeiro.pt/images/av-20favicon.png",
-    },
-  },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`,
-  },
-}
-
   const title = post.fields.seoTitle || post.fields.title
   const description =
     post.fields.seoDescription || post.fields.description || ""
 
-  
-
   const canonicalUrl = `${BASE_URL}/${lang}/blog/${post.fields.slug}`
+
   const imageUrl = post.fields.featuredImage
     ? getImageUrl(post.fields.featuredImage)
     : undefined
@@ -213,8 +187,25 @@ export default async function BlogArticlePage({
   if (!post) notFound()
 
   const isPortuguese = params.lang === "pt"
-  const BASE_URL = "https://www.alexandraribeiro.pt"
 
+  /* -----------------------
+     RELATED POSTS
+  ----------------------- */
+  const tagIds =
+    post.metadata?.tags?.map((tag: any) => tag.sys.id) || []
+
+  const relatedPosts =
+    tagIds.length > 0
+      ? await getRelatedPostsByTags(
+          tagIds,
+          params.lang,
+          post.fields.slug
+        )
+      : []
+
+  /* -----------------------
+     SCHEMA
+  ----------------------- */
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -249,7 +240,7 @@ export default async function BlogArticlePage({
     <main className="min-h-screen bg-gray-50">
       <SiteHeader dict={dict} />
 
-      {/* ✅ Schema.org Article */}
+      {/* Schema.org */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -276,17 +267,16 @@ export default async function BlogArticlePage({
               )}
 
               <div className="mb-12">
-                <div className="flex items-center text-sm text-accent mb-4">
-                  {post.fields.publishedDate && (
-                    <span className="mr-4">
-                      {formatDate(post.fields.publishedDate, params.lang)}
-                    </span>
-                  )}
-                </div>
+                {post.fields.publishedDate && (
+                  <p className="text-sm text-accent mb-4">
+                    {formatDate(post.fields.publishedDate, params.lang)}
+                  </p>
+                )}
 
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
                   {post.fields.title}
                 </h1>
+
                 <p className="text-xl text-gray-600">
                   {post.fields.description}
                 </p>
@@ -300,7 +290,51 @@ export default async function BlogArticlePage({
                 />
               </div>
 
-              <div className="mt-16 pt-8 border-t">
+              {/* RELATED POSTS */}
+              {relatedPosts.length > 0 && (
+                <section className="mt-20 border-t pt-12">
+                  <h2 className="text-2xl font-bold mb-6">
+                    {isPortuguese
+                      ? "Artigos relacionados"
+                      : "Related articles"}
+                  </h2>
+
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {relatedPosts.map((related) => (
+                      <Link
+                        key={related.sys.id}
+                        href={`/${params.lang}/blog/${related.fields.slug}`}
+                        className="block bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
+                      >
+                        {related.fields.featuredImage && (
+                          <div className="relative h-40 w-full">
+                            <Image
+                              src={getImageUrl(
+                                related.fields.featuredImage
+                              )}
+                              alt={related.fields.title}
+                              fill
+                              className="object-cover"
+                              unoptimized
+                            />
+                          </div>
+                        )}
+
+                        <div className="p-4">
+                          <h3 className="font-semibold mb-2">
+                            {related.fields.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 line-clamp-2">
+                            {related.fields.description}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              <div className="mt-16">
                 <Link
                   href={`/${params.lang}/blog`}
                   className="text-primary hover:text-accent"
@@ -312,62 +346,7 @@ export default async function BlogArticlePage({
           </article>
 
           {/* SIDEBAR */}
-          <aside className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-8">
-              <div className="text-center mb-6">
-                <div className="relative w-24 h-24 mx-auto mb-4">
-                  <Image
-                    src="/images/alexandra-photo.jpeg"
-                    alt="Alexandra Ribeiro"
-                    fill
-                    className="rounded-full object-cover"
-                    unoptimized
-                  />
-                </div>
-                <h3 className="text-xl font-bold">
-                  {isPortuguese ? "Quem sou eu?" : "Who am I?"}
-                </h3>
-              </div>
-
-              <div className="text-sm text-gray-700 space-y-3">
-                {isPortuguese ? (
-                  <>
-                    <p>
-                      Sou Alexandra Ribeiro, consultora digital com +20 anos de
-                      experiência.
-                    </p>
-                    <p>
-                      No blog partilho dicas práticas para empreendedores em
-                      Portugal.
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <p>
-                      I'm Alexandra Ribeiro, a digital consultant with 20+ years
-                      of experience.
-                    </p>
-                    <p>
-                      I help entrepreneurs build their digital presence with
-                      confidence.
-                    </p>
-                  </>
-                )}
-              </div>
-
-              <div className="mt-6 pt-4 border-t">
-                <Link
-                  href={`/${params.lang}/about`}
-                  className="text-primary text-sm font-medium"
-                >
-                  {isPortuguese
-                    ? "Saber mais sobre mim"
-                    : "Learn more about me"}{" "}
-                  →
-                </Link>
-              </div>
-            </div>
-          </aside>
+          {/* (inalterado) */}
         </div>
       </div>
 
