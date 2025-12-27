@@ -11,7 +11,7 @@ export default async function BlogTagPage({
   const tagId = params.tag
   const tagLabel = decodeURIComponent(params.tag)
 
-  const tagSeo = await getTagSeo(tagId, lang)
+  //const tagSeo = await getTagSeo(tagId, lang)
   const posts = await getPostsByTag(tagId, params.lang)
 
   // só 404 se não existir SEO da tag E não houver posts
