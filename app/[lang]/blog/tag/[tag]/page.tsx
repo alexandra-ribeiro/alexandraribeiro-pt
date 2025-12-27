@@ -1,3 +1,5 @@
+import Script from "next/script"
+
 export default async function BlogTagPage({
   params,
 }: {
@@ -66,6 +68,7 @@ export default async function BlogTagPage({
       {/* Schema.org */}
       <script
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <script
