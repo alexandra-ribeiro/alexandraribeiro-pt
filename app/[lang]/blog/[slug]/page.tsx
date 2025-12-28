@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-
+import { renderRichText } from "@/lib/renderRichText"
 import { getDictionary } from "@/lib/dictionaries"
 import SiteHeader from "@/components/site-header"
 import Footer from "@/components/footer"
@@ -361,11 +361,9 @@ const breadcrumbSchema = {
               </div>
 
               <div className="prose prose-lg max-w-none">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: renderRichText(post.fields.content),
-                  }}
-                />
+                <div className="prose prose-lg max-w-none">
+  {renderRichText(post.fields.content)}
+</div>
               </div>
 
               {/* RELATED POSTS */}
