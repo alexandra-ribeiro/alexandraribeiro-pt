@@ -91,79 +91,124 @@ function processTextContent(content: any[]): string {
     .map((item: any) => {
       if (item.nodeType === "text") {
         let text = item.value
-        item.marks?.forEach((mark: any) => {
-          if (mark.type === "bold") text = `<strong>${text}</strong>`
-          if (mark.type === "italic") text = `<em>${text}</em>`
-          if (mark.type === "underline") text = `<u>${text}</u>`
-        })
+        if (item.marks) {
+          item.marks.forEach((mark: any) => {
+            switch (mark.type) {
+              case "bold":
+                text = `<strong>${text}</strong>`
+                break
+              case "italic":
+                text = `<em>${text}</em>`
+                break
+              case "underline":
+                text = `<u>${text}</u>`
+                break
+            }
+          })
+        }
         return text
-      }
-
-      if (item.nodeType === "hyperlink") {
+      } else if (item.nodeType === "hyperlink") {
         const url = item.data?.uri || "#"
         const linkText = processTextContent(item.content)
-        return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-primary underline">${linkText}</a>`
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-accent underline transition-colors">${linkText}</a>`
       }
-
       return ""
     })
     .join("")
 }
 
 function renderRichText(content: any): string {
-  if (!content?.content) return ""
+  if (!content || !content.content) {
+    return ""
+  }
 
   return content.content
     .map((node: any) => {
       switch (node.nodeType) {
         case "paragraph":
-          return `<p class="mb-4">${processTextContent(node.content)}</p>`
+          const text = processTextContent(node.content)
+          return `<p class="mb-4 text-gray-700 leading-relaxed">${text}</p>`
+
+        case "heading-1":
+          const h1Text = processTextContent(node.content)
+          return `<h1 class="text-3xl font-bold text-primary mb-6 mt-8">${h1Text}</h1>`
 
         case "heading-2":
-          return `<h2 class="text-2xl font-bold mt-8 mb-4">${processTextContent(node.content)}</h2>`
+          const h2Text = processTextContent(node.content)
+          return `<h2 class="text-2xl font-bold text-primary mb-4 mt-6">${h2Text}</h2>`
 
         case "heading-3":
-          return `<h3 class="text-xl font-bold mt-6 mb-3">${processTextContent(node.content)}</h3>`
+          const h3Text = processTextContent(node.content)
+          return `<h3 class="text-xl font-bold text-primary mb-3 mt-5">${h3Text}</h3>`
 
         case "unordered-list":
-          return `<ul class="list-disc list-inside mb-4">${node.content
-            .map((li: any) => `<li>${processTextContent(li.content[0].content)}</li>`)
-            .join("")}</ul>`
+          const listItems = node.content
+            ?.map((listItem: any) => {
+              const itemText = listItem.content
+                ?.map((paragraph: any) => {
+                  return processTextContent(paragraph.content)
+                })
+                .join("")
+              return `<li class="mb-2">${itemText}</li>`
+            })
+            .join("")
+          return `<ul class="list-disc list-inside mb-4 text-gray-700">${listItems}</ul>`
 
         case "ordered-list":
-          return `<ol class="list-decimal list-inside mb-4">${node.content
-            .map((li: any) => `<li>${processTextContent(li.content[0].content)}</li>`)
-            .join("")}</ol>`
+          const orderedItems = node.content
+            ?.map((listItem: any) => {
+              const itemText = listItem.content
+                ?.map((paragraph: any) => {
+                  return processTextContent(paragraph.content)
+                })
+                .join("")
+              return `<li class="mb-2">${itemText}</li>`
+            })
+            .join("")
+          return `<ol class="list-decimal list-inside mb-4 text-gray-700">${orderedItems}</ol>`
 
         case "blockquote":
-          return `<blockquote class="border-l-4 pl-4 italic my-6">${processTextContent(
-            node.content[0].content
-          )}</blockquote>`
-case "embedded-asset-block": {
-  const file = node.data?.target?.fields?.file
-  const title = node.data?.target?.fields?.title || ""
+          const quoteText = node.content
+            ?.map((paragraph: any) => {
+              return processTextContent(paragraph.content)
+            })
+            .join("")
+          return `<blockquote class="border-l-4 border-accent pl-4 italic text-gray-600 mb-4">${quoteText}</blockquote>`
 
-  if (!file?.url) return ""
+        case "hr":
+          return `<hr class="my-8 border-gray-300" />`
 
-  const imageUrl = file.url.startsWith("//")
-    ? `https:${file.url}`
-    : file.url
+        case "embedded-asset-block":
+          // Handle embedded images
+          if (node.data && node.data.target) {
+            const asset = node.data.target
+            if (asset.fields && asset.fields.file) {
+              const imageUrl = asset.fields.file.url.startsWith("//")
+                ? `https:${asset.fields.file.url}`
+                : asset.fields.file.url
+              const altText = asset.fields.title || asset.fields.description || "Embedded image"
+              const width = asset.fields.file.details?.image?.width || 800
+              const height = asset.fields.file.details?.image?.height || 600
 
-  return `
-    <figure class="my-8">
-      <img
-        src="${imageUrl}"
-        alt="${title}"
-        class="rounded-lg shadow-md mx-auto"
-      />
-      ${
-        title
-          ? `<figcaption class="text-sm text-gray-500 text-center mt-2">${title}</figcaption>`
-          : ""
-      }
-    </figure>
-  `
-}
+              return `
+                <div class="my-8 text-center">
+                  <img 
+                    src="${imageUrl}" 
+                    alt="${altText}" 
+                    class="max-w-full h-auto rounded-lg shadow-md mx-auto"
+                    style="max-width: ${Math.min(width, 800)}px;"
+                    loading="lazy"
+                  />
+                  ${asset.fields.description ? `<p class="text-sm text-gray-500 mt-2 italic">${asset.fields.description}</p>` : ""}
+                </div>
+              `
+            }
+          }
+          return ""
+
+        case "embedded-entry-block":
+          // Handle embedded entries if needed
+          return ""
 
         default:
           return ""
