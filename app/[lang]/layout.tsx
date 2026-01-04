@@ -20,9 +20,9 @@ export async function generateMetadata({
   const baseUrl = "https://www.alexandraribeiro.pt"
 
   return {
-    title: "Alexandra Ribeiro | Consultora Digital e Assistente Virtual Técnica em Portugal",
+    title: "Alexandra Ribeiro | Gestão Técnica de Operações Digitais para PMEs e Negócios Online",
     description:
-      "Consultoria digital e implementação de sistemas simples para empreendedores e negócios online.",
+      "Gestão Técnica de Operações Digitais para PMEs e Negócios Online",
     alternates: {
       canonical: `${baseUrl}/${lang}`,
       languages: {
