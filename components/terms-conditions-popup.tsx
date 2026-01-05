@@ -22,19 +22,18 @@ export default function TermsConditionsPopup({ isOpen, onClose, title }: TermsCo
           </Button>
         </DialogHeader>
         <div className="text-sm space-y-4 mt-2">
-          <p>Bem-vindo a Alexandra Ribeiro – Consultora Digital e Assistente Virtual!</p>
+          <p>Bem-vindo a Alexandra Ribeiro – Gestão Técnica de Operações Digitais!</p>
           <p>
             Estes termos e condições descrevem as regras e regulamentos para o uso do site de Alexandra Ribeiro,
             localizado em www.alexandraribeiro.pt.
           </p>
           <p>
             Ao aceder a este site, presumimos que aceita estes termos e condições. Não continue a usar Alexandra Ribeiro
-            – Consultora Digital e Assistente Virtual se não concordar com todos os termos e condições declarados nesta
+            – Gestão Técnica de Operações Digitais se não concordar com todos os termos e condições declarados nesta
             página.
           </p>
           <p>
-            Não deve reproduzir, duplicar ou copiar o material de Alexandra Ribeiro – Consultora Digital e Assistente
-            Virtual, sendo que este acordo deve iniciar-se na data deste documento.
+            Não deve reproduzir, duplicar ou copiar o material de Alexandra Ribeiro – Gestão Técnica de Operações Digitais, sendo que este acordo deve iniciar-se na data deste documento.
           </p>
           <p>
             Reservamo-nos ao direito de realizar alterações aos Termos e Condições aqui apresentados, periodicamente,
@@ -43,8 +42,7 @@ export default function TermsConditionsPopup({ isOpen, onClose, title }: TermsCo
           </p>
           <p>
             Os dados pessoais que introduziu neste website poderão ser utilizados como forma de contacto e envio de
-            comunicação pertinente no âmbito dos serviços prestados por Alexandra Ribeiro – Consultora Digital e
-            Assistente Virtual, em conformidade com a nossa Política de Privacidade, que também pode consultar neste
+            comunicação pertinente no âmbito dos serviços prestados por Alexandra Ribeiro – Gestão Técnica de Operações Digitais, em conformidade com a nossa Política de Privacidade, que também pode consultar neste
             site.
           </p>
         </div>
