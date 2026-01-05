@@ -45,7 +45,7 @@ export default function WhatIsVA({ dict }: { dict: any }) {
             <div className="order-1 lg:order-2 flex justify-center items-start">
               <div className="relative w-full max-w-md">
                 <Image
-                  src="/images/alexandra-business-woman.png"
+                  src="/images/what-is-digital-consultant.jpeg"
                   alt="Business woman thinking."
                   width={400}
                   height={400}

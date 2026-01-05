@@ -144,7 +144,7 @@
   },
   "newsletterPopup": {
     "title": "Get Exclusive Tips!",
-    "description": "Subscribe to my newsletter to receive tips, resources, and special offers about simplified tech for your business.",
+    "description": "Subscribe to our newsletter to receive tips, resources, and special offers for virtual assistants.",
     "namePlaceholder": "Your name",
     "emailPlaceholder": "Your best email",
     "buttonText": "I want to subscribe!",
@@ -235,7 +235,7 @@
       ]
     },
     "cta": {
-      "title": "Ready to have a tech partner in your business?",
+      "title": "Ready to work with me?",
       "description": "Let's talk about how I can help your business grow and become more efficient.",
       "button": "Schedule a call"
     },
@@ -428,7 +428,7 @@
   },
   "footer": {
     "newsletterForm": {
-      "description": "Sign up for my newsletter to receive tips and tricks about simplified tech in business.",
+      "description": "Sign up for my newsletter to receive tips and tricks about business organization.",
       "namePlaceholder": "Name",
       "emailPlaceholder": "Email",
       "buttonText": "Subscribe!",

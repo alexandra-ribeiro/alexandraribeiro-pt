@@ -130,8 +130,7 @@ export default function Footer({ dict }: { dict: any }) {
           <div>
             <h3 className="text-white font-semibold text-xl mb-6 border-b border-white/10 pb-2">Alexandra Ribeiro</h3>
             <p className="text-primary-foreground/80 mb-6 leading-relaxed">
-              Consultora Digital e Assistente Virtual Técnica para novos empreendedores, freelancers e lojas online em
-              Portugal.
+              Gestão técnica de operações digitais para PME e negócios online em Portugal.
             </p>
             <div className="flex gap-4">
               <a
@@ -204,7 +203,7 @@ export default function Footer({ dict }: { dict: any }) {
               <span className="text-primary-foreground/90">{locationText[language as keyof typeof locationText]}</span>
             </div>
             <p className="text-primary-foreground/70 text-sm mt-6">
-              Disponível de segunda a sexta-feira, das 9h às 18h (GMT+1)
+              Disponível de segunda a sexta-feira, das 9h30 às 18h (GMT+1)
             </p>
           </div>
         </div>
