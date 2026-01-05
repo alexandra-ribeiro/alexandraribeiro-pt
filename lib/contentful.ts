@@ -4,8 +4,8 @@ import { createClient } from "contentful"
    CLIENT
 ---------------------------- */
 const getClient = () => {
-  const space = process.env.CONTENTFUL_SPACE_ID
-const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN
+  const space = "s6yvdch48olm"
+const accessToken = "-7DsC8TRmQ5Ig6drErJdGLk29G7UmAjwwbMFANITzUc"
 
   if (!space || !accessToken) {
     console.warn("Missing Contentful credentials")
