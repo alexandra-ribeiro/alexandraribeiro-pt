@@ -63,7 +63,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
               <p className="text-xl mb-8 text-primary/90">{dict.servicesPage.hero.subtitle}</p>
               <Link href={`/${params.lang}/contact`}>
                 <Button size="lg" className="bg-customGold hover:bg-primary text-primary hover:text-white">
-                  {isPortuguese ? "Falar sobre o meu negócio" : "Talk about my business"}
+                  {dict.servicesPage.hero.cta}
                 </Button>
               </Link>
             </div>
@@ -193,7 +193,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
           <p className="text-xl mb-8 max-w-2xl mx-auto">{dict.servicesPage.cta.description}</p>
           <Link href={`/${params.lang}/contact`}>
             <Button size="lg" className="bg-customGold hover:bg-primary text-primary hover:text-white">
-              {isPortuguese ? "Agendar chamada" : "Schedule a call"}
+                    {dict.servicesPage.hero.cta2}
             </Button>
           </Link>
         </div>
