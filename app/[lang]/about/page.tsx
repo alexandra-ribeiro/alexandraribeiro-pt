@@ -44,33 +44,47 @@ export default async function AboutPage({ params }: { params: { lang: string } }
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
-                Olá, sou a <span className="text-customGold">Alexandra</span>, a sua parceira técnica.
-              </h1>
-              <div className="space-y-4 text-gray-700">
-                <p>
-                  Naquele momento em que decidiu sair do conforto corporativo para iniciar o seu próprio negócio, surgiu
-                  uma avalanche de perguntas técnicas na sua cabeça, não foi?
-                </p>
-                <p>
-                  "Como configuro um email profissional e como consultar no telemóvel? Que sistema de faturação escolho
-                  e como começar a usar? E onde guardo os dados e histórico dos meus clientes, preciso de um CRM?
-                  Shopify, WordPress ou só marketplace como a Etsy?"
-                </p>
-                <p>
-                  E de repente, em vez de se focar no seu negócio, está no YouTube a tentar entender configurações
-                  técnicas até altas horas da madrugada.
-                </p>
-                <p>
-                  Conheço bem essa jornada porque também a percorri. Após 20 anos no mundo corporativo como engenheira
-                  informática, decidi dar esse salto. E descobri que, mesmo com todo o meu conhecimento técnico, a
-                  quantidade de decisões e configurações era intimidante.
-                </p>
-                <p className="font-bold">
-                  É exatamente por isso que hoje ajudo empreendedores como você a implementar sistemas descomplicados.
-                </p>
-              </div>
-            </div>
+  <h1 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
+    Olá, sou a <span className="text-customGold">Alexandra</span>, a sua parceira técnica.
+  </h1>
+
+  {/* Nova frase de enquadramento (Sugestão 1) */}
+  <p className="text-lg md:text-xl text-gray-600 mb-6 max-w-xl">
+    Ajudo empreendedores, PME e negócios digitais a manter os seus sistemas organizados,
+    funcionais e sem stress técnico.
+  </p>
+
+  <div className="space-y-4 text-gray-700">
+    <p>
+      Naquele momento em que decidiu sair do conforto corporativo para iniciar o seu próprio
+      negócio, surgiu uma avalanche de perguntas técnicas na sua cabeça, não foi?
+    </p>
+
+    {/* Bloco de perguntas simplificado (Sugestão 2) */}
+    <p>
+      Como configurar um email profissional? Que sistema de faturação escolher? Onde guardar
+      os dados dos clientes — preciso de um CRM? Shopify, WordPress ou apenas um marketplace
+      como a Etsy?
+    </p>
+
+    <p>
+      E de repente, em vez de se focar no seu negócio, está no YouTube a tentar entender
+      configurações técnicas até altas horas da madrugada.
+    </p>
+
+    <p>
+      Conheço bem essa jornada porque também a percorri. Após 20 anos no mundo corporativo
+      como engenheira informática, decidi dar esse salto e percebi que, mesmo com conhecimento
+      técnico, a quantidade de decisões e configurações pode ser intimidante.
+    </p>
+
+    {/* Frase final reforçada com benefício claro */}
+    <p className="font-bold">
+      É exatamente por isso que hoje ajudo empreendedores como você a implementar sistemas
+      descomplicados — para que possa focar-se no negócio, não na tecnologia.
+    </p>
+  </div>
+</div>
             <div className="relative">
               <div className="relative h-[400px] w-full rounded-lg overflow-hidden shadow-xl">
                 <Image
@@ -110,31 +124,30 @@ export default async function AboutPage({ params }: { params: { lang: string } }
             {/* Story Text - Right Column */}
             <div className="space-y-4 text-gray-700">
               <p>
-                A minha jornada começou há mais de duas décadas, quando me formei em Engenharia Informática e mergulhei
-                de cabeça no mundo corporativo. Durante anos, trabalhei em contexto empresarial, onde implementei
-                sistemas complexos e geri equipas em projectos desafiantes, tanto a nível nacional como no estrangeiro.
-              </p>
-              <p>
-                Aprendi bastante sobre infraestrutura, bases de dados, segurança, e as melhores práticas para sistemas
-                empresariais. O que não sabia é que esta experiência seria extremamente valiosa anos depois, de uma
-                forma que não tinha imaginado.
-              </p>
-              <p>
-                Decidi que era hora de mudar: queria mais autonomia, mais impacto direto e a possibilidade de trabalhar
-                com projetos que me apaixonassem. Foi então que dei o salto para o empreendedorismo e percebi: montar um
-                negócio é muito mais do que ter uma boa ideia e conhecer o seu mercado. A parte técnica pode ser um
-                verdadeiro pesadelo para quem não tem formação nessa área e tem de seleccionar softwares no meio de uma
-                panóplia de hipóteses e configurá-los do zero (algo que, confesso, adoro fazer)!
-              </p>
-              <p>
-                Entendi, então, que poderia usar o que aprendi para ajudar outros empreendedores a evitar esse caminho
-                difícil e, hoje, uso os meus conhecimentos técnicos e a minha experiência de transição
-                corporativo-empreendedorismo para criar sistemas eficientes e descomplicados para quem está a começar.
-              </p>
-              <p>
-                É uma forma de transformar 20+ anos de experiência corporativa em soluções práticas para empreendedores
-                como você.
-              </p>
+  A minha jornada começou há mais de duas décadas, com formação em Engenharia Informática e uma carreira sólida no
+  mundo corporativo, onde implementei sistemas complexos e liderei projetos nacionais e internacionais.
+</p>
+
+<p>
+  Ao longo desses anos, ganhei uma base forte em infraestrutura, bases de dados, segurança e boas práticas para
+  sistemas empresariais — competências que viriam a revelar-se essenciais mais tarde.
+</p>
+
+<p>
+  Quando decidi transitar para o empreendedorismo, percebi rapidamente que criar um negócio envolve muito mais do
+  que uma boa ideia. Para quem não tem formação técnica, escolher e configurar ferramentas pode tornar-se um enorme
+  obstáculo.
+</p>
+
+<p>
+  Hoje, uso essa experiência técnica e a minha própria transição corporativo-empreendedora para ajudar outros
+  empreendedores a criar sistemas eficientes, simples e prontos a crescer desde o início.
+</p>
+
+<p>
+  É assim que transformo mais de 20 anos de experiência em soluções práticas para negócios como o seu.
+</p>
+
             </div>
           </div>
         </div>
@@ -215,6 +228,49 @@ export default async function AboutPage({ params }: { params: { lang: string } }
           </div>
         </div>
       </section>
+
+      <section className="bg-white py-12 md:py-16">
+  <div className="max-w-5xl mx-auto px-4">
+    <div className="max-w-2xl mx-auto text-center mb-10">
+      <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
+        Para quem é este trabalho?
+      </h2>
+      <p className="text-gray-700">
+        Trabalho com negócios que precisam de estrutura técnica clara, sem complicações
+        desnecessárias.
+      </p>
+    </div>
+
+    <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <li className="bg-gray-50 rounded-lg p-6 shadow-sm">
+        <p className="font-medium text-primary">
+          Empreendedores em início de atividade
+        </p>
+        <p className="text-sm text-gray-700 mt-2">
+          Que querem começar com bases sólidas e evitar erros técnicos comuns.
+        </p>
+      </li>
+
+      <li className="bg-gray-50 rounded-lg p-6 shadow-sm">
+        <p className="font-medium text-primary">
+          PME sem equipa técnica interna
+        </p>
+        <p className="text-sm text-gray-700 mt-2">
+          Que precisam de alguém de confiança para gerir e ajustar os sistemas digitais.
+        </p>
+      </li>
+
+      <li className="bg-gray-50 rounded-lg p-6 shadow-sm">
+        <p className="font-medium text-primary">
+          Negócios digitais em crescimento
+        </p>
+        <p className="text-sm text-gray-700 mt-2">
+          Que precisam de estrutura e organização, não mais ferramentas soltas.
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
 
       {/* CTA Section */}
       <section className="py-16 md:py-24 bg-primary text-white">
