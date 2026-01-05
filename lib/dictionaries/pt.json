@@ -174,7 +174,7 @@
   },
   "newsletterPopup": {
     "title": "Receba dicas exclusivas!",
-    "description": "Inscreva-se na minha newsletter para receber dicas, recursos e ofertas especiais na área dos sistemas, Inteligência Artificial e novos empreendedores.",
+    "description": "Inscreva-se na minha newsletter para receber dicas, recursos e ofertas especiais na área dos sistemas, automações e Inteligência Artificial para o seu negócio.",
     "namePlaceholder": "O seu nome",
     "emailPlaceholder": "O seu melhor email",
     "buttonText": "Quero inscrever-me!",
@@ -457,12 +457,12 @@
   },
   "footer": {
     "newsletterForm": {
-      "description": "Registe-se na minha newsletter para receber truques e dicas sobre organização no seu negócio.",
+      "description": "Registe-se na minha newsletter para receber truques e dicas sobre tecnologia prática no seu negócio.",
       "namePlaceholder": "Nome",
       "emailPlaceholder": "Email",
       "buttonText": "Quero subscrever!",
       "subscribing": "A subscrever...",
-      "privacyText": "Ao fornecer estes dados, está a aceitar receber conteúdo gratuito sobre os nossos conteúdos e serviços. Pode cancelar a sua subscrição a qualquer momento.",
+      "privacyText": "Ao fornecer estes dados, está a aceitar receber conteúdo gratuito sobre os nossos serviços. Pode cancelar a sua subscrição a qualquer momento.",
       "successMessage": "Obrigada pela sua subscrição! Receberá em breve as nossas dicas e recursos.",
       "errorMessage": "Ocorreu um erro. Por favor, tente novamente.",
       "emailValidationError": "Por favor, insira um email válido"
