@@ -74,7 +74,7 @@ export default async function AboutPage({ params }: { params: { lang: string } }
             <div className="relative">
               <div className="relative h-[400px] w-full rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1photo.png-e6kUKKSk8rktuqILYDfbNxmNXeJAWE.jpeg"
+                  src="/images/design-mode/1photo.png.jpeg"
                   alt="Alexandra Ribeiro"
                   fill
                   className="object-cover"
@@ -204,7 +204,7 @@ export default async function AboutPage({ params }: { params: { lang: string } }
             <div>
               <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/softwares%20and%20tools%20virtual%20assistant.JPG-z6YnD3Sf8u2SP9N9hdhpjpCzrk9cDh.jpeg"
+                  src="/images/design-mode/softwares%20and%20tools%20virtual%20assistant.JPG.jpeg"
                   alt="Workspace with tools and software"
                   fill
                   className="object-cover"

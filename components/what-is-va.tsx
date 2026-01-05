@@ -22,12 +22,20 @@ export default function WhatIsVA({ dict }: { dict: any }) {
             {/* Content Column */}
             <div className="order-2 lg:order-1">
               <div className="space-y-4 md:space-y-6">
-                {dict.points.map((point: string, index: number) => (
+                  {dict.points.map((point: { title: string; description: string },
+    index: number) => (
                   <div key={index} className="flex items-start px-2">
                     <div className="flex-shrink-0 w-5 h-5 md:w-6 md:h-6 bg-[#D4C675] rounded-full flex items-center justify-center mr-2 md:mr-3 mt-1">
                       <Check className="h-3 w-3 md:h-4 md:w-4 text-white" />
                     </div>
-                    <p className="text-sm md:text-base text-foreground/80 leading-relaxed">{point}</p>
+                   <div className="space-y-1">
+  <p className="text-sm md:text-base font-semibold text-foreground">
+    {point.title}
+  </p>
+  <p className="text-sm md:text-base text-foreground/80 leading-relaxed">
+    {point.description}
+  </p>
+</div>
                   </div>
                 ))}
               </div>
@@ -38,7 +46,7 @@ export default function WhatIsVA({ dict }: { dict: any }) {
               <div className="relative w-full max-w-md">
                 <Image
                   src="/images/what-is-digital-consultant.jpeg"
-                  alt="Woman thinking with question marks - What is a Digital Consultant?"
+                  alt="Business woman thinking."
                   width={400}
                   height={400}
                   className="rounded-lg shadow-lg object-cover w-full h-auto"

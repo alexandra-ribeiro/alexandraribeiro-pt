@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Alexandra Ribeiro | Digital Consultant",
-    "description": "Specialized Virtual Assistance for businesses and entrepreneurs in Portugal"
+    "title": "Alexandra Ribeiro | Digital operations management for SMEs and online businesses",
+    "description": "Websites, professional email, automation, and ongoing support for digital businesses and SME in Portugal"
   },
   "headerCTA": "Schedule a call",
   "navigation": [
@@ -36,11 +36,34 @@
     }
   ],
   "hero": {
-    "tagline": "Digital Consulting and Systems Implementation for Entrepreneurs and Online Stores in Portugal",
-    "headline": "Your virtual partner",
-    "subheadline": "Websites, professional email, newsletters and ongoing technical support",
-    "cta": "View services",
+    "tagline": "Digital operations management for SMEs and online businesses",
+    "headline": "The technical support that keeps your business running",
+    "subheadline": "Websites, professional email, automation, and ongoing support for digital businesses and SMEs in Portugal",
+    "cta": "See how I can help",
     "ctaLink": "en/services"
+  },
+  "painPoints": {
+    "title": "When systems don't keep up with growth, the business feels it",
+    "intro": "As a business grows, so do clients, requests, emails and processes. The problem isn't working more — it's working with systems that aren't organised or connected.",
+    "cards": [
+      {
+        "title": "Disconnected tools",
+        "description": "Email, billing, scheduling, website and CRM work — but in isolation."
+      },
+      {
+        "title": "Manual processes everywhere",
+        "description": "Too many tasks that should already be automated."
+      },
+      {
+        "title": "No technical continuity",
+        "description": "Small issues pile up and turn into constant headaches."
+      },
+      {
+        "title": "Everything works… until it doesn't",
+        "description": "Updates, errors or small failures can stop operations."
+      }
+    ],
+    "closing": "Healthy businesses rely on simple, stable and well-maintained digital operations."
   },
   "whatIsVA": {
     "title": "But after all, what does a Digital Consultant do?",

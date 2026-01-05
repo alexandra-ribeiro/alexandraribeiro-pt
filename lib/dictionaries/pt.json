@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Alexandra Ribeiro | Consultora Digital",
-    "description": "Assistência Virtual especializada para empresas e empreendedores em Portugal"
+    "title": "Alexandra Ribeiro | Gestão técnica de operações digitais para PME e negócios online",
+    "description": "Websites, email profissional, automações e suporte técnico contínuo para negócios digitais e PME em Portugal"
   },
   "headerCTA": "Agendar chamada",
   "navigation": [
@@ -36,24 +36,62 @@
     }
   ],
   "hero": {
-    "tagline": "Consultoria Digital e Implementação de Sistemas para Empreendedores e Lojas Online em Portugal",
-    "headline": "A sua parceira virtual",
-    "subheadline": "Websites, email profissional, newsletters e apoio técnico contínuo",
-    "cta": "Ver serviços",
+    "tagline": "Gestão de operações digitais para PME e negócios online",
+    "headline": "O suporte técnico que mantém o seu negócio a funcionar",
+    "subheadline": "Websites, email profissional, automações e suporte contínuo para negócios digitais e PME.",
+    "cta": "Ver como posso ajudar",
     "ctaLink": "pt/services"
   },
-  "whatIsVA": {
-    "title": "Mas afinal, o que faz uma Consultora Digital?",
-    "points": [
-      "Trato de toda aquela parte técnica que ninguém quer saber... mas que é essencial para começar: domínio, email, hosting, CRM (gestão de clientes) básico, configuração de software de faturação online e português para começar a faturar no dia 1",
-      "Configuro e optimizo a sua loja online sem que precise de conhecer código ou perder noites no YouTube a aprender Shopify, WordPress ou Etsy",
-      "Crio automações que fazem o trabalho por si enquanto dorme (newsletters, respostas automáticas nas redes sociais, automatismo de pré-agendamento online, etc.)",
-      "Implemento IA no seu negócio de forma prática e sem complicações - chatbots, assistentes virtuais, respostas automáticas nas redes sociais",
-      "Desenvolvo templates personalizados para propostas, orçamentos e onboarding, prontos a editar em Canva ou PDF, que deixam os seus clientes impressionados e que pode começar a usar de imediato"
+  "painPoints": {
+    "title": "Quando os sistemas não acompanham o crescimento, o negócio ressente-se",
+    "intro": "À medida que o negócio cresce, surgem mais clientes, mais pedidos, mais emails e mais processos. O problema não é trabalhar mais — é trabalhar com sistemas que não estão organizados nem integrados.",
+    "cards": [
+      {
+        "title": "Ferramentas que não falam entre si",
+        "description": "Email, faturação, agenda, website e CRM funcionam… mas isoladamente."
+      },
+      {
+        "title": "Processos que dependem de si",
+        "description": "Demasiadas tarefas manuais que podiam estar automatizadas."
+      },
+      {
+        "title": "Sem ninguém a \"tomar conta\" da parte técnica",
+        "description": "Pequenos problemas acumulam-se e tornam-se grandes dores de cabeça."
+      },
+      {
+        "title": "Tudo funciona… até deixar de funcionar",
+        "description": "Atualizações, falhas ou erros simples podem parar o negócio."
+      }
     ],
-    "highlight": "Sem encargos com segurança social, sem espaço de escritório adicional, sem preocupações de recrutamento. Apenas resultados práticos, quando precisa.",
-    "cta": "Vamos falar!"
+    "closing": "Negócios saudáveis precisam de operações digitais simples, estáveis e bem mantidas."
   },
+ "whatIsVA": {
+  "title": "O meu papel na operação digital do seu negócio",
+  "points": [
+    {
+      "title": "Operação técnica do dia a dia",
+      "description": "Cuido da parte técnica que mantém o seu negócio a funcionar todos os dias: websites, email profissional, sistemas internos e configurações essenciais para a operação."
+    },
+    {
+      "title": "Sistemas organizados e fiáveis",
+      "description": "Garanto que os seus sistemas estão organizados, atualizados e fiáveis, evitando falhas, incompatibilidades e soluções improvisadas que geram mais trabalho."
+    },
+    {
+      "title": "Automação de tarefas recorrentes",
+      "description": "Reduzo tarefas manuais através de automações simples e eficazes, como emails, alertas, processos recorrentes e integrações entre ferramentas."
+    },
+    {
+      "title": "Continuidade técnica sem IT interno",
+      "description": "Asseguro continuidade técnica no dia a dia, funcionando como ponto de contacto regular para ajustes, melhorias e resolução de problemas."
+    },
+    {
+      "title": "Evolução técnica acompanhada",
+      "description": "Acompanho a evolução do negócio, adaptando sistemas e processos à medida que surgem mais clientes, pedidos ou novas ferramentas."
+    }
+  ],
+  "highlight": "Uma extensão técnica do seu negócio: sem contratos pesados, sem custos fixos de equipa interna, sem dependência de vários fornecedores. Apenas apoio técnico consistente, quando precisa.",
+  "cta": "Vamos falar!"
+},
   "services": {
     "title": "Como posso ajudar a sua empresa?",
     "description": "Ofereço uma variedade de serviços personalizados para atender às necessidades específicas do seu negócio.",

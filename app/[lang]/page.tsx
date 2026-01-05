@@ -1,7 +1,7 @@
-import type { Metadata } from "next"
 import { getDictionary } from "@/lib/dictionaries"
 import SiteHeader from "@/components/site-header"
 import HeroSection from "@/components/hero-section"
+import PainPointsSection from "@/components/pain-points-section"
 import WhatIsVA from "@/components/what-is-va"
 import WhyChooseVA from "@/components/why-choose-va"
 import AboutMe from "@/components/about-me"
@@ -12,7 +12,6 @@ import Footer from "@/components/footer"
 import NewsletterPopup from "@/components/newsletter-popup"
 import EnhancedDivider from "@/components/enhanced-divider"
 
-
 export default async function Home({ params }: { params: { lang: string } }) {
   const dict = await getDictionary(params.lang)
 
@@ -20,6 +19,9 @@ export default async function Home({ params }: { params: { lang: string } }) {
     <main className="min-h-screen">
       <SiteHeader dict={dict} />
       <HeroSection dict={dict.hero} />
+
+      <PainPointsSection dict={dict.painPoints} />
+
       <AboutMe dict={dict.aboutMe} lang={params.lang} />
 
       <EnhancedDivider />

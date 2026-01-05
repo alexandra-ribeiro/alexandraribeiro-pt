@@ -18,7 +18,7 @@ export default function ServicesInfographic({ dict }: { dict: any }) {
         <div className="w-full max-w-5xl mx-auto mb-8 bg-transparent">
           {/* Using direct URL to avoid caching issues */}
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AV%20-%20circle%20infographic%20%281%29-kPBWGsKHyfpgCly4vVPYbkox4QGmzP.png?v=1"
+            src="/images/design-mode/AV%20-%20circle%20infographic%20%281%29.png"
             alt="Serviços - Como posso ajudar a sua empresa?"
             width={1200}
             height={800}

@@ -120,7 +120,7 @@ export default async function PortfolioPage({ params }: { params: { lang: string
             <div className="bg-card rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
               <div className="relative h-64 w-full overflow-hidden bg-muted">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/manychat-workflow-for-ig-hKRUBayD1hQbSnjUQ4XuBxF270I4Sn.png"
+                  src="/images/design-mode/manychat-workflow-for-ig.png"
                   alt="ManyChat Workflow for Instagram"
                   className="w-full h-full object-cover"
                 />
@@ -151,7 +151,7 @@ export default async function PortfolioPage({ params }: { params: { lang: string
               <div className="relative h-64 w-full overflow-hidden bg-muted">
                 <div className="absolute top-0 left-0 w-[150%] h-[150%]">
                   <img
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/etsy-store-star-seller.PNG-njPspMME69IGtvmsMgijdVRge3M77C.png"
+                    src="/images/design-mode/etsy-store-star-seller.PNG.png"
                     alt="Etsy Store Star Seller"
                     className="w-full h-full object-cover object-left-top"
                     style={{ objectPosition: "0 0" }}
@@ -183,7 +183,7 @@ export default async function PortfolioPage({ params }: { params: { lang: string
             <div className="bg-card rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
               <div className="relative h-64 w-full overflow-hidden bg-muted">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/loja-woocommerce-site-wordpress.PNG-whufMdzF5nWx9HcuF8khZaih93ZM5K.png"
+                  src="/images/design-mode/loja-woocommerce-site-wordpress.PNG.png"
                   alt="WordPress Website with WooCommerce"
                   className="w-full h-full object-cover"
                 />
@@ -216,7 +216,7 @@ export default async function PortfolioPage({ params }: { params: { lang: string
               <div className="relative h-64 w-full overflow-hidden bg-muted">
                 <div className="absolute top-0 left-0 w-[150%] h-[150%]">
                   <img
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/oh-so-portugal-website-shopify.PNG-YHVSsS8rKpulmkCJqtEmGgaD1VPd55.png"
+                    src="/images/design-mode/oh-so-portugal-website-shopify.PNG.png"
                     alt="Oh So Portugal Shopify Store"
                     className="w-full h-full object-cover object-left-top"
                     style={{ objectPosition: "0 0" }}
@@ -251,7 +251,7 @@ export default async function PortfolioPage({ params }: { params: { lang: string
             <div className="bg-card rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
               <div className="relative h-64 w-full overflow-hidden bg-muted">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/newsletter-automation-tablet.jpg-MTuET2KjMk2nS8XPG3tCCKdB40bKRd.jpeg"
+                  src="/images/design-mode/newsletter-automation-tablet.jpg.jpeg"
                   alt="Newsletter Automation"
                   className="w-full h-full object-cover"
                 />
@@ -286,7 +286,7 @@ export default async function PortfolioPage({ params }: { params: { lang: string
             <div className="bg-card rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
               <div className="relative h-64 w-full overflow-hidden bg-muted">
                 <img
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/landing-page-e-book.PNG-RKdP0NPcSoLjK4kBvhtbLtwXDiioE7.png"
+                  src="/images/design-mode/landing-page-e-book.PNG.png"
                   alt="IBS E-book Landing Page"
                   className="w-full h-full object-cover object-top"
                 />

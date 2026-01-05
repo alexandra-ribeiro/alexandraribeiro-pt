@@ -10,7 +10,7 @@ export default function CertificationsSection({ dict }: { dict: any }) {
 
         <div className="flex justify-center">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/certifications%20logos-3q9BXeC3n0plRuEeY8w9shjnfnanOn.png"
+            src="/images/design-mode/certifications%20logos.png"
             alt="Professional Certifications - Microsoft Certified, Shopify Partner, Técnico Lisboa, Etsy Top Seller, LDS E-Commerce Certification, Canva Certified"
             width={1200}
             height={400}

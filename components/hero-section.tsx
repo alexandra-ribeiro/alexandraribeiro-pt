@@ -30,10 +30,10 @@ export default function HeroSection({ dict }: { dict: any }) {
         <div className="w-full max-w-sm sm:max-w-lg md:max-w-2xl bg-card/95 p-4 sm:p-6 md:p-8 rounded-lg backdrop-blur-sm shadow-xl border-l-4 border-accent">
           <span className="text-accent text-xs sm:text-sm uppercase tracking-wide font-medium mb-2 sm:mb-3 block leading-tight">
             {lang === "en" || dict.lang === "en"
-              ? "Digital Operations Technical Management for SMEs and Online Businesses"
-              : "Gestão Técnica de Operações Digitais para PMEs e Negócios Online"}
+              ? "Digital Operations Technical Management for SME and Online Businesses"
+              : "Gestão Técnica de Operações Digitais para PME e Negócios Online"}
           </span>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4 sm:mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary mb-4 sm:mb-6 leading-tight">
             <ContentDisplay storageKey={`home_${lang}`} field="headline" fallback={dict.headline} />
           </h1>
           <h2 className="text-base sm:text-lg md:text-xl text-foreground/80 mb-6 sm:mb-8 font-light leading-relaxed">

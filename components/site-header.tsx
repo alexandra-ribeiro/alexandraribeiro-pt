@@ -1,33 +1,33 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useLanguage } from "./language-provider";
-import LanguageSwitcher from "./language-switcher";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import Link from "next/link"
+import Image from "next/image"
+import { usePathname } from "next/navigation"
+import { useLanguage } from "./language-provider"
+import LanguageSwitcher from "./language-switcher"
+import { useState } from "react"
+import { Menu, X } from "lucide-react"
 
 export default function SiteHeader({ dict }: { dict: any }) {
-  const pathname = usePathname();
-  const { lang } = useLanguage();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname()
+  const { lang } = useLanguage()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   // Verifica se a rota interna está ativa
   const isActive = (path: string) => {
     try {
-      if (!pathname || !lang) return false;
+      if (!pathname || !lang) return false
       if (path === "/") {
-        return pathname === `/${lang}` || pathname === `/${lang}/`;
+        return pathname === `/${lang}` || pathname === `/${lang}/`
       }
-      return pathname.startsWith(`/${lang}${path}`);
+      return pathname.startsWith(`/${lang}${path}`)
     } catch {
-      return false;
+      return false
     }
-  };
+  }
 
   // Pega a navegação do dicionário (dictionaries/pt.json ou en.json)
-  const safeNavigation = dict?.navigation || [];
+  const safeNavigation = dict?.navigation || []
 
   return (
     <header className="w-full bg-white py-3 sm:py-5 sticky top-0 z-50 border-b border-border/10 shadow-sm">
@@ -37,7 +37,7 @@ export default function SiteHeader({ dict }: { dict: any }) {
           <div className="w-32 sm:w-40 md:w-52 h-auto">
             {lang === "pt" ? (
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo%20PT-SmF3uKcjepFjWzjFwedKj6KyRTkwXv.png"
+                src="/images/logo-pt.png"
                 alt="Alexandra Ribeiro"
                 width={240}
                 height={80}
@@ -47,7 +47,7 @@ export default function SiteHeader({ dict }: { dict: any }) {
               />
             ) : (
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo%20EN-Oe38yCmYI6QT53Sh3k0ZxYWFwp7Gzr.png"
+                src="/images/logo-en.png"
                 alt="Alexandra Ribeiro"
                 width={240}
                 height={80}
@@ -63,9 +63,9 @@ export default function SiteHeader({ dict }: { dict: any }) {
         <nav className="hidden lg:block">
           <ul className="flex space-x-10">
             {safeNavigation.map((item: any, index: number) => {
-              const external = item.external === true;
-              const href = external ? item.path : `/${lang}${item.path || ""}`;
-              const active = !external && isActive(item.path || "");
+              const external = item.external === true
+              const href = external ? item.path : `/${lang}${item.path || ""}`
+              const active = !external && isActive(item.path || "")
               return (
                 <li key={index}>
                   {external ? (
@@ -89,13 +89,13 @@ export default function SiteHeader({ dict }: { dict: any }) {
                       <span
                         className={`
                           absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full ${
-                          active ? "w-full" : "w-0"
-                        }`}
+                            active ? "w-full" : "w-0"
+                          }`}
                       />
                     </Link>
                   )}
                 </li>
-              );
+              )
             })}
           </ul>
         </nav>
@@ -106,11 +106,7 @@ export default function SiteHeader({ dict }: { dict: any }) {
           onClick={() => setIsMobileMenuOpen((o) => !o)}
           aria-label="Toggle mobile menu"
         >
-          {isMobileMenuOpen ? (
-            <X className="h-5 w-5 sm:h-6 sm:w-6" />
-          ) : (
-            <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
-          )}
+          {isMobileMenuOpen ? <X className="h-5 w-5 sm:h-6 sm:w-6" /> : <Menu className="h-5 w-5 sm:h-6 sm:w-6" />}
         </button>
 
         {/* CTA e Language Switcher */}
@@ -136,9 +132,9 @@ export default function SiteHeader({ dict }: { dict: any }) {
           <nav className="container mx-auto py-4 px-4">
             <ul className="space-y-4">
               {safeNavigation.map((item: any, index: number) => {
-                const external = item.external === true;
-                const href = external ? item.path : `/${lang}${item.path || ""}`;
-                const active = !external && isActive(item.path || "");
+                const external = item.external === true
+                const href = external ? item.path : `/${lang}${item.path || ""}`
+                const active = !external && isActive(item.path || "")
                 return (
                   <li key={index}>
                     {external ? (
@@ -163,7 +159,7 @@ export default function SiteHeader({ dict }: { dict: any }) {
                       </Link>
                     )}
                   </li>
-                );
+                )
               })}
               <li className="px-4 py-2 border-t border-border/10 mt-4 pt-4">
                 <div className="flex items-center justify-between">
@@ -176,5 +172,5 @@ export default function SiteHeader({ dict }: { dict: any }) {
         </div>
       )}
     </header>
-  );
+  )
 }
