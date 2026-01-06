@@ -41,6 +41,15 @@ const nextConfig = {
       },
     ]
   },
+  async redirects() {
+  return [
+    {
+      source: '/favicon.ico',
+      destination: '/favicon.png',
+      permanent: true,
+    },
+  ]
+}
 }
 
 module.exports = nextConfig
