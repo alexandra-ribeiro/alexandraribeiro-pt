@@ -84,7 +84,7 @@ export default async function BlogPage({ params }: { params: { lang: string } })
                 key={post.sys.id}
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
               >
-                <Link href={`/${params.lang}/blog/${post.fields.slug}`}>
+                <Link href={`/${lang}/blog/${post.fields.slug}`}>
                   <div className="relative h-48 w-full">
                     {post.fields.featuredImage ? (
                       <Image
@@ -105,7 +105,7 @@ export default async function BlogPage({ params }: { params: { lang: string } })
                   <p className="text-accent text-sm font-medium mb-2">
                     {post.fields.publishedDate ? formatDate(post.fields.publishedDate, params.lang) : ""}
                   </p>
-                  <Link href={`/${params.lang}/blog/${post.fields.slug}`}>
+                  <Link href={`/${lang}/blog/${post.fields.slug}`}>
                     <h2 className="text-xl font-bold mb-3 text-primary hover:text-accent transition-colors">
                       {post.fields.title}
                     </h2>
