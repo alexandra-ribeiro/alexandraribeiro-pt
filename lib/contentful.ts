@@ -80,6 +80,10 @@ export interface BlogPost {
   }
 }
 
+export async function generateStaticParams() {
+  return [{ lang: "pt" }, { lang: "en" }]
+}
+
 export async function getAllBlogSlugs(): Promise<string[]> {
   try {
     const client = getClient()
