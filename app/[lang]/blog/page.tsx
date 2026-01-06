@@ -48,6 +48,7 @@ export default async function BlogPage({ params }: { params: { lang: string } })
   // Fetch blog posts with proper error handling
   let posts: BlogPost[] = []
   try {
+    console.log(params.lang)
     posts = await getBlogPosts(params.lang)
   } catch (error) {
     console.error("Error fetching blog posts:", error)
