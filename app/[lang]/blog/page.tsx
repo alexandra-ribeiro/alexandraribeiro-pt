@@ -14,7 +14,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const dict = await getDictionary(params.lang)
   const lang = params.lang === "en" ? "en" : "pt"
-console.log(params.lang)
+
   const baseUrl = "https://www.alexandraribeiro.pt"
 
   const titles = {
@@ -43,13 +43,14 @@ console.log(params.lang)
 }
 
 export default async function BlogPage({ params }: { params: { lang: string } }) {
-  const dict = await getDictionary(params.lang)
+  const lang = params.lang === "en" ? "en" : "pt"
+  const dict = await getDictionary(lang)
 
   // Fetch blog posts with proper error handling
   let posts: BlogPost[] = []
   try {
     
-    posts = await getBlogPosts(params.lang)
+    posts = await getBlogPosts(lang)
   } catch (error) {
     console.error("Error fetching blog posts:", error)
     // Continue with empty posts array instead of failing
