@@ -151,20 +151,24 @@ export async function getBlogPosts(lang: string): Promise<BlogPost[]> {
 /* ---------------------------
    BLOG POST (slug + idioma)
 ---------------------------- */
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(
+  slug: string,
+  lang: string
+): Promise<BlogPost | null> {
+  const client = getClient()
+  if (!client) return null
+
   const response = await client.getEntries({
     content_type: "blogPost",
-    locale: "pt-PT",
     "fields.slug": slug,
+    "fields.language": lang,
+    limit: 1,
   })
 
-  if (!response.items || response.items.length === 0) {
-    return null
-  }
-
-  return response.items[0]
+  return response.items?.[0]
+    ? (response.items[0] as unknown as BlogPost)
+    : null
 }
-
 
 /* Posts relacionados por TAG (Contentful native tags) */
 export async function getPostsByTag(
