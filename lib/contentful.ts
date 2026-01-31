@@ -153,23 +153,24 @@ export async function getBlogPosts(lang: string): Promise<BlogPost[]> {
 ---------------------------- */
 export async function getPostBySlug(
   slug: string,
-  lang: string
-): Promise<BlogPost | null> {
-  const client = getClient()
-  if (!client) return null
+  lang: "pt" | "en"
+) {
+  const locale = lang === "pt" ? "pt-PT" : "en-US"
 
   const response = await client.getEntries({
- content_type: "blogPost",
-  "fields.slug": slug,
-  "fields.language": lang,
-  order: "-sys.publishedAt",
-  limit: 1,
+    content_type: "blogPost",
+    locale,
+    limit: 1,
+    "fields.slug": slug,
   })
 
-  return response.items?.[0]
-    ? (response.items[0] as unknown as BlogPost)
-    : null
+  if (!response.items || response.items.length === 0) {
+    return null
+  }
+
+  return response.items[0]
 }
+
 
 /* Posts relacionados por TAG (Contentful native tags) */
 export async function getPostsByTag(
