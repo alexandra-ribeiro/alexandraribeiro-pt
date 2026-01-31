@@ -72,7 +72,7 @@ export default function RootLayout({
           </ThemeProvider>
         </ErrorBoundary>
 
-        <FormsAppWidget />
+      
       </body>
     </html>
   )
