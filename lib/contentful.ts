@@ -151,16 +151,10 @@ export async function getBlogPosts(lang: string): Promise<BlogPost[]> {
 /* ---------------------------
    BLOG POST (slug + idioma)
 ---------------------------- */
-export async function getPostBySlug(
-  slug: string,
-  lang: "pt" | "en"
-) {
-  const locale = lang === "pt" ? "pt-PT" : "en-US"
-
+export async function getPostBySlug(slug: string) {
   const response = await client.getEntries({
     content_type: "blogPost",
-    locale,
-    limit: 1,
+    locale: "pt-PT",
     "fields.slug": slug,
   })
 
