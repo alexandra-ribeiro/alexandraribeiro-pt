@@ -28,9 +28,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = await getPostBySlug(params.slug, CONTENT_LANG)
 
+  // ⛑️ NUNCA chamar notFound aqui
   if (!post) {
-  notFound()
-}
+    return {
+      title: "Artigo não encontrado | Alexandra Ribeiro",
+      description: "Este artigo não está disponível.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    }
+  }
 
   const title = post.fields.seoTitle || post.fields.title
   const description =
@@ -50,7 +58,7 @@ export async function generateMetadata({
       canonical: canonicalUrl,
       languages: {
         pt: canonicalUrl,
-        en: canonicalUrl, // EN aponta para PT (conteúdo único)
+        en: canonicalUrl,
         "x-default": canonicalUrl,
       },
     },
@@ -80,6 +88,7 @@ export async function generateMetadata({
     },
   }
 }
+
 
 /* ======================================================
    PAGE
