@@ -22,7 +22,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string; lang: string }
 }): Promise<Metadata> {
-  const lang = "pt"
+  const lang = params.lang === "en" ? "en" : "pt"
   const post = await getPostBySlug(params.slug, lang)
 
   if (!post) {
@@ -225,8 +225,8 @@ export default async function BlogArticlePage({
 }: {
   params: { slug: string; lang: string }
 }) {
-  const dict = await getDictionary("pt")
-  const post = await getPostBySlug(params.slug, "pt")
+  const dict = await getDictionary(params.lang)
+  const post = await getPostBySlug(params.slug, params.lang)
 
   if (!post) notFound()
 
@@ -242,7 +242,7 @@ export default async function BlogArticlePage({
     tagIds.length > 0
       ? await getRelatedPostsByTags(
           tagIds,
-          "pt",
+          params.lang,
           post.fields.slug
         )
       : []
@@ -258,7 +258,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Blog",
-      item: `${BASE_URL}/${lang}/blog`,
+      item: `${BASE_URL}/${params.lang}/blog`,
     },
     ...(primaryTag
       ? [
@@ -266,7 +266,7 @@ const breadcrumbSchema = {
             "@type": "ListItem",
             position: 2,
             name: primaryTag.replace(/-/g, " "),
-            item: `${BASE_URL}/${lang}/blog/tag/${primaryTag}`,
+            item: `${BASE_URL}/${params.lang}/blog/tag/${primaryTag}`,
           },
         ]
       : []),
@@ -274,7 +274,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: primaryTag ? 3 : 2,
       name: post.fields.title,
-      item: `${BASE_URL}/${lang}/blog/${post.fields.slug}`,
+      item: `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`,
     },
   ],
 }
@@ -308,7 +308,7 @@ const breadcrumbSchema = {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${BASE_URL}/${lang}/blog/${post.fields.slug}`,
+      "@id": `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`,
     },
   }
 
@@ -342,13 +342,13 @@ const breadcrumbSchema = {
         <nav aria-label="Breadcrumb" className="mb-6 text-sm text-gray-500">
   <ol className="flex flex-wrap items-center gap-2">
     <li>
-      <Link href={`/${lang}`} className="hover:text-primary">
+      <Link href={`/${params.lang}`} className="hover:text-primary">
         {isPortuguese ? "Início" : "Home"}
       </Link>
     </li>
     <li>/</li>
     <li>
-      <Link href={`/${lang}/blog`} className="hover:text-primary">
+      <Link href={`/${params.lang}/blog`} className="hover:text-primary">
         Blog
       </Link>
     </li>
@@ -458,7 +458,7 @@ const breadcrumbSchema = {
 
               <div className="mt-16">
                 <Link
-                  href={`/${lang}/blog`}
+                  href={`/${params.lang}/blog`}
                   className="text-primary hover:text-accent"
                 >
                   ← {isPortuguese ? "Voltar ao blog" : "Back to blog"}
