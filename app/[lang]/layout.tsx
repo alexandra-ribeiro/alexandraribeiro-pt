@@ -60,7 +60,7 @@ export default function RootLayout({
         <html lang={htmlLang} suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         
-
+<ErrorBoundary> <LanguageProvider lang={validLang}> {children} <Toaster /> </LanguageProvider>  </ErrorBoundary>
       
       </body>
     </html>
