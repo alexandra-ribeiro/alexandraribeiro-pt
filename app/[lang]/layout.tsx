@@ -61,7 +61,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning>
         
 <ErrorBoundary> <ThemeProvider attribute="class" defaultTheme="light" suppressColorSchemeWarning >  </ThemeProvider> </ErrorBoundary>
-      
+      <FormsAppWidget />
       </body>
     </html>
   )
