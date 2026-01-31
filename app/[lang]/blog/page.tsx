@@ -1,4 +1,3 @@
-export const dynamic = "force-dynamic"
 
 import { getDictionary } from "@/lib/dictionaries"
 import SiteHeader from "@/components/site-header"
