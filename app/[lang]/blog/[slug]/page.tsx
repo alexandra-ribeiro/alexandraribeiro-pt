@@ -24,7 +24,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string; lang: string }
 }): Promise<Metadata> {
-  const lang = params.lang === "en" ? "en" : "pt"
+  const lang = "pt"
   const post = await getPostBySlug(params.slug, lang)
 
   if (!post) {
