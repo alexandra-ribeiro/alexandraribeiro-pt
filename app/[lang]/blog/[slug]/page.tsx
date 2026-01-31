@@ -20,10 +20,11 @@ const BASE_URL = "https://www.alexandraribeiro.pt"
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string; lang: string }
+  params: Promise<{ slug: string; lang: string }>
 }): Promise<Metadata> {
-  const lang = params.lang === "en" ? "en" : "pt"
-  const post = await getPostBySlug(params.slug, lang)
+  const { slug, lang: paramLang } = await params
+  const lang = paramLang === "en" ? "en" : "pt"
+  const post = await getPostBySlug(slug, lang)
 
   if (!post) {
     return {
@@ -223,14 +224,15 @@ function renderRichText(content: any): string {
 export default async function BlogArticlePage({
   params,
 }: {
-  params: { slug: string; lang: string }
+  params: Promise<{ slug: string; lang: string }>
 }) {
-  const dict = await getDictionary(params.lang)
-  const post = await getPostBySlug(params.slug, params.lang)
+  const { slug, lang } = await params
+  const dict = await getDictionary(lang)
+  const post = await getPostBySlug(slug, lang)
 
   if (!post) notFound()
 
-  const isPortuguese = params.lang === "pt"
+  const isPortuguese = lang === "pt"
 
   /* -----------------------
      RELATED POSTS
@@ -242,7 +244,7 @@ export default async function BlogArticlePage({
     tagIds.length > 0
       ? await getRelatedPostsByTags(
           tagIds,
-          params.lang,
+          lang,
           post.fields.slug
         )
       : []
@@ -258,7 +260,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Blog",
-      item: `${BASE_URL}/${params.lang}/blog`,
+      item: `${BASE_URL}/${lang}/blog`,
     },
     ...(primaryTag
       ? [
@@ -266,7 +268,7 @@ const breadcrumbSchema = {
             "@type": "ListItem",
             position: 2,
             name: primaryTag.replace(/-/g, " "),
-            item: `${BASE_URL}/${params.lang}/blog/tag/${primaryTag}`,
+            item: `${BASE_URL}/${lang}/blog/tag/${primaryTag}`,
           },
         ]
       : []),
@@ -274,7 +276,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: primaryTag ? 3 : 2,
       name: post.fields.title,
-      item: `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`,
+      item: `${BASE_URL}/${lang}/blog/${post.fields.slug}`,
     },
   ],
 }
@@ -308,7 +310,7 @@ const breadcrumbSchema = {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${BASE_URL}/${params.lang}/blog/${post.fields.slug}`,
+      "@id": `${BASE_URL}/${lang}/blog/${post.fields.slug}`,
     },
   }
 
@@ -342,13 +344,13 @@ const breadcrumbSchema = {
         <nav aria-label="Breadcrumb" className="mb-6 text-sm text-gray-500">
   <ol className="flex flex-wrap items-center gap-2">
     <li>
-      <Link href={`/${params.lang}`} className="hover:text-primary">
+      <Link href={`/${lang}`} className="hover:text-primary">
         {isPortuguese ? "Início" : "Home"}
       </Link>
     </li>
     <li>/</li>
     <li>
-      <Link href={`/${params.lang}/blog`} className="hover:text-primary">
+      <Link href={`/${lang}/blog`} className="hover:text-primary">
         Blog
       </Link>
     </li>
@@ -363,7 +365,7 @@ const breadcrumbSchema = {
               {post.fields.featuredImage && (
                 <div className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden">
                   <Image
-                    src={getImageUrl(post.fields.featuredImage)}
+                    src={getImageUrl(post.fields.featuredImage) || "/placeholder.svg"}
                     alt={post.fields.title}
                     fill
                     className="object-cover"
@@ -376,7 +378,7 @@ const breadcrumbSchema = {
               <div className="mb-12">
                 {post.fields.publishedDate && (
                   <p className="text-sm text-accent mb-4">
-                    {formatDate(post.fields.publishedDate, params.lang)}
+                    {formatDate(post.fields.publishedDate, lang)}
                   </p>
                 )}
 
@@ -393,7 +395,7 @@ const breadcrumbSchema = {
     {post.metadata.tags.map((tag) => (
       <Link
         key={tag.sys.id}
-        href={`/${params.lang}/blog/tag/${tag.sys.id}`}
+        href={`/${lang}/blog/tag/${tag.sys.id}`}
         className="text-sm bg-gray-100 px-3 py-1 rounded-full hover:bg-accent hover:text-white transition"
       >
         #{tag.sys.id.replace(/-/g, " ")}
@@ -425,7 +427,7 @@ const breadcrumbSchema = {
                     {relatedPosts.map((related) => (
                       <Link
                         key={related.sys.id}
-                        href={`/${params.lang}/blog/${related.fields.slug}`}
+                        href={`/${lang}/blog/${related.fields.slug}`}
                         className="block bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden"
                       >
                         {related.fields.featuredImage && (
@@ -433,7 +435,7 @@ const breadcrumbSchema = {
                             <Image
                               src={getImageUrl(
                                 related.fields.featuredImage
-                              )}
+                              ) || "/placeholder.svg"}
                               alt={related.fields.title}
                               fill
                               className="object-cover"
@@ -458,7 +460,7 @@ const breadcrumbSchema = {
 
               <div className="mt-16">
                 <Link
-                  href={`/${params.lang}/blog`}
+                  href={`/${lang}/blog`}
                   className="text-primary hover:text-accent"
                 >
                   ← {isPortuguese ? "Voltar ao blog" : "Back to blog"}
@@ -518,7 +520,7 @@ const breadcrumbSchema = {
 
               <div className="mt-6 pt-4 border-t">
                 <Link
-                  href={`/${params.lang}/about`}
+                  href={`/${lang}/about`}
                   className="text-primary text-sm font-medium"
                 >
                   {isPortuguese ? "Saber mais sobre mim" : "Learn more about me"} →
