@@ -1,4 +1,3 @@
-
 import { getDictionary } from "@/lib/dictionaries"
 import SiteHeader from "@/components/site-header"
 import Footer from "@/components/footer"
