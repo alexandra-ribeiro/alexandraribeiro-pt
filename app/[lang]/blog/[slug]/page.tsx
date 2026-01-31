@@ -226,9 +226,16 @@ export default async function BlogArticlePage({
 }: {
   params: Promise<{ slug: string; lang: string }>
 }) {
-  const { slug, lang } = await params
+  const resolvedParams = await params
+  const { slug, lang } = resolvedParams
+  
+  console.log("[v0] BlogArticlePage - resolvedParams:", JSON.stringify(resolvedParams))
+  console.log("[v0] BlogArticlePage - slug:", slug, "lang:", lang)
+  
   const dict = await getDictionary(lang)
   const post = await getPostBySlug(slug, lang)
+  
+  console.log("[v0] BlogArticlePage - post found:", post ? "yes" : "no", post?.fields?.title)
 
   if (!post) notFound()
 
