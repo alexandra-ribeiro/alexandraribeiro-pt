@@ -159,10 +159,11 @@ export async function getPostBySlug(
   if (!client) return null
 
   const response = await client.getEntries({
-    content_type: "blogPost",
-    "fields.slug": slug,
-    "fields.language": lang,
-    limit: 1,
+ content_type: "blogPost",
+  "fields.slug": slug,
+  "fields.language": lang,
+  order: "-sys.publishedAt",
+  limit: 1,
   })
 
   return response.items?.[0]
