@@ -195,12 +195,9 @@ export default async function BlogArticlePage({
             {post.fields.description}
           </p>
 
-          <div
-            className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{
-              __html: renderRichText(post.fields.content),
-            }}
-          />
+          <div className="prose prose-lg max-w-none">
+  <p>TESTE</p>
+</div>
 
           {/* RELATED POSTS */}
           {relatedPosts.length > 0 && (
