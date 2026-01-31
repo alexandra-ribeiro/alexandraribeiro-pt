@@ -29,11 +29,8 @@ export async function generateMetadata({
   const post = await getPostBySlug(params.slug, CONTENT_LANG)
 
   if (!post) {
-    return {
-      title: "Artigo não encontrado",
-      description: "O artigo solicitado não existe.",
-    }
-  }
+  notFound()
+}
 
   const title = post.fields.seoTitle || post.fields.title
   const description =
