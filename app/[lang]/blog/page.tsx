@@ -50,7 +50,7 @@ export default async function BlogPage({ params }: { params: { lang: string } })
   let posts: BlogPost[] = []
   try {
     
-    posts = await getBlogPosts(lang)
+    posts = await getBlogPosts("pt")
   } catch (error) {
     console.error("Error fetching blog posts:", error)
     // Continue with empty posts array instead of failing
