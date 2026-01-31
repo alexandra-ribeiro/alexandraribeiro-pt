@@ -59,18 +59,7 @@ export default function RootLayout({
   return (
         <html lang={htmlLang} suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
-        <ErrorBoundary>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            suppressColorSchemeWarning
-          >
-            <LanguageProvider lang={validLang}>
-              {children}
-              <Toaster />
-            </LanguageProvider>
-          </ThemeProvider>
-        </ErrorBoundary>
+        
 
       
       </body>
