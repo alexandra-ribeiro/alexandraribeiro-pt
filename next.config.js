@@ -48,6 +48,11 @@ const nextConfig = {
       destination: '/favicon.png',
       permanent: true,
     },
+    {
+        source: "/pt/blog/:slug*",
+        destination: "https://pages.alexandraribeiro.pt/blog/:slug*",
+        permanent: true, // 301
+      },
   ]
 }
 }
