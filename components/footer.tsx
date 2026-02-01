@@ -166,13 +166,25 @@ export default function Footer({ dict }: { dict: any }) {
             <ul className="space-y-3">
               {dict.links.map((link: any, index: number) => (
                 <li key={index}>
-                  <Link
-                    href={`/${lang}${link.url}`}
-                    className="text-primary-foreground/80 hover:text-accent transition-colors duration-300 flex items-center group"
-                  >
-                    <ChevronRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    {link.text}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-foreground/80 hover:text-accent transition-colors duration-300 flex items-center group"
+                    >
+                      <ChevronRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {link.text}
+                    </a>
+                  ) : (
+                    <Link
+                      href={`/${lang}${link.url}`}
+                      className="text-primary-foreground/80 hover:text-accent transition-colors duration-300 flex items-center group"
+                    >
+                      <ChevronRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {link.text}
+                    </Link>
+                  )}
                 </li>
               ))}
               <li>

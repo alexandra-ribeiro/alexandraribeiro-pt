@@ -19,7 +19,8 @@
     },
     {
       "label": "Blog",
-      "path": "/blog"
+      "path": "https://pages.alexandraribeiro.pt/blog",
+      "external": true
     },
     {
       "label": "Store",
@@ -450,7 +451,8 @@
       },
       {
         "text": "Blog",
-        "url": "/blog"
+        "url": "https://pages.alexandraribeiro.pt/blog",
+        "external": true
       },
       {
         "text": "Contact",
