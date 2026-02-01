@@ -155,8 +155,13 @@ export async function getPostBySlug(
   slug: string,
   lang: string
 ): Promise<BlogPost | null> {
+  console.log("[v0] getPostBySlug called with slug:", slug, "lang:", lang)
+  
   const client = getClient()
-  if (!client) return null
+  if (!client) {
+    console.log("[v0] getPostBySlug - no client")
+    return null
+  }
 
   const response = await client.getEntries({
     content_type: "blogPost",
@@ -164,6 +169,9 @@ export async function getPostBySlug(
     "fields.language": lang,
     limit: 1,
   })
+
+  console.log("[v0] getPostBySlug - response items count:", response.items?.length)
+  console.log("[v0] getPostBySlug - first item slug:", (response.items?.[0] as any)?.fields?.slug)
 
   return response.items?.[0]
     ? (response.items[0] as unknown as BlogPost)
