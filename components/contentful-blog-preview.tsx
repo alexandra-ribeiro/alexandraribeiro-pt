@@ -206,9 +206,15 @@ export default async function ContentfulBlogPreview({ dict, lang }: BlogPreviewP
                       unoptimized
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                      <span className="text-primary/40 text-4xl font-bold">AR</span>
-                    </div>
+                    <div 
+                      className={`w-full h-full flex items-center justify-center ${
+                        index === 0 
+                          ? "bg-gradient-to-br from-primary/30 via-primary/20 to-accent/30" 
+                          : index === 1 
+                            ? "bg-gradient-to-br from-accent/30 via-accent/20 to-primary/30"
+                            : "bg-gradient-to-br from-primary/20 via-accent/25 to-primary/30"
+                      }`}
+                    />
                   )}
                   <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
