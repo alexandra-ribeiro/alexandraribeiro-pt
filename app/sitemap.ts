@@ -1,5 +1,4 @@
 import { MetadataRoute } from "next"
-import { getAllBlogPosts } from "@/lib/contentful"
 
 const BASE_URL = "https://www.alexandraribeiro.pt"
 
@@ -8,7 +7,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "",
     "/services",
     "/about",
-    "/blog",
     "/portfolio",
     "/store",
     "/contact",
@@ -36,32 +34,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     )
   })
 
-  /* ---------------------------
-     ARTIGOS DO BLOG (Contentful)
-  ---------------------------- */
-  const posts = await getAllBlogPosts()
-
-  posts.forEach((post) => {
-    const lastModified =
-      post.fields.updatedAt ||
-      post.fields.publishedDate ||
-      new Date()
-
-    sitemapEntries.push(
-      {
-        url: `${BASE_URL}/pt/blog/${post.fields.slug}`,
-        lastModified: new Date(lastModified),
-        changeFrequency: "weekly",
-        priority: 0.7,
-      },
-      {
-        url: `${BASE_URL}/en/blog/${post.fields.slug}`,
-        lastModified: new Date(lastModified),
-        changeFrequency: "weekly",
-        priority: 0.7,
-      }
-    )
-  })
 
   return sitemapEntries
 }
