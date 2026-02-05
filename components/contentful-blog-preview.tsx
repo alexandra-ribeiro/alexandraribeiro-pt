@@ -241,7 +241,52 @@ export default async function ContentfulBlogPreview({ dict, lang }: BlogPreviewP
           ))}
         </div>
 
-        <div className="text-center mt-16">
+        {/* Blog Categories */}
+        <div className="mt-12 text-center">
+          <p className="text-sm text-foreground/60 mb-4">
+            {isPortuguese ? "Explorar por categoria:" : "Browse by category:"}
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/guias-praticos"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Guias Práticos
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/produtividade"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Produtividade
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/marketing-digital"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Marketing Digital
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/inteligencia-artificial"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Inteligência Artificial
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/ferramentas-digitais"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Ferramentas Digitais
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/negocio-digital"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Negócio Digital
+            </a>
+          </div>
+        </div>
+
+        <div className="text-center mt-10">
           <a href="https://pages.alexandraribeiro.pt/blog">
             <Button variant="outline" className="bg-transparent border-primary text-primary hover:bg-primary/10 px-8 py-6 text-base">
               {dict.viewAllButton || (isPortuguese ? "Ver todos os artigos" : "View all articles")}
