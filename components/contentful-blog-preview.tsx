@@ -248,37 +248,37 @@ export default async function ContentfulBlogPreview({ dict, lang }: BlogPreviewP
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a
-              href="https://pages.alexandraribeiro.pt/blog/guias-praticos"
+              href="https://pages.alexandraribeiro.pt/blog/category/guias-praticos"
               className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
             >
               Guias Práticos
             </a>
             <a
-              href="https://pages.alexandraribeiro.pt/blog/produtividade"
+              href="https://pages.alexandraribeiro.pt/blog/category/produtividade"
               className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
             >
               Produtividade
             </a>
             <a
-              href="https://pages.alexandraribeiro.pt/blog/marketing-digital"
+              href="https://pages.alexandraribeiro.pt/blog/category/marketing-digital"
               className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
             >
               Marketing Digital
             </a>
             <a
-              href="https://pages.alexandraribeiro.pt/blog/inteligencia-artificial"
+              href="https://pages.alexandraribeiro.pt/blog/category/inteligencia-artificial"
               className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
             >
               Inteligência Artificial
             </a>
             <a
-              href="https://pages.alexandraribeiro.pt/blog/ferramentas-digitais"
+              href="https://pages.alexandraribeiro.pt/blog/category/ferramentas-digitais"
               className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
             >
               Ferramentas Digitais
             </a>
             <a
-              href="https://pages.alexandraribeiro.pt/blog/negocio-digital"
+              href="https://pages.alexandraribeiro.pt/blog/category/negocio-digital"
               className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
             >
               Negócio Digital
