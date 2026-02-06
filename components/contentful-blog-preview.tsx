@@ -1,101 +1,176 @@
-"use client"
-
-import { useState, useEffect } from "react"
 import Image from "next/image"
-import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { getRecentPosts, getImageUrl, type BlogPost } from "@/lib/contentful"
-import { formatDate } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+
+interface RSSPost {
+  title: string
+  link: string
+  pubDate: string
+  description: string
+  image: string | null
+}
 
 interface BlogPreviewProps {
   dict: any
   lang: string
 }
 
-export default function ContentfulBlogPreview({ dict, lang }: BlogPreviewProps) {
-  const [posts, setPosts] = useState<BlogPost[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+// Format date in Portuguese
+function formatDatePT(dateString: string): string {
+  try {
+    const date = new Date(dateString)
+    return date.toLocaleDateString("pt-PT", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })
+  } catch {
+    return dateString
+  }
+}
 
-  useEffect(() => {
-    async function loadPosts() {
-      try {
-        setIsLoading(true)
-        setError(null)
-        const recentPosts = await getRecentPosts(lang)
-        console.log("ContentfulBlogPreview: Loaded recent posts:", recentPosts.length)
-        setPosts(recentPosts)
-      } catch (err) {
-        console.error("Error loading blog posts:", err)
-        setError("Failed to load blog posts. Please try again later.")
-      } finally {
-        setIsLoading(false)
+// Extract image from RSS content/description
+function extractImageFromContent(content: string): string | null {
+  // Try to find img tag in content
+  const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i)
+  if (imgMatch) {
+    return imgMatch[1]
+  }
+  
+  // Try to find media:content or enclosure
+  const mediaMatch = content.match(/url=["']([^"']+\.(jpg|jpeg|png|gif|webp))["']/i)
+  if (mediaMatch) {
+    return mediaMatch[1]
+  }
+  
+  return null
+}
+
+// Extract clean text description from HTML
+function extractDescription(html: string, maxLength: number = 150): string {
+  // Remove HTML tags
+  const text = html
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/\s+/g, " ")
+    .trim()
+  
+  if (text.length <= maxLength) return text
+  return text.substring(0, maxLength).trim() + "..."
+}
+
+// Parse RSS feed XML to JSON
+function parseRSSFeed(xml: string): RSSPost[] {
+  const posts: RSSPost[] = []
+  
+  // Extract items from RSS
+  const itemRegex = /<item>([\s\S]*?)<\/item>/gi
+  const items = xml.match(itemRegex) || []
+  
+  for (const item of items.slice(0, 3)) {
+    // Extract title
+    const titleMatch = item.match(/<title><!\[CDATA\[([\s\S]*?)\]\]><\/title>|<title>([\s\S]*?)<\/title>/i)
+    const title = titleMatch ? (titleMatch[1] || titleMatch[2] || "").trim() : ""
+    
+    // Extract link
+    const linkMatch = item.match(/<link><!\[CDATA\[([\s\S]*?)\]\]><\/link>|<link>([\s\S]*?)<\/link>/i)
+    const link = linkMatch ? (linkMatch[1] || linkMatch[2] || "").trim() : ""
+    
+    // Extract pubDate
+    const pubDateMatch = item.match(/<pubDate>([\s\S]*?)<\/pubDate>/i)
+    const pubDate = pubDateMatch ? pubDateMatch[1].trim() : ""
+    
+    // Extract description/content
+    const descMatch = item.match(/<description><!\[CDATA\[([\s\S]*?)\]\]><\/description>|<description>([\s\S]*?)<\/description>/i)
+    const contentMatch = item.match(/<content:encoded><!\[CDATA\[([\s\S]*?)\]\]><\/content:encoded>/i)
+    const rawContent = contentMatch ? contentMatch[1] : (descMatch ? (descMatch[1] || descMatch[2] || "") : "")
+    
+    // Extract image from content or media tags
+    let image = extractImageFromContent(rawContent)
+    
+    // Try media:content tag
+    if (!image) {
+      const mediaContentMatch = item.match(/<media:content[^>]+url=["']([^"']+)["']/i)
+      if (mediaContentMatch) {
+        image = mediaContentMatch[1]
       }
     }
-
-    loadPosts()
-  }, [lang])
-
-  if (error) {
-    return (
-      <section className="bg-white py-24 relative overflow-hidden">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">{dict.title}</h2>
-            <div className="h-1 w-20 bg-accent mx-auto mb-8"></div>
-          </div>
-          <div className="text-center py-12">
-            <p className="text-red-500 mb-4">{error}</p>
-            <Button onClick={() => window.location.reload()} variant="outline">
-              Try Again
-            </Button>
-          </div>
-        </div>
-      </section>
-    )
+    
+    // Try enclosure tag
+    if (!image) {
+      const enclosureMatch = item.match(/<enclosure[^>]+url=["']([^"']+)["']/i)
+      if (enclosureMatch) {
+        image = enclosureMatch[1]
+      }
+    }
+    
+    // Clean description
+    const description = extractDescription(rawContent)
+    
+    if (title && link) {
+      posts.push({
+        title,
+        link,
+        pubDate,
+        description,
+        image,
+      })
+    }
   }
+  
+  return posts
+}
 
-  if (isLoading) {
-    return (
-      <section className="bg-white py-24 relative overflow-hidden">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">{dict.title}</h2>
-            <div className="h-1 w-20 bg-accent mx-auto mb-8"></div>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white rounded-lg shadow-lg overflow-hidden animate-pulse">
-                <div className="h-56 bg-gray-200"></div>
-                <div className="p-8">
-                  <div className="h-4 bg-gray-200 rounded mb-3 w-1/4"></div>
-                  <div className="h-6 bg-gray-200 rounded mb-4"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-6 w-2/3"></div>
-                  <div className="h-4 bg-gray-200 rounded w-1/4"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
+// Fetch RSS feed from Systeme.io blog
+async function fetchRSSPosts(): Promise<RSSPost[]> {
+  try {
+    const response = await fetch("https://pages.alexandraribeiro.pt/blog/feed", {
+      next: { revalidate: 3600 }, // Cache for 1 hour
+    })
+    
+    if (!response.ok) {
+      throw new Error(`RSS fetch failed: ${response.status}`)
+    }
+    
+    const xml = await response.text()
+    return parseRSSFeed(xml)
+  } catch (error) {
+    console.error("Error fetching RSS feed:", error)
+    return []
   }
+}
 
+export default async function ContentfulBlogPreview({ dict, lang }: BlogPreviewProps) {
+  const posts = await fetchRSSPosts()
+  const isPortuguese = lang === "pt"
+  
+  // Fallback if RSS fetch fails or no posts
   if (posts.length === 0) {
     return (
       <section className="bg-white py-24 relative overflow-hidden">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
+        <div className="absolute inset-0 texture-grid opacity-20"></div>
+        <div className="container mx-auto relative">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <span className="text-accent text-sm uppercase tracking-widest font-medium mb-3 block">Blog</span>
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">{dict.title}</h2>
             <div className="h-1 w-20 bg-accent mx-auto mb-8"></div>
           </div>
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">
-              {lang === "pt" ? "Novos artigos em breve. Fique ligado!" : "New articles coming soon. Stay tuned!"}
+            <p className="text-gray-500 text-lg mb-8">
+              {isPortuguese 
+                ? "Novos artigos em breve. Visite o blog para ver todos os conteúdos." 
+                : "New articles coming soon. Visit the blog to see all content."}
             </p>
+            <a href="https://pages.alexandraribeiro.pt/blog">
+              <Button variant="outline" className="bg-transparent border-primary text-primary hover:bg-primary/10 px-8 py-6 text-base">
+                {dict.viewAllButton || (isPortuguese ? "Ver todos os artigos" : "View all articles")}
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -114,59 +189,109 @@ export default function ContentfulBlogPreview({ dict, lang }: BlogPreviewProps) 
           <div className="h-1 w-20 bg-accent mx-auto mb-8"></div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {posts.map((post) => (
-            <div
-              key={post.sys.id}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {posts.map((post, index) => (
+            <article
+              key={index}
               className="bg-white rounded-lg shadow-lg overflow-hidden border border-border/10 hover-lift group"
             >
-              <div className="relative h-56 w-full overflow-hidden">
-                {post.fields.featuredImage ? (
-                  <Image
-                    src={getImageUrl(post.fields.featuredImage) || "/placeholder.svg"}
-                    alt={post.fields.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    unoptimized
-                    onError={(e) => {
-                      // Fallback to placeholder if image fails to load
-                      const target = e.target as HTMLImageElement
-                      target.src = "/placeholder.svg"
-                    }}
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-400">No image</span>
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
+              <a href={post.link} className="block">
+                <div className="relative h-56 w-full overflow-hidden">
+                  {post.image ? (
+                    <Image
+                      src={post.image || "/placeholder.svg"}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      unoptimized
+                    />
+                  ) : (
+                    <div 
+                      className={`w-full h-full flex items-center justify-center ${
+                        index === 0 
+                          ? "bg-gradient-to-br from-primary/30 via-primary/20 to-accent/30" 
+                          : index === 1 
+                            ? "bg-gradient-to-br from-accent/30 via-accent/20 to-primary/30"
+                            : "bg-gradient-to-br from-primary/20 via-accent/25 to-primary/30"
+                      }`}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </a>
               <div className="p-8">
                 <div className="text-xs text-accent font-medium uppercase tracking-wider mb-3">
-                  {post.fields.publishedDate ? formatDate(post.fields.publishedDate, lang) : ""}
+                  {post.pubDate ? formatDatePT(post.pubDate) : ""}
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-primary group-hover:text-accent transition-colors duration-300">
-                  {post.fields.title}
-                </h3>
-                <p className="text-foreground/70 mb-6 line-clamp-3">{post.fields.description}</p>
-                <Link
-                  href={`/${lang}/blog/${post.fields.slug}`}
+                <a href={post.link}>
+                  <h3 className="text-xl font-bold mb-4 text-primary group-hover:text-accent transition-colors duration-300 line-clamp-2">
+                    {post.title}
+                  </h3>
+                </a>
+                <p className="text-foreground/70 mb-6 line-clamp-3">{post.description}</p>
+                <a
+                  href={post.link}
                   className="inline-flex items-center text-primary font-medium group-hover:text-accent transition-colors duration-300"
                 >
-                  {dict.readMoreButton || (lang === "en" ? "Read more" : "Ler mais")}
+                  {dict.readMoreButton || (isPortuguese ? "Ler mais" : "Read more")}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
+                </a>
               </div>
-            </div>
+            </article>
           ))}
         </div>
 
-        <div className="text-center mt-16">
-          <Link href={`/${lang}/blog`}>
-            <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 px-8 py-6 text-base">
-              {dict.viewAllButton || (lang === "en" ? "View all articles" : "Ver todos os artigos")}
+        {/* Blog Categories */}
+        <div className="mt-12 text-center">
+          <p className="text-sm text-foreground/60 mb-4">
+            {isPortuguese ? "Explorar por categoria:" : "Browse by category:"}
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/guias-praticos"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Guias Práticos
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/produtividade"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Produtividade
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/marketing-digital"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Marketing Digital
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/inteligencia-artificial"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Inteligência Artificial
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/ferramentas-digitais"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Ferramentas Digitais
+            </a>
+            <a
+              href="https://pages.alexandraribeiro.pt/blog/negocio-digital"
+              className="px-4 py-2 text-sm rounded-full border border-border/30 text-primary hover:bg-primary hover:text-white transition-colors duration-300"
+            >
+              Negócio Digital
+            </a>
+          </div>
+        </div>
+
+        <div className="text-center mt-10">
+          <a href="https://pages.alexandraribeiro.pt/blog">
+            <Button variant="outline" className="bg-transparent border-primary text-primary hover:bg-primary/10 px-8 py-6 text-base">
+              {dict.viewAllButton || (isPortuguese ? "Ver todos os artigos" : "View all articles")}
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </section>
