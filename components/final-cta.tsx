@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
-export default function FinalCTA({ dict }: { dict: any }) {
+export default function FinalCTA({ dict, lang = "pt" }: { dict: any; lang?: string }) {
   return (
     <section className="bg-primary text-white py-24 relative overflow-hidden">
       {/* Background texture */}
@@ -17,11 +17,11 @@ export default function FinalCTA({ dict }: { dict: any }) {
 
       <div className="container section text-center relative">
         <div className="max-w-2xl mx-auto space-y-8">
-          
+
           <h2 className="text-3xl md:text-4xl font-bold">{dict.title}</h2>
           <p className="text-primary-foreground/90 text-lg">{dict.description}</p>
           <div className="pt-4">
-            <Link href="/pt/contact">
+            <Link href={`/${lang}/contact`}>
               <Button
                 size="lg"
                 className="bg-[#CC9E00] text-primary hover:bg-primary hover:text-white transition-colors px-10 py-7 text-base shadow-xl"

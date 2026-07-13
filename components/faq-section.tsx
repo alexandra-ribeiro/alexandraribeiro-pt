@@ -18,7 +18,7 @@ export default function FAQSection({ dict }: { dict: any }) {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-6">
+          <Accordion type="single" collapsible defaultValue="item-0" className="space-y-6">
             {dict.items.map((item: any, index: number) => (
               <AccordionItem
                 key={index}

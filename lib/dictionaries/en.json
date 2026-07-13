@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "title": "Alexandra Ribeiro | Digital operations management for SMEs and online businesses",
-    "description": "Websites, professional email, automation, and ongoing support for digital businesses and SME in Portugal"
+    "title": "Alexandra Ribeiro | External Technical Director for SMEs",
+    "description": "Custom digital operating systems for Portuguese SMEs — diagnosis, implementation, and the end of scattered Excel files. No ERP, no in-house IT team."
   },
-  "headerCTA": "Schedule a call",
+  "headerCTA": "Book a no-obligation call",
   "navigation": [
     {
       "label": "Home",
@@ -33,80 +33,103 @@
     }
   ],
   "hero": {
-    "tagline": "Digital operations management for SMEs and online businesses",
-    "headline": "The technical support that keeps your business running",
-    "subheadline": "Websites, professional email, automation, and ongoing support for digital businesses and SMEs in Portugal",
-    "cta": "See how I can help",
-    "ctaLink": "en/services"
+    "tagline": "The translator between business and technology",
+    "headline": "External Technical Director for SMEs",
+    "subheadline": "Custom digital operating systems — diagnosis, implementation, and the end of scattered Excel files.",
+    "cta": "Book a no-obligation call",
+    "ctaLink": "en/contact"
   },
   "painPoints": {
-    "title": "When systems don't keep up with growth, the business feels it",
-    "intro": "As a business grows, so do clients, requests, emails and processes. The problem isn't working more — it's working with systems that aren't organised or connected.",
+    "title": "Do any of these sound familiar?",
+    "intro": "These are the phrases I hear most often when an SME contacts me for the first time. If any of them rings a bell, you're in good company: it's the normal state of a company that grew faster than the systems supporting it.",
     "cards": [
       {
-        "title": "Disconnected tools",
-        "description": "Email, billing, scheduling, website and CRM work — but in isolation."
+        "title": "\"Everything lives in Excel.\"",
+        "description": "Everyone has their own spreadsheet, nobody knows the real status of projects, and information is scattered across email, Drive and WhatsApp."
       },
       {
-        "title": "Manual processes everywhere",
-        "description": "Too many tasks that should already be automated."
+        "title": "\"We've already tried several tools.\"",
+        "description": "And nobody used them. The cause is well known: the tool was chosen before the process was clear, and nobody was made responsible for maintaining it."
       },
       {
-        "title": "No technical continuity",
-        "description": "Small issues pile up and turn into constant headaches."
+        "title": "\"We're growing, but our organisation isn't keeping up.\"",
+        "description": "More clients and more orders bring more mistakes, more rework — and whole days spent putting out fires."
       },
       {
-        "title": "Everything works… until it doesn't",
-        "description": "Updates, errors or small failures can stop operations."
+        "title": "\"We received an ERP proposal, but...\"",
+        "description": "Five-figure numbers, 12-month timelines and a sales pitch that's hard to evaluate. Before signing, it pays to have someone on your side of the table reading the proposal."
       }
     ],
-    "closing": "Healthy businesses rely on simple, stable and well-maintained digital operations."
+    "closing": "Recognised yourself in two or more? A 15-minute call is enough to measure the size of the problem — and see the first step towards solving it."
   },
   "whatIsVA": {
-    "title": "But after all, what does a Digital Consultant do?",
+    "title": "What I do, in practice",
     "points": [
-      "I handle all the technical aspects that nobody wants to deal with... but are essential to get started: domain, email, hosting, basic CRM (customer management), configuration of Portuguese online invoicing software so you can start billing from day 1",
-      "I set up your online store without you needing to know code or spend nights on YouTube learning Shopify or WordPress",
-      "I create automations that work for you while you sleep (emails, repetitive tasks, follow-ups)",
-      "I implement AI in your business in a practical and uncomplicated way - chatbots, virtual assistants, automatic responses on social media",
-      "I develop customized templates for proposals, quotes, and onboarding that impress your clients and that you can start using immediately"
+      {
+        "title": "Diagnosis before any proposal",
+        "description": "I spend one to two weeks understanding how the company actually works — not how it's written down that it works. You get a simple map: what exists, what's missing, and what it costs per month to keep going as is."
+      },
+      {
+        "title": "Translating proposals and vendors",
+        "description": "When you receive a software proposal, I read it with you, translate the tech-speak and ask the vendor the hard questions — so you buy what you need, not what they want to sell you."
+      },
+      {
+        "title": "Custom systems, built on what you already use",
+        "description": "I connect the tools you already have (invoicing software, Google Workspace, Drive) and build in low-code — tools that let you create systems without programming from scratch — a dashboard where you see the status of every project and who's doing what."
+      },
+      {
+        "title": "Implementation in phases, with visible results",
+        "description": "No 18-month projects. Small, measurable improvements, with the first delivery visible within a few weeks — often paying for itself through the cleanup of subscriptions and tools the company pays for without using."
+      },
+      {
+        "title": "Ongoing maintenance and protection",
+        "description": "A system without an owner goes back to Excel within three months. I stay after delivery: team questions, real backups, access under control, and a written plan for when something fails."
+      }
     ],
-    "highlight": "No social security charges, no additional office space, no recruitment concerns. Just practical results, when you need them.",
-    "cta": "Let's talk!"
+    "highlight": "I am, in practice, the IT department your company doesn't have — and doesn't want to have — in-house. With 20 years of software engineering behind me, and no interest in selling anyone's software.",
+    "cta": "Book a no-obligation call"
   },
   "services": {
     "title": "How can I help your company?",
-    "description": "I offer a variety of personalized services to meet the specific needs of your business.",
+    "description": "Diagnosis, technical intermediation with vendors and custom digital operating systems — in phases, with visible results.",
     "cta": "See all services"
   },
   "whyChooseVA": {
-    "sectionLabel": "Advantages",
-    "title": "Why choose a Digital Consultant as your technical partner?",
-    "description": "Having a specialized Digital Consultant brings numerous advantages to your early-stage business. Discover the main benefits of this strategic partnership for your technical infrastructure.",
+    "sectionLabel": "What sets me apart",
+    "title": "Why an External Technical Director?",
+    "description": "SMEs that have grown past the startup stage live in an uncomfortable gap: too structured to justify an ERP and an IT team, too grown to keep living in Excel. That's the space I occupy — on your side of the table, with no commissions from any vendor.",
     "benefits": [
       {
-        "title": "Total flexibility",
-        "description": "Support when you need it, without long-term contracts or fixed monthly costs"
+        "title": "Total vendor independence",
+        "description": "I recommend what serves the business, including \"don't buy anything\" or \"make better use of what you already pay for\" — like the purchasing module of an invoicing tool a client had been paying for, unused, for months."
       },
       {
-        "title": "Proven experience",
-        "description": "20 years in computer engineering and systems applied to the Portuguese entrepreneurial reality"
+        "title": "20 years of software engineering",
+        "description": "Consulting and software development experience at the service of your technology decisions — no sales pressure, and the hard questions asked by someone who speaks the vendors' language."
       },
       {
-        "title": "Complete solution",
-        "description": "All essential systems implemented by a single professional, avoiding multiple hires"
+        "title": "Results in phases, within weeks",
+        "description": "Never \"big bang\" 18-month projects. Each phase delivers a visible, measurable result before moving on to the next."
       },
       {
-        "title": "No technical worries",
-        "description": "Focus on growing your business while I set up your entire digital infrastructure"
+        "title": "Documentation and autonomy",
+        "description": "Everything documented, accounts and access always in the company's name, tools with large communities. If one day you want to work with someone else, they pick up where I left off."
       }
     ]
   },
   "aboutMe": {
-    "title": "Because I know what it's like to start from scratch (and without a network)",
-    "bio": "I'm Alexandra Ribeiro, a computer engineer who traded 20 years of corporate life for entrepreneurship — and believe me, I know exactly what that roller coaster feels like!\n\nToday, I'm that technical partner you need when launching your business. The person who configures all those boring systems (well, they have their days...) that nobody wants to learn, but are essential to get started: domains, emails, online stores, automations, and even artificial intelligence.\n\nI love transforming 'complicated technical stuff' into practical solutions that actually work, something I realized when I was doing the same during my own journey!\n\nConsider me your technical partner on the launch journey — I take care of the systems so you can focus on what really matters: growing your business!",
+    "title": "The IT person your company doesn't have — and doesn't want to hire",
+    "bio": "I'm a software engineer with 20 years of experience in consulting and software development. Today I work with Portuguese SMEs that have grown to the point where operations live in scattered Excel files and tools that don't talk to each other.\n\nI do two things: I act as the technical intermediary when the company needs to evaluate vendors and systems (I translate proposals, ask the hard questions, prevent bad purchases), and I directly build custom systems — automations, integrations and management dashboards in low-code — adapted to the way the team already works.",
     "cta": "Know more",
-    "badges": ["CAE Advanced English", "Shopify Partner", "E-commerce Specialization", "Tools: Canva, SQL, HTML, etc."]
+    "badges": [
+      "20 years of software engineering and consulting",
+      "Low-code: Supabase, WeWeb, Make",
+      "Invoicing: Moloni, InvoiceXpress, Primavera (certified by the Portuguese Tax Authority)",
+      "Automation: Make.com, n8n, Zapier",
+      "Management: Notion, Trello, Atlassian Jira, Monday",
+      "Productivity: Google Workspace, Microsoft 365",
+      "Databases: SQL, Supabase"
+    ]
   },
   "certifications": {
     "title": "Trusted certifications and partnerships"
@@ -115,41 +138,7 @@
     "title": "Latest blog articles",
     "readMoreButton": "Read more",
     "viewAllButton": "View all articles",
-    "articles": [
-      {
-        "title": "Freebie: 10 Tasks",
-        "description": "Download my most-requested digital marketing services so you know what services to offer. You'll see you don't have to be a specialist or coder to begin a freelance DMA hustle.",
-        "date": "April 18, 2025",
-        "slug": "freebie-10-tasks",
-        "image": "/placeholder.svg?height=200&width=400&text=Freebie"
-      },
-      {
-        "title": "Strengths Quiz",
-        "description": "Your unique talents and natural abilities are so valuable to employers. Own it! Take the quiz to see what type of virtual online position is right for you and what clients will pay for.",
-        "date": "April 10, 2025",
-        "slug": "strengths-quiz",
-        "image": "/placeholder.svg?height=200&width=400&text=Quiz"
-      },
-      {
-        "title": "DMA Training Series",
-        "description": "Step into the role of highly paid, highly prized freelance marketer by mastering in-demand marketing services & getting your business set up for paying clients (and total freedom).",
-        "date": "April 2, 2025",
-        "slug": "dma-training-series",
-        "image": "/placeholder.svg?height=200&width=400&text=Training"
-      }
-    ]
-  },
-  "newsletterPopup": {
-    "title": "Get Exclusive Tips!",
-    "description": "Subscribe to our newsletter to receive tips, resources, and special offers for virtual assistants.",
-    "namePlaceholder": "Your name",
-    "emailPlaceholder": "Your best email",
-    "buttonText": "I want to subscribe!",
-    "privacyText": "We respect your privacy. You can unsubscribe at any time.",
-    "thankYou": {
-      "title": "Thank you for subscribing!",
-      "message": "You've successfully joined our newsletter. We'll send you valuable tips and updates straight to your inbox."
-    }
+    "articles": []
   },
   "testimonials": {
     "title": "What my clients say",
@@ -161,80 +150,41 @@
     ]
   },
   "finalCTA": {
-    "title": "Ready to work together?",
-    "description": "Let's talk for 15 minutes, no commitment, to discover how I can help your business.",
-    "button": "Schedule a call"
+    "title": "What does it cost to keep going as is?",
+    "description": "In a 15-minute call, with no obligation, we look at how your operation works today and whether it makes sense to move on to a diagnosis. No sales pitch: if the problem isn't one for me, I'll tell you — and I'll also tell you what I would do in your place.",
+    "button": "Book a no-obligation call"
   },
   "about": {
     "title": "About Me",
-    "description": "Meet Alexandra Ribeiro, a virtual assistant specialized in administrative and technological support for businesses in Portugal",
-    "hero": {
-      "titleStart": "Hello, I'm",
-      "titleHighlight": "Alexandra",
-      "titleEnd": "your technical partner.",
-      "subtitle": "",
-      "points": [
-        "When you decided to leave corporate comfort to start your own business, a flood of technical questions emerged, didn't they?",
-        "\"How do I set up a professional email? Which invoicing system should I choose? CRM? Shopify or WordPress? How do I integrate all this?\"",
-        "And suddenly, instead of focusing on your business, you're on YouTube trying to understand technical configurations until the early hours of the morning.",
-        "I know this journey well because I've walked it too. After 20 years in the corporate world as a computer engineer, I decided to take that leap. And I discovered that even with all my technical knowledge, the number of decisions and configurations was intimidating.",
-        "That's exactly why today I help entrepreneurs like you implement uncomplicated systems."
-      ]
-    },
+    "description": "Alexandra Ribeiro, software engineer with 20 years of experience — External Technical Director for Portuguese SMEs and translator between business and technology.",
     "story": {
-      "title": "My Story",
-      "paragraphs": [
-        "I'm Alexandra Ribeiro, a computer engineer by training and passionate about helping businesses grow in an organized and efficient way. I bring over 20 years of experience in technology consulting, support for editorial projects, and e-commerce management.",
-        "Throughout my career, I've worked with dozens of companies in Portugal and internationally, helping them optimize processes, implement systems, and improve customer communication.",
-        "My approach combines technical knowledge with marketing and communication strategies, allowing me to offer a truly comprehensive service to my clients.",
-        "If you stumbled on my page, someone probably told you about me and that is an excellent thing because for the last 10 years I have been behind the scenes promoting my clients."
-      ]
+      "title": "My story"
     },
     "values": {
-      "title": "My Values",
+      "title": "My values",
       "items": [
         {
           "title": "Simplicity",
-          "description": "I believe technology should serve people, not the other way around. That's why I transform the complex into simple. If I can explain it without technical jargon, it means the solution is on the right track."
+          "description": "I always choose the simplest tool that solves the problem. Many SMEs would run perfectly on a simple CRM and a central information hub — and end up with sophisticated platforms nobody uses."
         },
         {
-          "title": "Autonomy",
-          "description": "I implement systems that grow with your business and that you can manage without constantly depending on technical specialists."
+          "title": "Independence",
+          "description": "No commissions from any vendor. I recommend what serves the business, even when the recommendation doesn't benefit me — including saying \"this part isn't for me\"."
         },
         {
-          "title": "Empathy",
-          "description": "I've been on the other side. I understand your doubts, fears, and frustrations with technology. There are no \"silly questions\" when it comes to systems!"
+          "title": "Compatibility",
+          "description": "I connect what you already use — Outlook, Teams, Google Drive or Gmail — so your tools start talking to each other, and I automate what's repetitive. I never push you towards an ERP or a new, complex system when the right answer is simpler."
         },
         {
-          "title": "Practicality",
-          "description": "I focus on solutions that work in real life, not just in theory. I prefer a simple system that you use every day over a complex one that ends up abandoned."
-        }
-      ]
-    },
-    "experience": {
-      "title": "My Experience",
-      "items": [
-        {
-          "role": "Technology Consultant",
-          "period": "2015 - Present",
-          "description": "Implementation of technological solutions for small and medium businesses, focusing on automation and efficiency."
-        },
-        {
-          "role": "Editorial Project Manager",
-          "period": "2010 - 2015",
-          "description": "Coordination of editorial projects, from conception to publication, for national and international publishers."
-        },
-        {
-          "role": "E-commerce Specialist",
-          "period": "2005 - 2010",
-          "description": "Development and management of online stores, optimization of sales processes and customer service."
+          "title": "Measurable results",
+          "description": "Every phase has a number attached: hours saved per week, subscriptions eliminated, response time reduced. What gets measured gets improved."
         }
       ]
     },
     "cta": {
-      "title": "Ready to work with me?",
-      "description": "Let's talk about how I can help your business grow and become more efficient.",
-      "button": "Schedule a call"
+      "title": "Shall we see if it makes sense to work together?",
+      "description": "A 15-minute call, with no obligation, to get to know your operation and figure out the next step — even if the next step isn't with me.",
+      "button": "Book a no-obligation call"
     },
     "tools": {
       "title": "Examples of tools, software, and platforms I work with:"
@@ -242,182 +192,92 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "description": "Explore some of my projects and implementations. Each of these examples demonstrates different skills and tools that I use in my work as a Digital Consultant.",
-    "instagram": {
-      "title": "Instagram Automation",
-      "description": "Instagram profile integrated with Manychat for automated responses. Interact with one of my posts to experience the automation system I've implemented.",
-      "cta": "Visit Instagram"
-    },
-    "etsy": {
-      "title": "Etsy Store - Healthy Gut Essentials",
-      "description": "Digital products store on the Etsy platform, where I've been a Star Seller since February 2025. See how I organize and present digital products for online sales.",
-      "cta": "Visit Etsy Store"
-    },
-    "wordpress": {
-      "title": "WordPress Website with WooCommerce",
-      "description": "Website from my previous business, developed with WordPress and WooCommerce. An example of how I implement online stores with one of the most popular CMS on the market.",
-      "cta": "View Website"
-    },
-    "shopify": {
-      "title": "Shopify Store - Oh So Portugal",
-      "description": "Portuguese gift store developed with Shopify as the final project for my E-commerce specialization course. This is a test store where you can browse freely.",
-      "password": "Password",
-      "cta": "View Shopify Store"
-    },
-    "newsletter": {
-      "title": "Email Marketing Automation",
-      "description": "Subscribe to my newsletter to experience the automated welcome sequence I created with Mailerlite. See how I implement effective email marketing automations.",
-      "placeholder": "Your email to receive the newsletter",
-      "button": "Subscribe"
-    }
+    "description": "Examples of projects and implementations by Alexandra Ribeiro."
   },
   "servicesPage": {
     "title": "Services",
-    "description": "Discover the virtual assistance services offered to businesses and entrepreneurs in Portugal",
+    "description": "Diagnosis, technical intermediation and custom digital operating systems for Portuguese SMEs — including management of professional email accounts, corporate website maintenance and online store maintenance, where applicable within the organisation.",
     "hero": {
-      "title": "Technical solutions to launch and grow your digital business",
-      "subtitle": "Choose the package that best suits the current stage of your business or schedule a call for a personalized solution.",
-      "cta": "Talk about my business",
-      "cta2": "Schedule a call"
+      "title": "Technology with method, not on impulse",
+      "subtitle": "Most companies start with the tool: buy the software and figure it out later — which is why most systems end up abandoned. I work in the opposite order: first understand how the business actually works, then decide what deserves attention, and only then implement — in small phases, with visible results from the first weeks.",
+      "cta": "Book a no-obligation call",
+      "cta2": "Book a no-obligation call"
     },
     "differentiators": {
       "title": "What sets me apart",
-      "description": "With 20+ years of experience in technology and management and my own journey from corporate to entrepreneurship, I offer a service that goes beyond the basic tasks of a technical virtual assistant. My approach combines technical knowledge, strategic vision, and practical execution to deliver real results for your business, without complications.",
+      "description": "An External Technical Director occupies a place that consultants, agencies and freelancers leave empty — the place of the person who answers for the result and sits on the client's side of the table.",
       "items": [
         {
-          "title": "Technical expertise",
-          "description": "Computer engineering background and extensive experience with digital tools and management systems."
+          "title": "From traditional consultants",
+          "description": "The consultant listens, advises and delivers a report. I design and build: the diagnosis ends in working systems, not PowerPoints — and I stay afterwards, for maintenance, team questions and evolution."
         },
         {
-          "title": "Strategic approach",
-          "description": "I don't just execute tasks, but also suggest improvements and optimizations for your processes."
+          "title": "From agencies and ERP implementers",
+          "description": "Agencies live off selling big projects; I live off long relationships with small systems that work. And when an agency really is the right answer, I sit on your side of the table: I translate the proposal, tighten the requirements and oversee the delivery."
         },
         {
-          "title": "Total flexibility",
-          "description": "I adapt to your needs, whether for one-time projects or ongoing support."
+          "title": "From automation freelancers",
+          "description": "The freelancer executes one piece well and disappears. I think through the whole system before the piece — the anchor question is \"how many clients do you have today, and how many do you want?\" — and I take on ongoing responsibility: maintenance, security, backups."
         }
       ]
     },
     "categories": {
-      "title": "Areas of expertise",
-      "administrative": {
-        "title": "Administrative Management",
-        "description": "Free yourself from time-consuming administrative tasks and focus on growing your business.",
-        "tasks": [
-          "Email and correspondence management",
-          "Appointment scheduling",
-          "Document organization",
-          "Report preparation",
-          "CRM management",
-          "Customer service",
-          "Basic invoicing and financial control",
-          "Audio and video transcription"
-        ]
-      },
-      "publishing": {
-        "title": "Publishing Support",
-        "description": "Specialized services for publishers and professionals in the publishing industry.",
-        "tasks": [
-          "Text review and formatting",
-          "Submission and application management",
-          "Editorial research",
-          "Preparation of promotional materials",
-          "Social media management for authors",
-          "Organization of virtual launches",
-          "Editorial schedule tracking",
-          "Communication with authors and partners"
-        ]
-      },
-      "tech": {
-        "title": "Tech Business Support",
-        "description": "Specialized support for startups and growing technology companies.",
-        "tasks": [
-          "Technology project management",
-          "Basic technical documentation",
-          "Remote team support",
-          "SaaS tool configuration and management",
-          "Market and competition research",
-          "Presentation preparation",
-          "Online community management",
-          "Recruitment process support"
-        ]
-      }
+      "title": "Services"
     },
     "cta": {
-      "title": "Let's work together?",
-      "description": "Schedule a free 15-minute call to discuss how I can help your business.",
-      "button": "Schedule now"
+      "title": "The first step takes 15 minutes",
+      "description": "A no-obligation call to understand how your operation works today and whether it makes sense to move on to a diagnosis.",
+      "button": "Book a no-obligation call"
     },
     "faq": {
       "title": "Frequently Asked Questions",
       "items": [
         {
-          "question": "What pricing options are available?",
-          "answer": "Depending on your case and the services you need, we evaluate what makes the most sense for you. We have options for hour packages (5, 10, 20), project-based (for cases where there is a final delivery), or monthly retainer for a set of fixed tasks to be performed."
+          "question": "What do you actually do, day to day?",
+          "answer": "I act as the external IT department the company doesn't have. That doesn't always mean building systems from scratch, the initial diagnosis can end in three different ways: making better use of what you already pay for and aren't using, connecting tools you already have so they start talking to each other, or building a custom piece when there's no simpler alternative that solves it. From there, I'm also available for practical configurations, the team's day-to-day questions, and evaluating or negotiating software vendor proposals on your behalf."
         },
         {
-          "question": "How can I get a quote?",
-          "answer": "You can schedule a 15-minute call where we get to know each other and talk a bit about what you need, and together we figure out what might make the most sense for you.\n\nTo do this, simply click the \"Schedule a call\" button at the top of the page and select the best available date/time on the calendar.\n\nIf you prefer, you can also send your message through the quick form on the \"Contact\" page or send me an email at geral@alexandraribeiro.pt."
+          "question": "Can you deal directly with my software vendors?",
+          "answer": "Yes, it's one of the most requested roles. If you've received a proposal and aren't sure it makes sense, or you're midway through an implementation and need someone on your side tracking it technically, I can read contracts and proposals, and speak directly with the vendor, to make sure you buy what you need — not what they want to sell you."
         },
         {
-          "question": "How are monthly consumed hours measured?",
-          "answer": "I use time tracking tools (Toggl) to ensure time is correctly recorded and allocated to each task I perform for you.\n\nAt the end of each week/month, I send a list with details of the time consumed."
+          "question": "Won't this turn into a huge, expensive ERP-style project, even if the initial idea is small?",
+          "answer": "It's the right fear to have, and the answer lies in the method: I work in small phases, with results visible within weeks, and whatever gets built always sits on top of the tools you already use, never against them. A real example: an 8-person SME asked me to evaluate an ERP proposal of €32,000 and 14 months of implementation. What they actually needed: project tracking and purchasing control — was solved with a module of their invoicing software they were already paying for without using, plus a project dashboard built in 6 weeks. Final cost: a fraction of the proposal."
         },
         {
-          "question": "How are services invoiced?",
-          "answer": "For hour packages, the invoice is issued at the beginning of the month and always relates to the services/hours of the respective month. For one-time projects, 50% is charged upon project approval and 50% upon final delivery."
+          "question": "If we decide to build something custom, do I become hostage to whoever built it?",
+          "answer": "It's not the rule, but if that's the path: I use established low-code tools, not closed proprietary code; everything gets documented; and accounts and data always stay in your name, never mine."
         },
         {
-          "question": "Is it possible to sign a non-disclosure agreement (NDA)?",
-          "answer": "Yes, I sign confidentiality agreements for all clients when requested, which is also covered in the contract we sign at the beginning of our work together. The privacy and security of your information are absolute priorities in my work!"
+          "question": "We've already tried several tools and nobody used them. Why would it be different now?",
+          "answer": "It's the most common outcome, and it has a well-known cause: the tool was chosen before the process was clear, and nobody was made responsible for maintaining it afterwards. I work in reverse: first we map how the team actually works, only then do we choose or build something, and ongoing support is part of the work from day one."
+        },
+        {
+          "question": "What if I become dependent on a single person?",
+          "answer": "A fair objection. That's why documentation of processes and systems is a mandatory deliverable, not optional, and access always stays in your name. If one day you want to work with someone else, they pick up where I left off."
+        },
+        {
+          "question": "I don't have time for IT projects right now.",
+          "answer": "It's precisely because you don't have time that the format is this one: I take it on, you validate. The diagnosis takes up only a few hours of your time in total; from there, your side of the effort is approving decisions, not managing work."
         }
       ]
     }
   },
   "contact": {
-    "title": "Contact",
-    "description": "Get in touch to schedule a conversation or learn more about virtual assistance services",
-    "subtitle": "Have questions or ready to start? Fill out the form below (guaranteed response within the next 24h) or schedule a 15-minute call directly.",
-    "formTitle": "Send a message",
-    "calendarTitle": "Schedule a 15-minute call",
+    "title": "Book a call",
+    "description": "Book a 15-minute, no-obligation call to talk about your company's operation.",
+    "subtitle": "This is how any work with me starts: 15 minutes to understand how your company works today and whether it makes sense to move on to a diagnosis. No obligation and no sales pitch — by the end, you'll have a clear idea of the next step, even if the next step isn't with me.",
+    "calendarTitle": "Choose the best time",
     "infoTitle": "Contact information",
     "email": "Email",
     "location": "Location",
-    "locationValue": "Porto, Portugal (Remote services)",
-    "response": "Response guaranteed within 24 hours on business days",
-    "form": {
-      "name": "Name",
-      "namePlaceholder": "Enter your name",
-      "email": "Email address",
-      "emailPlaceholder": "your.email@example.com",
-      "phone": "Phone number",
-      "phonePlaceholder": "Optional",
-      "services": "Which service or services are you interested in?",
-      "servicesDescription": "Select one or more options",
-      "message": "Message",
-      "messagePlaceholder": "Briefly describe how I can help...",
-      "submit": "Send message",
-      "submitting": "Sending..."
-    },
-    "serviceOptions": {
-      "virtualAssistance": "Virtual Assistance",
-      "crmErp": "CRM & ERP Solutions",
-      "other": "Other"
-    },
-    "validation": {
-      "nameRequired": "Please enter your name",
-      "emailInvalid": "Please enter a valid email",
-      "serviceRequired": "Please select at least one service"
-    },
-    "formSuccess": {
-      "title": "Message sent!",
-      "message": "Thank you for your message. I will respond as soon as possible."
-    },
+    "locationValue": "Leiria, Portugal (remote services nationwide)",
+    "response": "Prefer to write first? Send an email — guaranteed response within 24 hours on business days.",
     "calendar": {
       "title": "Scheduling Calendar",
       "subtitle": "Book a time that works for you",
       "placeholder": "Scheduling Calendar",
-      "instructions": "A calendar for scheduling calls will be integrated here (Calendly or similar)",
+      "instructions": "Calendar for scheduling the initial call",
       "duration": "Duration",
       "durationValue": "15 minutes",
       "availability": "Availability",
@@ -425,16 +285,11 @@
     }
   },
   "footer": {
-    "newsletterForm": {
-      "description": "Sign up for my newsletter to receive tips and tricks about business organization.",
-      "namePlaceholder": "Name",
-      "emailPlaceholder": "Email",
-      "buttonText": "Subscribe!",
-      "subscribing": "Subscribing...",
-      "privacyText": "By providing this information, you agree to receive free content about our content and services. You can unsubscribe at any time.",
-      "successMessage": "Thank you for subscribing! You will soon receive our tips and resources.",
-      "errorMessage": "An error occurred. Please try again.",
-      "emailValidationError": "Please enter a valid email"
+    "description": "External Technical Director for SMEs — custom digital operating systems: diagnosis, implementation, and the end of scattered Excel files.",
+    "cta": {
+      "title": "Ready to bring order to the scattered Excel files?",
+      "description": "A 15-minute call is enough to figure out the next step.",
+      "button": "Book a no-obligation call"
     },
     "links": [
       {

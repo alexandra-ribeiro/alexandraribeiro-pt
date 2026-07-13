@@ -12,7 +12,6 @@ import CertificationsSection from "@/components/certifications-section"
 import ContentfulBlogPreview from "@/components/contentful-blog-preview"
 import FinalCTA from "@/components/final-cta"
 import Footer from "@/components/footer"
-import NewsletterPopup from "@/components/newsletter-popup"
 import EnhancedDivider from "@/components/enhanced-divider"
 
 
@@ -26,13 +25,13 @@ export async function generateMetadata({
   const baseUrl = "https://www.alexandraribeiro.pt"
 
   const titles = {
-    pt: "Alexandra Ribeiro | Gestão Técnica de Operações Digitais para PME em Portugal",
-    en: "Alexandra Ribeiro | Digital Tech Operations Management for SME in Portugal",
+    pt: "Alexandra Ribeiro | Sistemas Digitais à Medida para PME",
+    en: "Alexandra Ribeiro | External Technical Director for SMEs",
   }
 
   const descriptions = {
-    pt: "Gestão Técnica de Operações Digitais para PM, empreendedores e negócios online em Portugal.",
-    en: "Digital Tech Operations Management for SME, entrepreneurs and online businesses in Portugal.",
+    pt: "Sistemas operacionais digitais à medida para PME portuguesas — diagnóstico, implementação e o fim dos Excel dispersos. Sem ERP, sem equipa de IT interna.",
+    en: "Custom digital operating systems for Portuguese SMEs — diagnosis, implementation, and the end of scattered Excel files. No ERP, no in-house IT team.",
   }
 
   return {
@@ -80,9 +79,8 @@ export default async function Home({
         lang={params.lang}
       />
 
-      <FinalCTA dict={dict.finalCTA} />
+      <FinalCTA dict={dict.finalCTA} lang={params.lang} />
       <Footer dict={dict.footer} />
-      <NewsletterPopup dict={dict.newsletterPopup} />
     </main>
   )
 }

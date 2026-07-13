@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "title": "Alexandra Ribeiro | Gestão técnica de operações digitais para PME e negócios online",
-    "description": "Websites, email profissional, automações e suporte técnico contínuo para negócios digitais e PME em Portugal"
+    "title": "Alexandra Ribeiro | Diretora Técnica Externa para PME",
+    "description": "Sistemas operacionais digitais à medida para PME portuguesas — diagnóstico, implementação e o fim dos Excel dispersos. Sem ERP, sem equipa de IT interna."
   },
-  "headerCTA": "Agendar chamada",
+  "headerCTA": "Agendar chamada sem compromisso",
   "navigation": [
     {
       "label": "Home",
@@ -33,109 +33,102 @@
     }
   ],
   "hero": {
-    "tagline": "Gestão de operações digitais para PME e negócios online",
-    "headline": "O suporte técnico que mantém o seu negócio a funcionar",
-    "subheadline": "Websites, email profissional, automações e suporte contínuo para negócios digitais e PME.",
-    "cta": "Ver como posso ajudar",
-    "ctaLink": "pt/services"
+    "tagline": "A tradutora entre o negócio e a tecnologia",
+    "headline": "A pessoa de IT que a sua empresa não tem — nem precisa de contratar.",
+    "subheadline": "Sistemas operacionais digitais à medida — diagnóstico, implementação e o fim dos Excel dispersos.",
+    "cta": "Agendar chamada sem compromisso",
+    "ctaLink": "pt/contact"
   },
   "painPoints": {
-    "title": "Quando os sistemas não acompanham o crescimento, o negócio ressente-se",
-    "intro": "À medida que o negócio cresce, surgem mais clientes, mais pedidos, mais emails e mais processos. O problema não é trabalhar mais — é trabalhar com sistemas que não estão organizados nem integrados.",
+    "title": "Reconhece alguma destas frases?",
+    "intro": "São as frases que mais ouço quando uma PME me contacta pela primeira vez. Se alguma lhe soa familiar, está em boa companhia: é o estado normal de uma empresa que cresceu mais depressa do que os sistemas que a suportam.",
     "cards": [
       {
-        "title": "Ferramentas que não falam entre si",
-        "description": "Email, faturação, agenda, website e CRM funcionam… mas isoladamente."
+        "title": "«Temos tudo em Excel.»",
+        "description": "Cada pessoa tem a sua folha, ninguém sabe o estado real dos projetos, e a informação vive espalhada por email, Drive e WhatsApp."
       },
       {
-        "title": "Processos que dependem de si",
-        "description": "Demasiadas tarefas manuais que podiam estar automatizadas."
+        "title": "«Já experimentámos várias ferramentas.»",
+        "description": "E ninguém as usou. A causa é conhecida: a ferramenta foi escolhida antes de o processo estar claro, e ninguém ficou responsável por a manter."
       },
       {
-        "title": "Sem ninguém a \"tomar conta\" da parte técnica",
-        "description": "Pequenos problemas acumulam-se e tornam-se grandes dores de cabeça."
+        "title": "«Estamos a crescer, mas a organização não acompanha.»",
+        "description": "Mais clientes e mais encomendas trazem mais erros, mais retrabalho — e um dia inteiro passado a apagar fogos."
       },
       {
-        "title": "Tudo funciona… até deixar de funcionar",
-        "description": "Atualizações, falhas ou erros simples podem parar o negócio."
+        "title": "«Recebemos uma proposta de um ERP, mas...»",
+        "description": "Números de 5 dígitos, prazos de 12 meses e um discurso comercial difícil de avaliar. Antes de assinar, vale a pena ter alguém do seu lado a ler a proposta."
       }
     ],
-    "closing": "Negócios saudáveis precisam de operações digitais simples, estáveis e bem mantidas."
+    "closing": "Reconheceu-se em duas ou mais? Uma chamada de 15 minutos chega para medir o tamanho do problema — e perceber o primeiro passo para o resolver."
   },
- "whatIsVA": {
-  "title": "O meu papel na operação digital do seu negócio",
-  "points": [
-    {
-      "title": "Operação técnica do dia a dia",
-      "description": "Cuido da parte técnica que mantém o seu negócio a funcionar todos os dias: websites, email profissional, sistemas internos e configurações essenciais para a operação."
-    },
-    {
-      "title": "Sistemas organizados e fiáveis",
-      "description": "Garanto que os seus sistemas estão organizados, atualizados e fiáveis, evitando falhas, incompatibilidades e soluções improvisadas que geram mais trabalho."
-    },
-    {
-      "title": "Automação de tarefas recorrentes",
-      "description": "Reduzo tarefas manuais através de automações simples e eficazes, como emails, alertas, processos recorrentes e integrações entre ferramentas."
-    },
-    {
-      "title": "Continuidade técnica sem IT interno",
-      "description": "Asseguro continuidade técnica no dia a dia, funcionando como ponto de contacto regular para ajustes, melhorias e resolução de problemas."
-    },
-    {
-      "title": "Evolução técnica acompanhada",
-      "description": "Acompanho a evolução do negócio, adaptando sistemas e processos à medida que surgem mais clientes, pedidos ou novas ferramentas."
-    }
-  ],
-  "highlight": "Uma extensão técnica do seu negócio: sem contratos pesados, sem custos fixos de equipa interna, sem dependência de vários fornecedores. Apenas apoio técnico consistente, quando precisa.",
-  "cta": "Vamos falar!"
-},
+  "whatIsVA": {
+    "title": "O que faço, na prática",
+    "points": [
+      {
+        "title": "Diagnóstico antes de qualquer proposta",
+        "description": "Passo uma a duas semanas a perceber como a empresa trabalha de facto — não como está escrito que trabalha. Entrego um mapa simples: o que existe, o que falta, e quanto custa por mês continuar assim."
+      },
+      {
+        "title": "Tradução de propostas e fornecedores",
+        "description": "Quando recebe uma proposta de software, leio-a consigo, traduzo o tecniquês e faço as perguntas difíceis ao fornecedor — para que compre o que precisa, não o que lhe querem vender."
+      },
+      {
+        "title": "Sistemas à medida, sobre o que já usa",
+        "description": "Ligo as ferramentas que já tem (Moloni, Google Workspace, Drive) e construo em low-code — ferramentas que permitem criar sistemas sem programar de raiz — um painel onde vê o estado de cada projeto e quem está a fazer o quê."
+      },
+      {
+        "title": "Implementação por fases, com resultados visíveis",
+        "description": "Nada de projetos de 18 meses. Melhorias pequenas e mensuráveis, com a primeira entrega visível em poucas semanas — frequentemente paga por si própria na limpeza de subscrições e ferramentas que a empresa paga sem usar."
+      },
+      {
+        "title": "Manutenção e proteção contínuas",
+        "description": "Um sistema sem dono volta ao Excel em três meses. Fico depois da entrega: dúvidas da equipa, backups reais, acessos em ordem e um plano escrito para quando algo falha."
+      }
+    ],
+    "highlight": "Sou, na prática, o departamento de IT que a sua empresa não tem — nem quer ter — internamente. Com 20 anos de engenharia informática por trás, e sem interesse em vender software de ninguém.",
+    "cta": "Agendar chamada sem compromisso"
+  },
   "services": {
     "title": "Como posso ajudar a sua empresa?",
-    "description": "Ofereço uma variedade de serviços personalizados para atender às necessidades específicas do seu negócio.",
+    "description": "Diagnóstico, intermediação técnica com fornecedores e sistemas operacionais digitais à medida — por fases, com resultados visíveis.",
     "cta": "Ver todos os serviços"
   },
   "whyChooseVA": {
-    "sectionLabel": "Vantagens",
-    "title": "Porquê escolher uma Consultora Digital como parceira técnica?",
-    "description": "Contar com uma Consultora Digital especializada traz inúmeras vantagens para o seu negócio: é como ter uma assistente virtual técnica, que o liberta para as tarefas que importam. Conheça os principais benefícios desta parceria estratégica para a sua infraestrutura técnica (sem que necessite de contratar colaboradores!)",
+    "sectionLabel": "O que me diferencia",
+    "title": "Porquê uma Diretora Técnica Externa?",
+    "description": "As PME que já saíram do arranque vivem num intervalo desconfortável: demasiado estruturadas para justificar um ERP e uma equipa de IT, demasiado crescidas para continuar a viver em Excel. É esse o espaço que ocupo — do seu lado da mesa, sem comissões de nenhum fornecedor.",
     "benefits": [
       {
-        "title": "Flexibilidade total",
-        "description": "Apoio quando precisa, sem necessidade de contratos longos ou custos fixos mensais"
+        "title": "Independência total de fornecedores",
+        "description": "Recomendo o que serve o negócio, incluindo «não comprem nada» ou «usem melhor o que já pagam» — como o módulo de compras do Moloni que um cliente pagava havia meses sem usar."
       },
       {
-        "title": "Experiência comprovada",
-        "description": "20 anos em engenharia informática e sistemas aplicados à realidade empreendedora portuguesa"
+        "title": "20 anos de engenharia informática",
+        "description": "Consultoria e desenvolvimento de software ao serviço das suas decisões tecnológicas — sem pressão comercial e com as perguntas difíceis feitas por quem fala a língua dos fornecedores."
       },
       {
-        "title": "Solução completa",
-        "description": "Todos os sistemas essenciais implementados por uma única profissional, evitando contratações múltiplas"
+        "title": "Resultados por fases, em semanas",
+        "description": "Nunca projetos «big bang» de 18 meses. Cada fase tem um resultado visível e mensurável antes de se avançar para a seguinte."
       },
       {
-        "title": "Sem preocupações técnicas",
-        "description": "Foque-se no crescimento do seu negócio enquanto deixo pronta toda a infraestrutura digital"
+        "title": "Documentação e autonomia",
+        "description": "Tudo documentado, contas e acessos sempre em nome da empresa, ferramentas com comunidades grandes. Se um dia quiser trabalhar com outra pessoa, ela pega no que existe."
       }
     ]
   },
   "aboutMe": {
-    "title": "Porque sei o que é começar do zero (e sem rede)",
-    "bio": "Sou Alexandra Ribeiro, engenheira informática que trocou 20 anos de vida corporativa pelo empreendedorismo — e acredite, sei exatamente como é essa montanha-russa!\n\nHoje, sou aquela parceira técnica que gostava de ter tido quando comecei, a pessoa que configura todos aqueles sistemas chatos (vá, têm dias...!) que ninguém quer aprender, mas que são essenciais para começar com o pé direito: domínios, emails, lojas online, automações e até inteligência artificial.\n\nAdoro transformar \"coisas técnicas complicadas\" em soluções práticas e funcionais — algo que percebi enquanto fazia a mesma jornada, no meu próprio negócio.\n\nPense em mim como a sua parceira técnica para o arranque: eu cuido dos bastidores, para que possa focar-se no que realmente importa — fazer o seu negócio crescer.",
+    "title": "A pessoa de IT que a sua empresa não tem — nem quer ter",
+    "bio": "Sou engenheira informática com 20 anos de experiência em consultoria e desenvolvimento de software. Hoje trabalho com PME portuguesas que cresceram até ao ponto em que a operação vive em ficheiros Excel dispersos e ferramentas que não falam entre si.\n\nFaço duas coisas: sou a intermediária técnica quando a empresa precisa de avaliar fornecedores e sistemas (traduzo propostas, faço as perguntas difíceis, evito compras erradas) e construo diretamente sistemas à medida — automações, integrações e cockpits de gestão em low-code — adaptados à forma como a equipa já trabalha.",
     "cta": "Saiba mais",
     "badges": [
-      "Shopify Partner",
-      "Especialização em E-commerce",
-      "CAE Advanced English",
+      "20 anos de engenharia informática e consultoria",
+      "Low-code: Supabase, WeWeb, Make",
       "Faturação: Moloni, InvoiceXpress, Primavera (certificados pela AT)",
-      "CRM e Gestão: Notion, ClickUp, Trello, Atlassian Jira",
+      "Automação: Make.com, n8n, Zapier",
+      "Gestão: Notion, Trello, Atlassian Jira, Monday",
       "Produtividade: Google Workspace, Microsoft 365",
-      "Automação e IA:",
-      "- Ferramentas no-code: Make.com, n8n, Zapier",
-      "- Assistentes IA: GPT Maker, Claude Builder, ChatGPT Business",
-      "- Marketing Automatizado: Manychat, MailerLite, Mailchimp",
-      "Design e Desenvolvimento:",
-      "- Web: WordPress, Shopify, HTML/CSS",
-      "- Visual: Canva Pro, Figma",
-      "- Bases de Dados: SQL"
+      "Bases de Dados: SQL, Supabase"
     ]
   },
   "certifications": {
@@ -145,41 +138,7 @@
     "title": "Últimos artigos do blog",
     "readMoreButton": "Ler mais",
     "viewAllButton": "Ver todos os artigos",
-    "articles": [
-      {
-        "title": "Guia Gratuito: 10 Tarefas",
-        "description": "Faça download do meu guia com as tarefas mais solicitadas em marketing digital para saber quais serviços oferecer. Você verá que não precisa ser especialista ou programador para começar.",
-        "date": "18 de abril, 2025",
-        "slug": "guia-10-tarefas",
-        "image": "/placeholder.svg?height=200&width=400&text=Guia"
-      },
-      {
-        "title": "Teste de Pontos Fortes",
-        "description": "Seus talentos e habilidades naturais são valiosos para empregadores. Faça o teste para descobrir qual tipo de posição virtual é ideal para você e o que os clientes pagarão por isso.",
-        "date": "10 de abril, 2025",
-        "slug": "teste-pontos-fortes",
-        "image": "/placeholder.svg?height=200&width=400&text=Teste"
-      },
-      {
-        "title": "Série de Formação",
-        "description": "Entre no papel de freelancer bem pago e valorizado dominando o marketing digital sob demanda, oferecendo serviços e preparando seu negócio para clientes pagantes (e liberdade total).",
-        "date": "2 de abril, 2025",
-        "slug": "serie-formacao",
-        "image": "/placeholder.svg?height=200&width=400&text=Formação"
-      }
-    ]
-  },
-  "newsletterPopup": {
-    "title": "Receba dicas exclusivas!",
-    "description": "Inscreva-se na minha newsletter para receber dicas, recursos e ofertas especiais na área dos sistemas, Inteligência Artificial e novos empreendedores.",
-    "namePlaceholder": "O seu nome",
-    "emailPlaceholder": "O seu melhor email",
-    "buttonText": "Quero inscrever-me!",
-    "privacyText": "Respeito a sua privacidade. Poderá cancelar a inscrição a qualquer momento.",
-    "thankYou": {
-      "title": "Obrigada pela sua inscrição!",
-      "message": "Está inscrito com sucesso! Obrigada,"
-    }
+    "articles": []
   },
   "testimonials": {
     "title": "O que dizem os meus clientes",
@@ -191,79 +150,41 @@
     ]
   },
   "finalCTA": {
-    "title": "Está pronto(a) para simplificar o seu dia a dia?",
-    "description": "Vamos conversar durante 15 minutos, sem compromisso, para descobrir como posso ajudar o seu negócio.",
-    "button": "Agendar conversa"
+    "title": "Quanto custa continuar assim?",
+    "description": "Numa chamada de 15 minutos, sem compromisso, percebemos como a sua operação funciona hoje e se faz sentido avançar para um diagnóstico. Sem discurso comercial: se o problema não for para mim, digo-lhe — e digo-lhe também o que faria no seu lugar.",
+    "button": "Agendar chamada sem compromisso"
   },
   "about": {
     "title": "Sobre Mim",
-    "description": "Conheça Alexandra Ribeiro, assistente virtual especializada em apoio administrativo e tecnológico para empresas em Portugal",
-    "hero": {
-      "titleStart": "Dizem que ser",
-      "titleHighlight": "generalista",
-      "titleEnd": "é algo negativo",
-      "subtitle": "Eu não concordo.",
-      "points": [
-        "Todos os empreendedores que me procuram estão à procura de alguém que possa desempenhar múltiplas funções.",
-        "Precisam de ajuda com marketing online, tarefas administrativas e atendimento ao cliente.",
-        "Precisam de alguém que simplesmente resolva os problemas e faça as coisas acontecerem.",
-        "Não apenas uma VA. Uma parceira de negócios versátil."
-      ]
-    },
+    "description": "Alexandra Ribeiro, engenheira informática com 20 anos de experiência — Diretora Técnica Externa para PME portuguesas e tradutora entre o negócio e a tecnologia.",
     "story": {
-      "title": "A minha história",
-      "paragraphs": [
-        "Sou Alexandra Ribeiro, engenheira informática de formação e apaixonada por ajudar negócios a crescer de forma organizada e eficiente. Trago mais de 20 anos de experiência em consultoria tecnológica, apoio a projetos editoriais e gestão de e-commerce.",
-        "Ao longo da minha carreira, trabalhei com dezenas de empresas em Portugal e internacionalmente, ajudando-as a otimizar processos, implementar sistemas e melhorar a comunicação com clientes.",
-        "A minha abordagem combina conhecimento técnico com estratégias de marketing e comunicação, permitindo oferecer um serviço verdadeiramente completo aos meus clientes.",
-        "Se chegou até aqui, provavelmente alguém lhe falou sobre mim, e isso é excelente! Nos últimos 10 anos tenho trabalhado nos bastidores, ajudando os meus clientes a brilharem, enquanto eu cuido de tudo o resto."
-      ]
+      "title": "A minha história"
     },
     "values": {
       "title": "Os meus valores",
       "items": [
         {
           "title": "Simplicidade",
-          "description": "Acredito que a tecnologia deve servir às pessoas, não o contrário. Por isso, transformo o complexo em simples. Se consigo explicar sem jargão técnico, é porque a solução está no caminho certo."
+          "description": "Escolho sempre a ferramenta mais simples que resolve. Muitas PME funcionariam perfeitamente com um CRM simples e uma central de informação — e acabam com plataformas sofisticadas que ninguém usa."
         },
         {
-          "title": "Autonomia",
-          "description": "Implemento sistemas que crescem com o seu negócio e que pode gerir sem depender constantemente de especialistas técnicos."
+          "title": "Independência",
+          "description": "Sem comissões de nenhum fornecedor. Recomendo o que serve o negócio, mesmo quando a recomendação não me beneficia — incluindo dizer «este pedaço não é para mim»."
         },
         {
-          "title": "Empatia",
-          "description": "Já estive do outro lado. Compreendo as suas dúvidas, medos e frustrações com a tecnologia. Não há pergunta \"disparatada\" quando se trata de sistemas!"
+          "title": "Compatibilidade",
+          "description": "Ligo o que já usa — Outlook, Teams, Google Drive ou Gmail — para que as ferramentas passem a falar entre si, e automatizo o que é repetitivo. Nunca empurro para um ERP ou um sistema novo e complexo quando a resposta certa é mais simples."
         },
         {
-          "title": "Praticidade",
-          "description": "Foco em soluções que funcionam na vida real, não apenas na teoria. Prefiro um sistema simples que utiliza todos os dias do que um complexo que acaba abandonado."
-        }
-      ]
-    },
-    "experience": {
-      "title": "Minha experiência",
-      "items": [
-        {
-          "role": "Consultora de Tecnologia",
-          "period": "2015 - Presente",
-          "description": "Implementação de soluções tecnológicas para pequenas e médias empresas, com foco em automação e eficiência."
-        },
-        {
-          "role": "Gestora de Projetos Editoriais",
-          "period": "2010 - 2015",
-          "description": "Coordenação de projetos editoriais, desde a concepção até a publicação, para editoras nacionais e internacionais."
-        },
-        {
-          "role": "Especialista em E-commerce",
-          "period": "2005 - 2010",
-          "description": "Desenvolvimento e gestão de lojas online, otimização de processos de venda e atendimento ao cliente."
+          "title": "Resultados mensuráveis",
+          "description": "Cada fase tem um número associado: horas poupadas por semana, subscrições eliminadas, tempo de resposta reduzido. O que se mede, melhora-se."
         }
       ]
     },
     "cta": {
-      "title": "Pronto(a) para trabalhar comigo?",
-      "description": "Vamos conversar sobre como posso ajudar o seu negócio a crescer e a tornar-se mais eficiente.",
-      "button": "Agendar uma chamada"
+      "title": "Vamos ver se faz sentido trabalharmos juntos?",
+      "description": "Uma chamada de 15 minutos, sem compromisso, para conhecer a sua operação e perceber o próximo passo — mesmo que o próximo passo não seja comigo.",
+      "button": "Agendar chamada sem compromisso"
     },
     "tools": {
       "title": "Exemplos de ferramentas, softwares e plataformas com as quais trabalho:"
@@ -271,182 +192,92 @@
   },
   "portfolio": {
     "title": "Portfolio",
-    "description": "Conheça alguns dos meus projetos e implementações. Cada um destes exemplos demonstra diferentes competências e ferramentas que utilizo no meu trabalho como Consultora Digital.",
-    "instagram": {
-      "title": "Automação no Instagram",
-      "description": "Perfil de Instagram integrado com Manychat para respostas automáticas. Interaja com uma das minhas publicações para experimentar o sistema de automação que implementei.",
-      "cta": "Visitar Instagram"
-    },
-    "etsy": {
-      "title": "Loja Etsy - Healthy Gut Essentials",
-      "description": "Loja de produtos digitais na plataforma Etsy, onde sou Star Seller desde fevereiro de 2025. Veja como organizo e apresento produtos digitais para venda online.",
-      "cta": "Visitar Loja Etsy"
-    },
-    "wordpress": {
-      "title": "Website WordPress com WooCommerce",
-      "description": "Website do meu negócio anterior, desenvolvido com WordPress e WooCommerce. Um exemplo de como implemento lojas online com um dos CMS mais populares do mercado.",
-      "cta": "Ver Website"
-    },
-    "shopify": {
-      "title": "Loja Shopify - Oh So Portugal",
-      "description": "Loja de presentes portugueses desenvolvida com Shopify como projeto final do curso de especialização em E-commerce. Esta é uma loja de teste onde pode navegar livremente.",
-      "password": "Password",
-      "cta": "Ver Loja Shopify"
-    },
-    "newsletter": {
-      "title": "Automação de Email Marketing",
-      "description": "Subscreva a minha newsletter para experimentar a sequência de boas-vindas automatizada que criei com Mailerlite. Veja como implemento automações de email marketing eficazes.",
-      "placeholder": "Seu email para receber a newsletter",
-      "button": "Subscrever"
-    }
+    "description": "Exemplos de projetos e implementações de Alexandra Ribeiro."
   },
   "servicesPage": {
     "title": "Serviços",
-    "description": "Conheça os serviços de Gestão Técnica de Operações Digitais para empresas e empreendedores em Portugal",
+    "description": "Diagnóstico, intermediação técnica e sistemas operacionais digitais à medida para PME portuguesas — incluindo gestão de contas de email profissional, manutenção de site institucional e de loja online, caso existam na organização.",
     "hero": {
-      "title": "Serviços de Gestão Técnica de Operações Digitais",
-      "subtitle": "Sistemas organizados. Processos a funcionar. Menos stress técnico no seu negócio.",
-      "cta": "Falar sobre o meu negócio",
-      "cta2": "Agendar uma chamada"
+      "title": "Tecnologia com método, não por impulso",
+      "subtitle": "A maioria das empresas começa pela ferramenta: compra-se o software e depois logo se vê — e é por isso que a maioria dos sistemas acaba abandonado. Eu trabalho pela ordem inversa: primeiro perceber como o negócio funciona de facto, depois decidir o que merece atenção, e só então implementar — por fases pequenas, com resultados visíveis desde as primeiras semanas.",
+      "cta": "Agendar chamada sem compromisso",
+      "cta2": "Agendar chamada sem compromisso"
     },
     "differentiators": {
       "title": "O que me diferencia",
-      "description": "Com 20+ anos de experiência em tecnologia e gestão e a minha própria jornada entre o corporativo e o empreendedorismo, ofereço um serviço que vai além das tarefas básicas de uma assistente virtual técnica. A minha abordagem combina conhecimento técnico, visão estratégica e execução prática para entregar resultados reais para o seu negócio, sem complicações.",
+      "description": "Uma Diretora Técnica Externa ocupa um lugar que consultores, agências e freelancers deixam vazio — o lugar de quem responde pelo resultado e fica do lado do cliente na mesa.",
       "items": [
         {
-          "title": "Experiência técnica",
-          "description": "Formação em engenharia informática e vasta experiência com ferramentas digitais e sistemas de gestão."
+          "title": "Dos consultores tradicionais",
+          "description": "O consultor ouve, aconselha e entrega um relatório. Eu desenho e construo: o diagnóstico termina em sistemas a funcionar, não em PowerPoints — e fico depois, para a manutenção, as dúvidas da equipa e a evolução."
         },
         {
-          "title": "Abordagem estratégica",
-          "description": "Não só executo tarefas, mas também sugiro melhorias e otimizações para os seus processos."
+          "title": "Das agências e implementadoras de ERP",
+          "description": "A agência vive de vender projetos grandes; eu vivo de relações longas com sistemas pequenos que funcionam. E quando a agência é mesmo a resposta certa, fico do seu lado da mesa: traduzo a proposta, aperto os requisitos e fiscalizo a entrega."
         },
         {
-          "title": "Flexibilidade total",
-          "description": "Adapto-me às suas necessidades, seja para projetos pontuais ou suporte contínuo."
+          "title": "Dos freelancers de automação",
+          "description": "O freelancer executa bem uma peça e desaparece. Eu penso o sistema inteiro antes da peça — a pergunta-âncora é «quantos clientes tem hoje e quantos quer ter?» — e assumo responsabilidade contínua: manutenção, segurança, backups."
         }
       ]
     },
     "categories": {
-      "title": "Áreas de atuação",
-      "administrative": {
-        "title": "Gestão Administrativa",
-        "description": "Liberte-se das tarefas administrativas que consomem o seu tempo e foque-se no crescimento do seu negócio.",
-        "tasks": [
-          "Gestão de emails e correspondência",
-          "Agendamento de compromissos",
-          "Organização de documentos",
-          "Preparação de relatórios",
-          "Gestão de CRM",
-          "Atendimento ao cliente",
-          "Faturação e controle financeiro básico",
-          "Transcrição de áudio e vídeo"
-        ]
-      },
-      "publishing": {
-        "title": "Apoio a Editoras",
-        "description": "Serviços especializados para editoras e profissionais da indústria editorial.",
-        "tasks": [
-          "Revisão e formatação de textos",
-          "Gestão de submissões e candidaturas",
-          "Pesquisa editorial",
-          "Preparação de materiais promocionais",
-          "Gestão de redes sociais para autores",
-          "Organização de lançamentos virtuais",
-          "Acompanhamento de cronogramas editoriais",
-          "Comunicação com autores e parceiros"
-        ]
-      },
-      "tech": {
-        "title": "Apoio a Empresas Tech",
-        "description": "Suporte especializado para startups e empresas de tecnologia em fase de crescimento.",
-        "tasks": [
-          "Gestão de projetos tecnológicos",
-          "Documentação técnica básica",
-          "Suporte a equipes remotas",
-          "Configuração e gestão de ferramentas SaaS",
-          "Pesquisa de mercado e concorrência",
-          "Preparação de apresentações",
-          "Gestão de comunidades online",
-          "Apoio em processos de recrutamento"
-        ]
-      }
+      "title": "Serviços"
     },
     "cta": {
-      "title": "Vamos trabalhar juntos(as)?",
-      "description": "Agende uma chamada gratuita de 15 minutos para discutirmos como posso ajudar o seu negócio.",
-      "button": "Agendar agora"
+      "title": "O primeiro passo são 15 minutos",
+      "description": "Uma chamada sem compromisso para perceber como a sua operação funciona hoje e se faz sentido avançar para um diagnóstico.",
+      "button": "Agendar chamada sem compromisso"
     },
     "faq": {
       "title": "Perguntas Frequentes",
       "items": [
         {
-          "question": "Quais são as opções de preço disponíveis?",
-          "answer": "Consoante o seu caso e os serviços que necessite, avaliamos o que faça mais sentido para si. Temos disponíveis as opções de pacotes de horas (5, 10, 20), por projecto (para casos em que existe uma entrega final) ou avença mensal sobre um conjunto de tarefas fixas a executar."
+          "question": "O que faz exatamente, no dia a dia?",
+          "answer": "Funciono como o departamento de IT externo que a empresa não tem. Nem sempre isso significa construir sistemas de raiz, o diagnóstico inicial pode terminar de três formas diferentes: usar melhor o que já paga e não aproveita, ligar ferramentas que já tem para começarem a falar entre si, ou construir uma peça à medida, quando não há alternativa mais simples que resolva. A partir daí, fico também disponível para configurações práticas, dúvidas do dia a dia da equipa, e para avaliar ou negociar propostas de fornecedores de software em seu nome."
         },
         {
-          "question": "Como posso obter orçamento?",
-          "answer": "Poderá agendar uma chamada de 15min em que nos conhecemos e falamos um pouco sobre o que precisa e percebemos, juntos, o que pode fazer mais sentido para si.\n\nPara tal basta clicar no botão \"Agendar uma chamada\" no topo da página e seleccionar a melhor data/horário disponível no calendário.\n\nCaso prefira, pode também enviar a sua mensagem através do formulário rápido da página \"Contacto\" ou enviar-me um email para geral@alexandraribeiro.pt."
+          "question": "Também pode lidar diretamente com os meus fornecedores de software?",
+          "answer": "Sim, é um dos papéis mais pedidos. Se recebeu uma proposta e não sabe se faz sentido, ou está a meio de uma implementação e precisa de alguém do seu lado a acompanhar tecnicamente, posso ler contratos e propostas, e falar diretamente com o fornecedor, para garantir que compra o que precisa — não o que lhe querem vender."
         },
         {
-          "question": "Como é feita a medição de horas consumidas mensalmente?",
-          "answer": "Utilizo ferramentas de medição de tempo (Toggl) para que este seja correctamente registado e afecto a cada tarefa que realizo para si.\n\nNo final de cada semana/mês, envio listagem com o detalhe dos consumos realizados."
+          "question": "Isto vai acabar por se tornar um projeto gigante e caro, tipo ERP, mesmo que a ideia inicial seja pequena?",
+          "answer": "É o receio certo, e a resposta está no método: trabalho por fases pequenas, com resultado visível em semanas, e o que se constrói assenta sempre nas ferramentas que já usa, nunca contra elas. Um exemplo real: uma PME de 8 pessoas pediu-me para avaliar uma proposta de ERP de 32.000€ e 14 meses de implementação. O que realmente precisavam: acompanhamento de projetos e controlo de compras — resolveu-se com o módulo do Moloni que já pagavam sem usar, mais um painel de projetos construído em 6 semanas. Custo final: uma fração da proposta."
         },
         {
-          "question": "Como é feita a facturação dos serviços?",
-          "answer": "Relativamente aos pacotes de horas, a factura é emitida no início do mês e relativa sempre aos serviços/horas do mês respectivo. No que toca a projectos pontuais, são cobrados 50% na adjudicação e 50% na entrega final."
+          "question": "Se decidirmos construir algo à medida, fico refém de quem o fez?",
+          "answer": "Não é a regra, mas se for esse o caminho: uso ferramentas low-code estabelecidas, não código fechado; tudo fica documentado; e as contas e os dados ficam sempre em seu nome, nunca no meu."
         },
         {
-          "question": "É possível assinar acordo de confidencialidade (NDA)?",
-          "answer": "Sim, assino acordos de confidencialidade para todos os clientes, quando solicitado, sendo algo que está também abrangido no contrato que assinamos com o início dos trabalhos. A privacidade e segurança das suas informações são prioridades absolutas no meu trabalho!"
+          "question": "Já experimentámos várias ferramentas e ninguém usou. Porque seria diferente agora?",
+          "answer": "É o desfecho mais comum, e tem uma causa conhecida: a ferramenta foi escolhida antes de o processo estar claro, e ninguém ficou responsável pela manutenção depois. Trabalho ao contrário: primeiro mapeamos como a equipa trabalha de facto, só depois se escolhe ou constrói algo, e o acompanhamento contínuo faz parte do trabalho desde o início."
+        },
+        {
+          "question": "E se ficar dependente de uma pessoa só?",
+          "answer": "Objeção justa. Por isso a documentação de processos e sistemas é entrega obrigatória, não opcional, e os acessos ficam sempre em seu nome. Se um dia quiser trabalhar com outra pessoa, ela pega no que existe."
+        },
+        {
+          "question": "Não tenho tempo para projetos de IT agora.",
+          "answer": "É exatamente por não ter tempo que o formato é este: eu assumo, você valida. O diagnóstico ocupa-lhe poucas horas no total; a partir daí, o esforço do seu lado é aprovar decisões, não gerir trabalho."
         }
       ]
     }
   },
   "contact": {
-    "title": "Contacto",
-    "description": "Entre em contacto para agendar uma conversa ou saber mais sobre os serviços de assistência virtual",
-    "subtitle": "Tem questões ou está pronto para começar? Preencha o formulário abaixo (garantia de resposta dentro das próximas 24h) ou agende diretamente uma chamada de 15 minutos.",
-    "formTitle": "Envie uma mensagem",
-    "calendarTitle": "Agende uma chamada de 15 minutos",
+    "title": "Agendar chamada",
+    "description": "Marque uma chamada de 15 minutos, sem compromisso, para falarmos sobre a operação da sua empresa.",
+    "subtitle": "É assim que começa qualquer trabalho comigo: 15 minutos para perceber como a sua empresa funciona hoje e se faz sentido avançar para um diagnóstico. Sem compromisso e sem discurso comercial — no fim, sai com uma ideia clara do próximo passo, mesmo que o próximo passo não seja comigo.",
+    "calendarTitle": "Escolha o melhor horário",
     "infoTitle": "Informações de contacto",
     "email": "Email",
     "location": "Localização",
-    "locationValue": "Porto, Portugal (Serviços remotos)",
-    "response": "Resposta garantida dentro de 24 horas em dias úteis",
-    "form": {
-      "name": "Nome",
-      "namePlaceholder": "Insira o seu nome",
-      "email": "Endereço de email",
-      "emailPlaceholder": "seu.email@exemplo.com",
-      "phone": "Número de telefone",
-      "phonePlaceholder": "Opcional",
-      "services": "Quais os serviços que lhe interessam?",
-      "servicesDescription": "Selecione uma ou mais opções",
-      "message": "Mensagem",
-      "messagePlaceholder": "Descreva brevemente como posso ajudar...",
-      "submit": "Enviar mensagem",
-      "submitting": "A enviar..."
-    },
-    "serviceOptions": {
-      "virtualAssistance": "Assistência Virtual",
-      "crmErp": "Consultoria / apoio técnico",
-      "other": "Outro"
-    },
-    "validation": {
-      "nameRequired": "Por favor insira o seu nome",
-      "emailInvalid": "Por favor insira um email válido",
-      "serviceRequired": "Selecione pelo menos um serviço"
-    },
-    "formSuccess": {
-      "title": "Mensagem enviada!",
-      "message": "Obrigada pela sua mensagem. Responderei o mais brevemente possível."
-    },
+    "locationValue": "Leiria, Portugal (serviços remotos em todo o país)",
+    "response": "Prefere escrever primeiro? Envie um email — resposta garantida dentro de 24 horas em dias úteis.",
     "calendar": {
       "title": "Calendário de Agendamento",
       "subtitle": "Reserve um horário que lhe seja conveniente",
       "placeholder": "Calendário de Agendamento",
-      "instructions": "Aqui será integrado um calendário para agendamento de chamadas (Calendly ou similar)",
+      "instructions": "Calendário para agendamento da chamada inicial",
       "duration": "Duração",
       "durationValue": "15 minutos",
       "availability": "Disponibilidade",
@@ -454,16 +285,11 @@
     }
   },
   "footer": {
-    "newsletterForm": {
-      "description": "Registe-se na minha newsletter para receber truques e dicas sobre tecnologia prãtica no seu negócio.",
-      "namePlaceholder": "Nome",
-      "emailPlaceholder": "Email",
-      "buttonText": "Quero subscrever!",
-      "subscribing": "A subscrever...",
-      "privacyText": "Ao fornecer estes dados, está a aceitar receber conteúdo gratuito sobre os meus serviços. Pode cancelar a sua subscrição a qualquer momento.",
-      "successMessage": "Obrigada pela sua subscrição! Receberá em breve as minhas dicas e recursos.",
-      "errorMessage": "Ocorreu um erro. Por favor, tente novamente.",
-      "emailValidationError": "Por favor, insira um email válido"
+    "description": "Diretora Técnica Externa para PME — sistemas operacionais digitais à medida, diagnóstico, implementação e o fim dos Excel dispersos.",
+    "cta": {
+      "title": "Pronto para pôr ordem nos Excel dispersos?",
+      "description": "Uma chamada de 15 minutos chega para perceber o próximo passo.",
+      "button": "Agendar chamada sem compromisso"
     },
     "links": [
       {

@@ -19,10 +19,19 @@ export async function generateMetadata({
 
   const baseUrl = "https://www.alexandraribeiro.pt"
 
+  const titles = {
+    pt: "Alexandra Ribeiro | Diretora Técnica Externa para PME",
+    en: "Alexandra Ribeiro | External Technical Director for SMEs",
+  }
+
+  const descriptions = {
+    pt: "Sistemas operacionais digitais à medida para PME portuguesas — diagnóstico, implementação e o fim dos Excel dispersos.",
+    en: "Custom digital operating systems for Portuguese SMEs — diagnosis, implementation, and the end of scattered Excel files.",
+  }
+
   return {
-    title: "Alexandra Ribeiro | Gestão Técnica de Operações Digitais para PMEs e Negócios Online",
-    description:
-      "Gestão Técnica de Operações Digitais para PMEs e Negócios Online",
+    title: titles[lang],
+    description: descriptions[lang],
     alternates: {
       canonical: `${baseUrl}/${lang}`,
       languages: {
