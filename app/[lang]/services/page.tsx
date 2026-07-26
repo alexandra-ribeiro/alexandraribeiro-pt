@@ -154,7 +154,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
             <div className="hidden md:block">
               <div className="relative h-[400px] w-full overflow-hidden">
                 <Image
-                  src="/images/3photo.jpg"
+                  src="/images/services-hero-alexandra.jpg"
                   alt={isPortuguese ? "Sistemas operacionais digitais para PME" : "Digital operating systems for SMEs"}
                   width={800}
                   height={400}

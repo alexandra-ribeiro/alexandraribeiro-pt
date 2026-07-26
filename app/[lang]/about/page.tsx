@@ -105,7 +105,7 @@ export default async function AboutPage({ params }: { params: { lang: string } }
             <div className="relative">
               <div className="relative h-[400px] w-full rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="/images/design-mode/1photo.png.jpeg"
+                  src="/images/about-hero-alexandra.jpg"
                   alt="Alexandra Ribeiro"
                   fill
                   className="object-cover"
@@ -251,7 +251,7 @@ export default async function AboutPage({ params }: { params: { lang: string } }
             <div>
               <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl">
                 <Image
-                  src="/images/design-mode/softwares%20and%20tools%20virtual%20assistant.JPG.jpeg"
+                  src="/images/about-workspace-alexandra.jpg"
                   alt={isPortuguese ? "Ferramentas e software de trabalho" : "Workspace with tools and software"}
                   fill
                   className="object-cover"

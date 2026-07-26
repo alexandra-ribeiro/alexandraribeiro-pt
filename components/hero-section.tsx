@@ -12,7 +12,7 @@ export default function HeroSection({ dict }: { dict: any }) {
       <div
         className="fixed inset-0 w-full h-screen -z-10 bg-primary"
         style={{
-          backgroundImage: "url('/images/free-stock-ivory-mix-2-2021-20-285-29.jpg')",
+          backgroundImage: "url('/images/hero-alexandra.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
