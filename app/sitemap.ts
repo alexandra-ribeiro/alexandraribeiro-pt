@@ -34,5 +34,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   })
 
 
+  /* ---------------------------
+     PÁGINA "ANTES DE ASSINAR" (só PT)
+  ---------------------------- */
+  sitemapEntries.push({
+    url: `${BASE_URL}/pt/services/revisao-propostas-erp-crm`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  })
+
   return sitemapEntries
 }
