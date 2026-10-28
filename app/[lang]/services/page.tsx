@@ -35,6 +35,7 @@ export async function generateMetadata({
 export default async function ServicesPage({ params }: { params: { lang: string } }) {
   const dict = await getDictionary(params.lang)
   const isPortuguese = params.lang !== "en"
+  const lang = params.lang === "en" ? "en" : "pt"
 
   const serviceBlocks = isPortuguese
     ? [
@@ -145,7 +146,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
             <div className="text-primary">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">{dict.servicesPage.hero.title}</h1>
               <p className="text-xl mb-8 text-primary/90">{dict.servicesPage.hero.subtitle}</p>
-              <Link href={`/${params.lang}/contact`}>
+              <Link href={`/${lang}/contact`}>
                 <Button size="lg" className="bg-customGold hover:bg-primary text-primary hover:text-white">
                   {dict.servicesPage.hero.cta}
                 </Button>
@@ -187,6 +188,15 @@ export default async function ServicesPage({ params }: { params: { lang: string 
                     <li key={idx}>{item}</li>
                   ))}
                 </ul>
+
+                {isPortuguese && service.title === "Intermediação técnica com fornecedores" && (
+                  <Link
+                    href={`/${lang}/services/revisao-propostas-erp-crm`}
+                    className="text-primary text-sm font-medium mt-4 inline-block"
+                  >
+                    Ver o serviço Antes de Assinar →
+                  </Link>
+                )}
               </div>
             ))}
           </div>
@@ -223,7 +233,7 @@ export default async function ServicesPage({ params }: { params: { lang: string 
         <div className="container mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">{dict.servicesPage.cta.title}</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">{dict.servicesPage.cta.description}</p>
-          <Link href={`/${params.lang}/contact`}>
+          <Link href={`/${lang}/contact`}>
             <Button size="lg" className="bg-customGold hover:bg-primary text-primary hover:text-white">
               {dict.servicesPage.cta.button}
             </Button>
