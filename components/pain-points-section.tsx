@@ -1,4 +1,5 @@
 import { AlertCircle, RefreshCw, Settings, Zap } from "lucide-react"
+import Link from "next/link"
 
 interface PainPointsSectionProps {
   dict: {
@@ -42,6 +43,14 @@ export default function PainPointsSection({ dict }: PainPointsSectionProps) {
                   <div>
                     <h3 className="text-lg font-semibold text-foreground mb-2">{card.title}</h3>
                     <p className="text-foreground/70 leading-relaxed">{card.description}</p>
+                    {card.title === "«Recebemos uma proposta de um ERP, mas...»" && (
+                      <Link
+                        href="/pt/services/revisao-propostas-erp-crm"
+                        className="text-primary text-sm font-medium mt-2 inline-block"
+                      >
+                        Ver o serviço Antes de Assinar →
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
